@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC 3.0 · Meta-Synthese v2 — Reparatur-Bilanz | Projekt Sternenstaub</title>
+<meta name="description" content="Forensische Reparatur-Bilanz der HCC-3.0-Sprintserie: 14 von 18 methodischen Defekten geschlossen, Fundamentwert von 916,8 Mrd. € seriendurchgängig konsistent, verbleibende Unsicherheiten korrekt als Modell bzw. umstritten gelabelt.">
+<meta name="author" content="Projekt Sternenstaub">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="HCC 3.0 · Meta-Synthese v2 — Reparatur-Bilanz">
+<meta property="og:description" content="14 von 18 Defekten geschlossen, 3 korrekt als umstritten gelabelt, 1 teilweise. Der Fundamentwert (916,8 Mrd. €) ist über alle vier Sprint-Knoten konsistent. Eine forensische Bilanz nach dem OSTO-Systemmodell.">
+<meta property="og:site_name" content="Projekt Sternenstaub">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HCC 3.0 · Meta-Synthese v2 — Reparatur-Bilanz">
+<meta name="twitter:description" content="Forensische Bilanz: 14 von 18 methodischen Defekten der HCC-3.0-Serie geschlossen, Fundamentwert konsistent, Rest-Unsicherheiten korrekt gelabelt.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "HCC 3.0 · Meta-Synthese v2 — Reparatur-Bilanz der Sprint-Serie",
+  "description": "Forensische Bilanz über die Reparatur von 18 identifizierten methodischen Defekten in der HCC-3.0-Sprintserie (Makroökonomie, Neuropsychologie, HRV/Interbrain Synchrony, Psychoakustik).",
+  "inLanguage": "de-DE",
+  "author": { "@type": "Organization", "name": "Projekt Sternenstaub" },
+  "about": ["Organisationsökonomie", "Kognitive Neurowissenschaft", "Epistemische Methodik", "Evidenzbasierte Forensik"],
+  "genre": "Forensische Meta-Analyse / Audit-Bilanz"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root{
+    --void:#060714;
+    --void-2:#0a0c1e;
+    --nebula:#10152b;
+    --nebula-2:#161c38;
+    --gold:#d9a35c;
+    --gold-text:#e7b877;
+    --gold-soft:rgba(217,163,92,.16);
+    --parchment:#f4ead9;
+    --muted:#c3cbe0;
+    --hairline:rgba(244,234,217,.14);
+    --panel:rgba(16,21,43,.62);
+    --geschlossen:#6fcf97;
+    --eingehegt:#e7b877;
+    --teilweise:#e2986a;
+    --caveat:#9aa5c6;
+    --fakt:#8fe3a8;
+    --modell:#a9b8f5;
+    --umstritten:#f2a191;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --serif:'Fraunces', serif;
+    --sans:'Atkinson Hyperlegible', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *, *::before, *::after{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{font-family:var(--serif); color:var(--parchment); font-weight:600; letter-spacing:-.01em; margin:0;}
+  p{margin:0;}
+  a{color:var(--gold-text);}
+  a:hover{color:var(--parchment);}
+
+  .container{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .measure{max-width:68ch;}
+
+  #particle-canvas{
+    position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;
+    background:radial-gradient(ellipse at 20% -10%, rgba(217,163,92,.10), transparent 45%),
+               radial-gradient(ellipse at 90% 10%, rgba(120,140,220,.08), transparent 40%),
+               var(--void);
+  }
+  @media (prefers-reduced-motion: reduce){
+    #particle-canvas{ display:none; }
+  }
+
+  a.skip-link{
+    position:absolute; left:12px; top:-60px; background:var(--gold); color:var(--void);
+    padding:10px 16px; border-radius:8px; font-weight:700; z-index:1000; transition:top .2s ease;
+  }
+  a.skip-link:focus{top:12px;}
+
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:4px;}
+
+  /* header */
+  header.site-header{
+    position:sticky; top:0; z-index:100;
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    background:rgba(6,7,20,.72);
+    border-bottom:1px solid var(--hairline);
+  }
+  .header-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto;}
+  .brand{display:flex; align-items:baseline; gap:10px; font-family:var(--serif); font-size:1.05rem; color:var(--parchment); text-decoration:none;}
+  .brand small{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; color:var(--gold-text); font-weight:500;}
+  nav.primary-nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
+  nav.primary-nav a{color:var(--muted); text-decoration:none; font-size:.92rem; padding:6px 2px; border-bottom:2px solid transparent;}
+  nav.primary-nav a:hover{color:var(--parchment); border-bottom-color:var(--gold);}
+  #nav-toggle{display:none; background:none; border:1px solid var(--hairline); color:var(--parchment); padding:8px 12px; border-radius:8px;}
+  @media (max-width: 860px){
+    nav.primary-nav{position:absolute; left:0; right:0; top:100%; background:var(--nebula); border-bottom:1px solid var(--hairline);}
+    nav.primary-nav ul{flex-direction:column; padding:16px 24px; gap:4px;}
+    nav.primary-nav[data-open="false"]{display:none;}
+    #nav-toggle{display:inline-block;}
+  }
+
+  /* layout helpers */
+  main{position:relative; z-index:1;}
+  section{padding:96px 0; border-bottom:1px solid var(--hairline);}
+  section:last-of-type{border-bottom:none;}
+  .kicker{font-family:var(--mono); font-size:.78rem; color:var(--gold-text); letter-spacing:.02em; margin-bottom:14px; display:block;}
+  h2.section-title{font-size:clamp(1.7rem, 3.2vw, 2.5rem); margin-bottom:20px;}
+  .lede{color:var(--muted); font-size:1.08rem; max-width:62ch;}
+
+  /* hero */
+  .hero{padding:88px 0 72px;}
+  .hero-grid{display:grid; grid-template-columns:1.25fr 0.9fr; gap:56px; align-items:center;}
+  @media (max-width:920px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(2.4rem, 5.2vw, 3.8rem); line-height:1.08;}
+  .hero .lede{margin-top:22px; font-size:1.18rem;}
+  .hero-meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:30px;}
+  .chip{
+    display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px;
+    border:1px solid var(--hairline); background:var(--panel); font-size:.85rem; color:var(--muted);
+  }
+  .chip strong{color:var(--parchment); font-family:var(--mono); font-weight:600;}
+  .chip .dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+
+  .h0-card{
+    border:1px solid var(--hairline); background:var(--panel); border-radius:var(--radius-lg);
+    padding:26px; backdrop-filter:blur(10px);
+  }
+  .h0-card .verdict{
+    display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.75rem;
+    color:var(--umstritten); background:rgba(242,161,145,.12); border:1px solid rgba(242,161,145,.4);
+    padding:5px 11px; border-radius:999px; margin-bottom:14px;
+  }
+  .h0-card p{color:var(--muted); font-size:.95rem;}
+  .h0-card p + p{margin-top:10px;}
+
+  .ring-wrap{display:flex; align-items:center; gap:22px; margin-top:26px; flex-wrap:wrap;}
+  .ring-figure{position:relative; width:168px; height:168px; flex-shrink:0;}
+  .ring-figure svg{width:100%; height:100%; transform:rotate(-90deg);}
+  .ring-center{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .ring-center .num{font-family:var(--mono); font-size:2.1rem; font-weight:600; color:var(--parchment); line-height:1;}
+  .ring-center .lbl{font-size:.72rem; color:var(--muted); margin-top:4px;}
+  .ring-legend{display:flex; flex-direction:column; gap:8px; font-size:.88rem;}
+  .ring-legend .row{display:flex; align-items:center; gap:8px;}
+  .ring-legend .sw{width:11px; height:11px; border-radius:3px; flex-shrink:0;}
+
+  /* status + evidence badges */
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px;
+    font-size:.78rem; font-family:var(--mono); font-weight:500; border:1px solid; white-space:nowrap;
+    background:rgba(255,255,255,.03);
+  }
+  .badge .ic{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
+  .badge-geschlossen{border-color:rgba(111,207,151,.45); color:var(--parchment);}
+  .badge-geschlossen .ic{background:var(--geschlossen);}
+  .badge-eingehegt{border-color:rgba(231,184,119,.45); color:var(--parchment);}
+  .badge-eingehegt .ic{background:var(--eingehegt);}
+  .badge-teilweise{border-color:rgba(226,152,106,.45); color:var(--parchment);}
+  .badge-teilweise .ic{background:var(--teilweise);}
+  .badge-caveat{border-color:rgba(154,165,198,.45); color:var(--muted);}
+  .badge-caveat .ic{background:var(--caveat);}
+  .badge-fakt{border-color:rgba(143,227,168,.45); color:var(--parchment);}
+  .badge-fakt .ic{background:var(--fakt);}
+  .badge-modell{border-color:rgba(169,184,245,.45); color:var(--parchment);}
+  .badge-modell .ic{background:var(--modell);}
+  .badge-umstritten{border-color:rgba(242,161,145,.45); color:var(--parchment);}
+  .badge-umstritten .ic{background:var(--umstritten);}
+  .badge-berechnet{border-color:rgba(217,163,92,.5); color:var(--parchment);}
+  .badge-berechnet .ic{background:var(--gold);}
+
+  /* glass panel base */
+  .panel{
+    background:var(--panel); border:1px solid var(--hairline); border-radius:var(--radius-lg);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  }
+
+  /* legend cards (status classes) */
+  .legend-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:8px;}
+  @media (max-width:640px){.legend-grid{grid-template-columns:1fr;}}
+  .legend-card{padding:18px 20px; border-radius:var(--radius-md); border-left:3px solid; background:rgba(255,255,255,.02);}
+  .legend-card h4{font-family:var(--mono); font-size:.85rem; color:var(--parchment); margin-bottom:6px; font-weight:600;}
+  .legend-card p{color:var(--muted); font-size:.9rem;}
+  .legend-card.lg-geschlossen{border-color:var(--geschlossen);}
+  .legend-card.lg-eingehegt{border-color:var(--eingehegt);}
+  .legend-card.lg-teilweise{border-color:var(--teilweise);}
+  .legend-card.lg-caveat{border-color:var(--caveat);}
+
+  /* rahmen two column */
+  .rahmen-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:start;}
+  @media (max-width:920px){.rahmen-grid{grid-template-columns:1fr;}}
+  .lens-strip{margin-top:34px; padding:20px 22px; border-radius:var(--radius-md); background:var(--gold-soft); border:1px solid rgba(217,163,92,.3);}
+  .lens-strip .lens-title{font-family:var(--mono); font-size:.78rem; color:var(--gold-text); display:block; margin-bottom:10px;}
+  .lens-row{display:flex; gap:22px; flex-wrap:wrap;}
+  .lens-item{flex:1 1 180px; font-size:.88rem; color:var(--muted);}
+  .lens-item strong{display:block; color:var(--parchment); font-family:var(--serif); font-size:1rem; margin-bottom:3px; font-weight:600;}
+
+  /* Kurzfassung */
+  .verdict-block{padding:28px 30px; border-radius:var(--radius-lg); border-left:4px solid var(--gold); margin-bottom:36px;}
+  .verdict-block p{font-size:1.15rem; font-family:var(--serif); color:var(--parchment); line-height:1.5;}
+
+  table.pattern-table{width:100%; border-collapse:collapse; font-size:.94rem;}
+  table.pattern-table th{text-align:left; font-family:var(--mono); font-size:.72rem; color:var(--muted); text-transform:none; padding:10px 14px; border-bottom:1px solid var(--hairline); font-weight:500;}
+  table.pattern-table td{padding:14px; border-bottom:1px solid var(--hairline); vertical-align:top; color:var(--muted);}
+  table.pattern-table td:first-child{font-family:var(--mono); color:var(--gold-text); width:32px;}
+  table.pattern-table tr:last-child td{border-bottom:none;}
+  table.pattern-table td.pat-name{color:var(--parchment);}
+
+  .agg-line{margin-top:22px; padding:16px 20px; border-radius:var(--radius-md); background:rgba(255,255,255,.02); font-size:.92rem; color:var(--muted);}
+  .agg-line strong{color:var(--parchment); font-family:var(--mono);}
+
+  /* Defektregister */
+  .filter-bar{display:flex; gap:24px; flex-wrap:wrap; margin-bottom:26px; align-items:flex-end;}
+  .filter-group{display:flex; flex-direction:column; gap:8px;}
+  .filter-group .flabel{font-family:var(--mono); font-size:.68rem; color:var(--muted); letter-spacing:.03em;}
+  .filter-group .fbtns{display:flex; gap:6px; flex-wrap:wrap;}
+  .fbtn{
+    background:transparent; border:1px solid var(--hairline); color:var(--muted); padding:7px 13px;
+    border-radius:999px; font-size:.82rem; font-family:var(--sans); cursor:pointer;
+  }
+  .fbtn:hover{border-color:var(--gold); color:var(--parchment);}
+  .fbtn[aria-pressed="true"]{background:var(--gold-soft); border-color:var(--gold); color:var(--parchment); font-weight:700;}
+
+  .table-scroll{overflow-x:auto; border-radius:var(--radius-md); border:1px solid var(--hairline);}
+  table.register{width:100%; border-collapse:collapse; min-width:760px; font-size:.9rem;}
+  table.register thead th{
+    text-align:left; padding:12px 16px; font-family:var(--mono); font-size:.68rem; color:var(--muted);
+    background:rgba(255,255,255,.03); border-bottom:1px solid var(--hairline); font-weight:500; letter-spacing:.02em;
+  }
+  table.register tbody td{padding:13px 16px; border-bottom:1px solid var(--hairline); color:var(--muted); vertical-align:top;}
+  table.register tbody tr:last-child td{border-bottom:none;}
+  table.register tbody tr:hover{background:rgba(255,255,255,.02);}
+  table.register td.sprint-cell{font-family:var(--mono); color:var(--gold-text); font-weight:600;}
+  table.register td.defect-cell{color:var(--parchment);}
+  table.register .sev-dots{display:flex; gap:3px;}
+  table.register .sev-dots span{width:6px; height:6px; border-radius:50%; background:var(--hairline);}
+  table.register .sev-dots span.on{background:var(--umstritten);}
+  table.register tr[hidden]{display:none;}
+
+  .live-count{margin-top:14px; font-size:.85rem; color:var(--muted); font-family:var(--mono);}
+
+  .stat-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;}
+  @media (max-width:700px){.stat-cards{grid-template-columns:1fr;}}
+  .stat-card{padding:22px; border-radius:var(--radius-md); text-align:left; border-top:3px solid;}
+  .stat-card .n{font-family:var(--mono); font-size:2rem; font-weight:600; color:var(--parchment); line-height:1;}
+  .stat-card .l{font-size:.85rem; color:var(--muted); margin-top:8px;}
+  .stat-card.sc-1{border-color:var(--geschlossen);}
+  .stat-card.sc-2{border-color:var(--eingehegt);}
+  .stat-card.sc-3{border-color:var(--teilweise);}
+
+  /* Muster cards */
+  .muster-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px; margin-top:30px;}
+  .muster-card{
+    padding:24px; border-radius:var(--radius-lg); text-align:left; cursor:pointer; position:relative;
+    border-left:3px solid var(--gold); transition:transform .18s ease, border-color .18s ease;
+    width:100%; color:inherit; font-family:inherit;
+  }
+  @media (prefers-reduced-motion: reduce){.muster-card{transition:none;}}
+  .muster-card:hover{transform:translateY(-3px); border-left-color:var(--parchment);}
+  .muster-card .idx{font-family:var(--mono); font-size:.72rem; color:var(--gold-text); display:block; margin-bottom:10px;}
+  .muster-card h3{font-size:1.15rem; margin-bottom:10px; line-height:1.3;}
+  .muster-card p{color:var(--muted); font-size:.9rem;}
+  .muster-card .open-hint{margin-top:16px; font-size:.78rem; color:var(--gold-text); font-family:var(--mono);}
+  .rubric-mini{margin-top:14px; display:flex; flex-direction:column; gap:6px;}
+  .rubric-row{display:flex; align-items:center; gap:8px; font-size:.72rem; color:var(--muted); font-family:var(--mono);}
+  .rubric-track{flex:1; height:5px; border-radius:4px; background:rgba(255,255,255,.08); position:relative; overflow:hidden;}
+  .rubric-fill{position:absolute; inset:0 auto 0 0; height:100%; border-radius:4px; background:var(--gold);}
+
+  /* Dialogs */
+  dialog{
+    border:none; padding:0; background:transparent; max-width:min(680px, 92vw); width:100%;
+    color:var(--parchment);
+  }
+  dialog::backdrop{background:rgba(4,5,12,.72); backdrop-filter:blur(3px);}
+  .dialog-shell{
+    background:linear-gradient(180deg, var(--nebula-2), var(--nebula));
+    border:1px solid var(--hairline); border-radius:var(--radius-lg);
+    padding:32px; max-height:82vh; overflow-y:auto;
+  }
+  dialog[open] .dialog-shell{animation:dlg-in .22s ease;}
+  @keyframes dlg-in{from{opacity:0; transform:scale(.97) translateY(6px);} to{opacity:1; transform:none;}}
+  @media (prefers-reduced-motion: reduce){ dialog[open] .dialog-shell{animation:none;} }
+  .dialog-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px;}
+  .dialog-head h3{font-size:1.4rem;}
+  .dialog-close{
+    background:rgba(255,255,255,.06); border:1px solid var(--hairline); color:var(--parchment);
+    width:34px; height:34px; border-radius:50%; flex-shrink:0; cursor:pointer; font-size:1rem; line-height:1;
+  }
+  .dialog-close:hover{background:var(--gold); color:var(--void); border-color:var(--gold);}
+  .dialog-body p{color:var(--muted); font-size:.96rem; margin-bottom:14px;}
+  .dialog-body p:last-child{margin-bottom:0;}
+  .mini-table{width:100%; border-collapse:collapse; margin:16px 0; font-size:.86rem;}
+  .mini-table th{text-align:left; padding:8px 10px; border-bottom:1px solid var(--hairline); font-family:var(--mono); font-size:.68rem; color:var(--muted); font-weight:500;}
+  .mini-table td{padding:8px 10px; border-bottom:1px solid var(--hairline); color:var(--muted);}
+  .mini-table td:first-child{color:var(--parchment); font-family:var(--mono);}
+
+  /* Stresstest */
+  .caveat-list{display:flex; flex-direction:column; gap:14px; margin-top:30px;}
+  .caveat-item{padding:18px 20px; border-radius:var(--radius-md); display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;}
+  @media (max-width:600px){.caveat-item{grid-template-columns:1fr;}}
+  .caveat-item .cv-num{font-family:var(--mono); color:var(--gold-text); font-size:.85rem; padding-top:2px;}
+  .caveat-item h4{font-size:1rem; margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .caveat-item p{color:var(--muted); font-size:.92rem;}
+
+  .regress-table{width:100%; border-collapse:collapse; margin-top:24px; font-size:.9rem;}
+  .regress-table th{text-align:left; padding:10px 14px; font-family:var(--mono); font-size:.7rem; color:var(--muted); border-bottom:1px solid var(--hairline); font-weight:500;}
+  .regress-table td{padding:12px 14px; border-bottom:1px solid var(--hairline); color:var(--muted); vertical-align:top;}
+  .regress-table tr:last-child td{border-bottom:none;}
+  .regress-table td:first-child{color:var(--parchment);}
+
+  /* Exoskelett section + modal */
+  .exo-card{padding:34px; border-radius:var(--radius-lg); display:flex; gap:28px; align-items:center; flex-wrap:wrap;}
+  .exo-card .exo-text{flex:1 1 340px;}
+  .exo-card h3{font-size:1.4rem; margin-bottom:10px;}
+  .exo-card p{color:var(--muted);}
+  .btn-primary{
+    background:var(--gold); color:var(--void); border:none; padding:14px 26px; border-radius:999px;
+    font-weight:700; font-size:.95rem; cursor:pointer; display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+  }
+  .btn-primary:hover{background:var(--gold-text);}
+
+  #exo-dialog{max-width:min(760px,94vw);}
+  .ledger-strip{
+    padding:16px 18px; border-radius:var(--radius-md); background:rgba(217,163,92,.08);
+    border:1px solid rgba(217,163,92,.3); font-size:.85rem; color:var(--muted); margin-bottom:22px;
+  }
+  .ledger-strip strong{color:var(--gold-text); font-family:var(--mono); font-size:.72rem; display:block; margin-bottom:6px;}
+  .tab-list{display:flex; gap:6px; flex-wrap:wrap; border-bottom:1px solid var(--hairline); margin-bottom:20px; padding-bottom:0;}
+  .tab-btn{
+    background:none; border:none; color:var(--muted); padding:10px 14px; font-size:.85rem; cursor:pointer;
+    border-bottom:2px solid transparent; font-family:var(--sans);
+  }
+  .tab-btn[aria-selected="true"]{color:var(--parchment); border-bottom-color:var(--gold); font-weight:700;}
+  .tab-panel{display:none;}
+  .tab-panel[data-active="true"]{display:block;}
+  .tab-panel h4{font-size:1rem; margin-bottom:12px; color:var(--parchment);}
+  .tab-panel ul{margin:0 0 0 0; padding-left:20px; color:var(--muted); font-size:.92rem;}
+  .tab-panel li{margin-bottom:12px;}
+  .tab-panel li::marker{color:var(--gold-text);}
+  .tab-panel p{color:var(--muted); font-size:.92rem; margin-bottom:12px;}
+
+  .fab{
+    position:fixed; bottom:26px; right:26px; z-index:60;
+  }
+  @media (max-width:640px){.fab{bottom:16px; right:16px;}}
+  .fab button{
+    background:var(--panel); backdrop-filter:blur(10px); border:1px solid var(--hairline); color:var(--parchment);
+    padding:12px 18px; border-radius:999px; font-size:.85rem; cursor:pointer; display:flex; align-items:center; gap:8px;
+    box-shadow:0 8px 30px rgba(0,0,0,.4);
+  }
+  .fab button:hover{border-color:var(--gold); color:var(--gold-text);}
+  .fab .dot-pulse{width:8px; height:8px; border-radius:50%; background:var(--gold);}
+
+  /* Implikationen */
+  .agenda-list{list-style:none; margin:30px 0 0; padding:0; display:flex; flex-direction:column; gap:0;}
+  .agenda-item{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:22px 0; border-bottom:1px solid var(--hairline);}
+  .agenda-item:last-child{border-bottom:none;}
+  .agenda-item .ai-num{font-family:var(--mono); color:var(--gold-text); font-size:1rem;}
+  .agenda-item h4{font-size:1.05rem; margin-bottom:6px;}
+  .agenda-item p{color:var(--muted); font-size:.94rem;}
+
+  /* Referenzen */
+  .ref-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:30px;}
+  @media (max-width:820px){.ref-grid{grid-template-columns:1fr;}}
+  .ref-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .ref-list li{padding-left:20px; position:relative; font-size:.9rem; color:var(--muted);}
+  .ref-list li::before{content:"—"; position:absolute; left:0; color:var(--gold-text);}
+  .ref-list code{font-family:var(--mono); color:var(--parchment); font-size:.85em; background:rgba(255,255,255,.05); padding:1px 6px; border-radius:4px;}
+  .code-audit{padding:22px; border-radius:var(--radius-md); background:rgba(255,255,255,.02);}
+  .code-audit h4{font-family:var(--mono); font-size:.78rem; color:var(--gold-text); margin-bottom:14px;}
+  .code-audit ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .code-audit li{font-size:.88rem; color:var(--muted); display:flex; gap:10px; align-items:flex-start;}
+
+  footer.site-footer{padding:56px 0 40px; position:relative; z-index:1;}
+  .footer-grid{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:flex-start;}
+  .footer-grid p{color:var(--muted); font-size:.85rem; max-width:44ch;}
+  .footer-links{display:flex; gap:18px; flex-wrap:wrap;}
+  .footer-links a{color:var(--muted); font-size:.85rem; text-decoration:none;}
+  .footer-links a:hover{color:var(--gold-text);}
+  .footer-meta{font-family:var(--mono); font-size:.72rem; color:var(--muted); margin-top:28px; opacity:.7;}
+
+  ::selection{background:var(--gold); color:var(--void);}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top">Sternenstaub <small>PROJEKT · HCC 3.0</small></a>
+    <button id="nav-toggle" aria-expanded="false" aria-controls="primary-nav-list">Menü</button>
+    <nav class="primary-nav" aria-label="Hauptnavigation">
+      <ul id="primary-nav-list" data-open="true">
+        <li><a href="#rahmen">Rahmen</a></li>
+        <li><a href="#kurzfassung">Kurzfassung</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#muster">Muster</a></li>
+        <li><a href="#stresstest">Stresstest</a></li>
+        <li><a href="#exoskelett-section">Exoskelett</a></li>
+        <li><a href="#implikationen">Implikationen</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top" style="border-bottom:1px solid var(--hairline);">
+    <div class="container hero-grid">
+      <div>
+        <span class="kicker">Meta-Synthese v2 · HCC 3.0 · Reparatur-Bilanz</span>
+        <h1>Was repariert wurde, was korrekt gelabelt bleibt.</h1>
+        <p class="lede">Die HCC-3.0-Serie ist von ambitioniert-aber-angreifbar auf gremien- und gerichtsfest gehoben — nicht weil alle Unsicherheit beseitigt wäre, sondern weil das Dokument nicht länger mehr behauptet, als die Evidenz trägt.</p>
+        <div class="hero-meta">
+          <span class="chip"><span class="dot" style="background:var(--geschlossen)"></span>14 von 18 Defekten <strong>geschlossen</strong></span>
+          <span class="chip"><span class="dot" style="background:var(--eingehegt)"></span>3 <strong>eingehegt</strong></span>
+          <span class="chip"><span class="dot" style="background:var(--teilweise)"></span>1 <strong>teilweise</strong></span>
+          <span class="chip"><span class="dot" style="background:var(--gold)"></span>Fundament <strong>916,8 Mrd. €</strong> · 4/4 Knoten konsistent</span>
+        </div>
+      </div>
+
+      <div class="h0-card">
+        <span class="verdict">H₀ verworfen</span>
+        <p><strong style="color:var(--parchment); font-family:var(--serif); font-weight:600;">Geprüfte Nullhypothese:</strong> Die Überarbeitungen seien kosmetisch; die tragenden Defekte bestünden fort.</p>
+        <p>14 von 18 Defekten geschlossen, der Fundamentwert ist über alle Knoten konsistent, der Serien-Tiefpunkt (Sprint 2, 2/10) ist auf 8/10 gehoben.</p>
+
+        <div class="ring-wrap">
+          <div class="ring-figure" role="img" aria-label="Kreisdiagramm: von 18 Defekten sind 14 geschlossen, 3 eingehegt, 1 teilweise repariert">
+            <svg viewBox="0 0 180 180">
+              <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="16"/>
+              <circle cx="90" cy="90" r="70" fill="none" stroke="var(--geschlossen)" stroke-width="16" stroke-dasharray="342 98" stroke-dashoffset="0" stroke-linecap="butt"/>
+              <circle cx="90" cy="90" r="70" fill="none" stroke="var(--eingehegt)" stroke-width="16" stroke-dasharray="73.3 366.7" stroke-dashoffset="-342" stroke-linecap="butt"/>
+              <circle cx="90" cy="90" r="70" fill="none" stroke="var(--teilweise)" stroke-width="16" stroke-dasharray="24.4 415.6" stroke-dashoffset="-415.3" stroke-linecap="butt"/>
+            </svg>
+            <div class="ring-center">
+              <span class="num">14/18</span>
+              <span class="lbl">geschlossen</span>
+            </div>
+          </div>
+          <div class="ring-legend">
+            <div class="row"><span class="sw" style="background:var(--geschlossen)"></span> Geschlossen — 14</div>
+            <div class="row"><span class="sw" style="background:var(--eingehegt)"></span> Eingehegt — 3</div>
+            <div class="row"><span class="sw" style="background:var(--teilweise)"></span> Teilweise — 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAHMEN -->
+  <section id="rahmen">
+    <div class="container rahmen-grid">
+      <div>
+        <span class="kicker">Epistemischer Rahmen &amp; Tool-Audit</span>
+        <h2 class="section-title">Ein Fehler wird geschlossen. Eine Unsicherheit wird gelabelt.</h2>
+        <p class="lede">Dieser Knoten ersetzt die Meta-Synthese v1, die die Defekte der Urfassungen beschrieb. v2 bilanziert, was in den fünf bereinigten Knoten (<code style="font-family:var(--mono); color:var(--gold-text);">sprint-1…</code> bis <code style="font-family:var(--mono); color:var(--gold-text);">sprint-4-hcc-3-0-bereinigt.md</code>) tatsächlich repariert wurde — defektweise, ehrlich und ohne Siegeslauf.</p>
+        <p class="lede" style="margin-top:16px;">Die zentrale Unterscheidung dieser Bilanz: Ein <strong style="color:var(--parchment)">Fehler</strong> wird geschlossen; eine <strong style="color:var(--parchment)">inhärente Unsicherheit</strong> wird nicht „gelöst", sondern korrekt gelabelt (Fakt / Modell / Umstritten). v2 misst beide Kategorien getrennt.</p>
+
+        <div class="lens-strip">
+          <span class="lens-title">Drei Linsen auf diese Bilanz</span>
+          <div class="lens-row">
+            <div class="lens-item"><strong>Empirisch-methodisch</strong>Was wurde gemessen, was wurde tatsächlich repariert — das Defektregister.</div>
+            <div class="lens-item"><strong>Systemisch-prozessual</strong>Wie funktioniert Selbstkorrektur über Revisionszyklen hinweg — Governance &amp; Re-Validierung.</div>
+            <div class="lens-item"><strong>Erkenntnistheoretisch</strong>Was heißt „gelöst" versus „korrekt gelabelt" — die epistemische Hygiene selbst.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel" style="padding:26px;">
+          <h3 style="font-size:1.1rem; margin-bottom:4px;">Status- &amp; Evidenzklassen</h3>
+          <p style="color:var(--muted); font-size:.88rem; margin-bottom:18px;">Vier Reparatur-Status, mit denen jeder der 18 Defekte geführt wird.</p>
+          <div class="legend-grid">
+            <div class="legend-card lg-geschlossen">
+              <h4>Geschlossen</h4>
+              <p>Faktischer Fehler behoben — Arithmetik, Fehlattribution, Belegkette, Reifikation.</p>
+            </div>
+            <div class="legend-card lg-eingehegt">
+              <h4>Eingehegt</h4>
+              <p>Kontroverse oder Skalenfrage, die nicht „lösbar" ist, jetzt aber korrekt gelabelt (Umstritten/Modell).</p>
+            </div>
+            <div class="legend-card lg-teilweise">
+              <h4>Teilweise</h4>
+              <p>Substanziell verbessert, mit benanntem Rest-Limit.</p>
+            </div>
+            <div class="legend-card lg-caveat">
+              <h4>Rest-Caveat</h4>
+              <p>Inhärente Unsicherheit, die per Design bestehen bleibt und korrekt als Modell/Umstritten geführt wird.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KURZFASSUNG -->
+  <section id="kurzfassung">
+    <div class="container">
+      <span class="kicker">Kurzfassung für Entscheider</span>
+      <h2 class="section-title">Der Gesamtbefund in einem Satz</h2>
+
+      <div class="panel verdict-block">
+        <p>Die HCC-3.0-Serie ist von <em>ambitioniert-aber-angreifbar</em> auf <em>gremien-/gerichtsfest</em> gehoben — nicht weil alle Unsicherheit beseitigt wäre, sondern weil das Dokument nicht länger mehr behauptet, als die Evidenz trägt.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table class="pattern-table">
+          <thead>
+            <tr><th style="width:32px;">#</th><th>Muster (v1)</th><th style="width:160px;">Status v2</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td class="pat-name">Selbstreferenzielles Fundament (916,8 Mrd.) mit Summenlücke</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+            <tr><td>2</td><td class="pat-name">Reifikation / Niveau-Verwechslung (0,70-Trugschluss)</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+            <tr><td>3</td><td class="pat-name">Gebrochene Belegketten (UAV, Figuren, Foren)</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+            <tr><td>4</td><td class="pat-name">Effekt-/Präzisions-Inflation</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+            <tr><td>5</td><td class="pat-name">Umstrittene Rückgrate als „gesetzt" (Yerkes-Dodson, Polyvagal)</td><td><span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></td></tr>
+            <tr><td>6</td><td class="pat-name">Interne Serien-Widersprüche (psych. Sicherheit; fNIRS; RSA)</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+            <tr><td>7</td><td class="pat-name">Neu: Revisions-Regressionen (Delta-Wellen, Kymatik, 853,5)</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschl. / Eingeh.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="agg-line"><strong>Aggregat:</strong> 18 Defekte → 14 geschlossen, 3 per Label eingehegt, 1 teilweise. Von 4 schweren Defekten (Schwere 3): 3 geschlossen, 1 (Polyvagal) korrekt als umstritten gelabelt.</p>
+    </div>
+  </section>
+
+  <!-- DEFEKTREGISTER -->
+  <section id="register">
+    <div class="container">
+      <span class="kicker">1 · Empirischer Befund</span>
+      <h2 class="section-title">Das Defektregister, abgearbeitet</h2>
+      <p class="lede">18 Defekte über vier Sprints, jeweils mit Schweregrad (1–3), Reparatur-Status und der konkreten Korrektur. Filterbar nach Sprint und Status.</p>
+
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="flabel">SPRINT</span>
+          <div class="fbtns" role="group" aria-label="Nach Sprint filtern" id="filter-sprint">
+            <button class="fbtn" data-sprint="all" aria-pressed="true">Alle</button>
+            <button class="fbtn" data-sprint="S1" aria-pressed="false">S1</button>
+            <button class="fbtn" data-sprint="S2" aria-pressed="false">S2</button>
+            <button class="fbtn" data-sprint="S3" aria-pressed="false">S3</button>
+            <button class="fbtn" data-sprint="S4" aria-pressed="false">S4</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="flabel">STATUS</span>
+          <div class="fbtns" role="group" aria-label="Nach Status filtern" id="filter-status">
+            <button class="fbtn" data-status="all" aria-pressed="true">Alle</button>
+            <button class="fbtn" data-status="geschlossen" aria-pressed="false">Geschlossen</button>
+            <button class="fbtn" data-status="eingehegt" aria-pressed="false">Eingehegt</button>
+            <button class="fbtn" data-status="teilweise" aria-pressed="false">Teilweise</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="register" id="register-table">
+          <thead>
+            <tr><th>Sprint</th><th>Defekt (v1)</th><th>Schwere</th><th>Status v2</th><th>Reparatur</th></tr>
+          </thead>
+          <tbody>
+            <tr data-sprint="S1" data-status="geschlossen"><td class="sprint-cell">S1</td><td class="defect-cell">916,8-Summenlücke (853,5 ≠ 916,8)</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>4. Block „Cost of Turnover" (63,3 Mrd.) ergänzt → Summe exakt</td></tr>
+            <tr data-sprint="S1" data-status="geschlossen"><td class="sprint-cell">S1</td><td class="defect-cell">14-Bio.-€-Fehlattribution (US-COVID-Studie)</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>DE-Spanne 18–40 Bio. €, diskonttransparent ausgewiesen</td></tr>
+            <tr data-sprint="S1" data-status="geschlossen"><td class="sprint-cell">S1</td><td class="defect-cell">Leverage-Nenner 1:17.976 (Einzelstiftung)</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Aggregierte Prävention als Nenner → Hebel ~1:1.000</td></tr>
+            <tr data-sprint="S1" data-status="geschlossen"><td class="sprint-cell">S1</td><td class="defect-cell">Präsentismus-Zahl 2.400 € via Blog belegt</td><td><span class="sev-dots"><span class="on"></span><span></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Zahl und Beleg entfernt</td></tr>
+            <tr data-sprint="S1" data-status="eingehegt"><td class="sprint-cell">S1</td><td class="defect-cell">8,17 % auf gesamten öffentlichen Dienst übertragen</td><td><span class="sev-dots"><span class="on"></span><span></span><span></span></span></td><td><span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></td><td>Als Bundesverwaltungs-Basis/Modell markiert</td></tr>
+
+            <tr data-sprint="S2" data-status="geschlossen"><td class="sprint-cell">S2</td><td class="defect-cell">0,70-Dimensionsfehler (Last = Kapazität gesetzt)</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Achsen getrennt; Mechanismus statt Gleichung</td></tr>
+            <tr data-sprint="S2" data-status="geschlossen"><td class="sprint-cell">S2</td><td class="defect-cell">„Phasen-Kopplung" aus einem MDPI-Review entliehen</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Entliehene Formel entfernt</td></tr>
+            <tr data-sprint="S2" data-status="geschlossen"><td class="sprint-cell">S2</td><td class="defect-cell">Effektinflation („massiv" vs. g = −0,15)</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Als „klein" (konventionell) eingestuft</td></tr>
+            <tr data-sprint="S2" data-status="eingehegt"><td class="sprint-cell">S2</td><td class="defect-cell">Yerkes-Dodson als „Gesetz" behandelt</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></td><td>Als Heuristik, [Umstritten] gekennzeichnet</td></tr>
+            <tr data-sprint="S2" data-status="geschlossen"><td class="sprint-cell">S2</td><td class="defect-cell">„Rauschfreie" fNIRS-Prämisse</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Short-Channel Regression (SCR) obligatorisch übernommen</td></tr>
+
+            <tr data-sprint="S3" data-status="eingehegt"><td class="sprint-cell">S3</td><td class="defect-cell">Polyvagal-Theorie als Kausalfundament</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td><span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></td><td>Heuristische Linse [Umstritten]; Grossman et al. 2026 genannt</td></tr>
+            <tr data-sprint="S3" data-status="geschlossen"><td class="sprint-cell">S3</td><td class="defect-cell">TNE-Beleg = Einzelhirn-UAV-Studie</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Ersetzt durch Interbrain-Meta-Analyse 2024</td></tr>
+            <tr data-sprint="S3" data-status="geschlossen"><td class="sprint-cell">S3</td><td class="defect-cell">MPT-Beleg via ResearchGate-Figuren</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Ersetzt durch MPT-Primärliteratur</td></tr>
+            <tr data-sprint="S3" data-status="geschlossen"><td class="sprint-cell">S3</td><td class="defect-cell">HRV als „hochpräziser Marker" dargestellt</td><td><span class="sev-dots"><span class="on"></span><span></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>R² &lt; 10 %, explizit „kein Präzisionsmarker"</td></tr>
+
+            <tr data-sprint="S4" data-status="geschlossen"><td class="sprint-cell">S4</td><td class="defect-cell">Rhythmische Musik + vestigiales BPM-Konzept</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Stetiger Masker, BPM = 0 (Changing-State-Prinzip)</td></tr>
+            <tr data-sprint="S4" data-status="teilweise"><td class="sprint-cell">S4</td><td class="defect-cell">Placebo/Verblindung nicht isoliert</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-teilweise"><span class="ic"></span>Teilweise</span></td><td>Placebo gefixt; Verblindung inhärent begrenzt</td></tr>
+            <tr data-sprint="S4" data-status="geschlossen"><td class="sprint-cell">S4</td><td class="defect-cell">Power N = 65 für Interaktionseffekt unterdimensioniert</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Interaktions-Power N ≈ 196+ ergänzt</td></tr>
+            <tr data-sprint="S4" data-status="geschlossen"><td class="sprint-cell">S4</td><td class="defect-cell">Debunk-Belege via Foren/Werbeseiten</td><td><span class="sev-dots"><span class="on"></span><span class="on"></span><span></span></span></td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td><td>Ersetzt durch reale RCTs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="live-count" id="register-live" aria-live="polite">18 von 18 Defekten angezeigt</p>
+
+      <div class="stat-cards">
+        <div class="panel stat-card sc-1"><span class="n">14</span><span class="l">Defekte geschlossen — faktische Fehler behoben</span></div>
+        <div class="panel stat-card sc-2"><span class="n">3</span><span class="l">Defekte eingehegt — korrekt als Umstritten/Modell gelabelt</span></div>
+        <div class="panel stat-card sc-3"><span class="n">1</span><span class="l">Defekt teilweise — Rest-Limit benannt (Verblindung, S4)</span></div>
+      </div>
+      <p class="agg-line" style="margin-top:18px;">Was solide war, bleibt solide: KfW-Investitionsrückstand, NSI-Fluktuation, Frazier 2017, Schyns &amp; Schilling 2013, Pearsall &amp; Ellis 2011, Shields 2016 sowie die SCR-/Maskierungs-Methodik — alle verifiziert und in den bereinigten Fassungen erhalten.</p>
+    </div>
+  </section>
+
+  <!-- MUSTER -->
+  <section id="muster">
+    <div class="container">
+      <span class="kicker">2 · Die Muster, aufgelöst (Code-Backed)</span>
+      <h2 class="section-title">Fünf strukturelle Reparaturen im Detail</h2>
+      <p class="lede">Jede Karte öffnet die vollständige forensische Herleitung inklusive der zugrundeliegenden Code-Aggregate.</p>
+
+      <div class="muster-grid">
+        <button class="panel muster-card" data-modal="modal-fundament" aria-haspopup="dialog">
+          <span class="idx">Muster 2.1</span>
+          <h3>Das Fundament: Single Point of Failure geschlossen</h3>
+          <p>916,8 Mrd. € ist über alle vier bereinigten Knoten identisch. Die 4-Block-Zerlegung summiert exakt.</p>
+          <span class="open-hint">Details &amp; Fundament-Tabelle öffnen →</span>
+        </button>
+
+        <button class="panel muster-card" data-modal="modal-reifikation" aria-haspopup="dialog">
+          <span class="idx">Muster 2.2</span>
+          <h3>Reifikation aufgelöst</h3>
+          <p>Der 0,70-Trugschluss (Last-Achse = Kapazitäts-Achse) ist durch explizite Trennung von Nachfrage und Angebot ersetzt.</p>
+          <span class="open-hint">Details öffnen →</span>
+        </button>
+
+        <button class="panel muster-card" data-modal="modal-belegketten" aria-haspopup="dialog">
+          <span class="idx">Muster 2.3 &amp; 2.4</span>
+          <h3>Belegketten ersetzt, Sprache kalibriert</h3>
+          <p>Fehlattributionen, Figuren-Seiten und nicht-wissenschaftliche Quellen sind durch reale Primärquellen ersetzt; Superlative durch Effektstärken.</p>
+          <span class="open-hint">Details öffnen →</span>
+        </button>
+
+        <button class="panel muster-card" data-modal="modal-rueckgrate" aria-haspopup="dialog">
+          <span class="idx">Muster 2.4</span>
+          <h3>Umstrittene Rückgrate korrekt gelabelt</h3>
+          <p>Yerkes-Dodson und Polyvagal-Theorie sind nicht entfernt, sondern korrekt als [Umstritten] geführt.</p>
+          <span class="open-hint">Details öffnen →</span>
+        </button>
+
+        <button class="panel muster-card" data-modal="modal-rubrik" aria-haspopup="dialog">
+          <span class="idx">Muster 2.5</span>
+          <h3>Methoden-Rubrik v1 → v2</h3>
+          <p>Der Serien-Tiefpunkt Sprint 2 (2/10) ist auf 8/10 gehoben. Alle Knoten erreichen v2 ≥ 8.</p>
+          <div class="rubric-mini">
+            <div class="rubric-row"><span style="width:26px;">S1</span><div class="rubric-track"><div class="rubric-fill" style="width:90%;"></div></div><span>9/10</span></div>
+            <div class="rubric-row"><span style="width:26px;">S2</span><div class="rubric-track"><div class="rubric-fill" style="width:80%;"></div></div><span>8/10</span></div>
+            <div class="rubric-row"><span style="width:26px;">S3</span><div class="rubric-track"><div class="rubric-fill" style="width:90%;"></div></div><span>9/10</span></div>
+            <div class="rubric-row"><span style="width:26px;">S4</span><div class="rubric-track"><div class="rubric-fill" style="width:80%;"></div></div><span>8/10</span></div>
+          </div>
+          <span class="open-hint">Vollständige Rubrik öffnen →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRESSTEST -->
+  <section id="stresstest">
+    <div class="container">
+      <span class="kicker">3 · Dialektischer Stresstest</span>
+      <h2 class="section-title">Was NICHT durch Reparatur verschwindet</h2>
+      <p class="lede">Ehrlichkeit verlangt, die Rest-Caveats zu benennen, die korrekt gelabelt, aber nicht eliminiert sind. Sie sind keine Fehler — sie sind die Grenzen des Modells.</p>
+
+      <div class="caveat-list">
+        <div class="panel caveat-item">
+          <span class="cv-num">01</span>
+          <div>
+            <h4>η-Kausalrichtung <span class="badge badge-modell"><span class="ic"></span>Modell</span></h4>
+            <p>Die Kette „individuelle Überlast → Absentismus/Bürokratie → η ≈ 0,70" ist jetzt kohärent und zirkelfrei, aber weiterhin postuliert, nicht gemessen. Nur Längsschnitt-/Interventionsdesigns (Sprint 4) könnten sie Richtung Fakt bewegen.</p>
+          </div>
+        </div>
+        <div class="panel caveat-item">
+          <span class="cv-num">02</span>
+          <div>
+            <h4>Makro-Attribution <span class="badge badge-modell"><span class="ic"></span>Modell</span></h4>
+            <p>916,8 Mrd. € und 454 Mrd. € Präsentismus bleiben Modelloutputs. Der Sprint-4-A/B-Test misst individuelle Effekte; er kann die Makrozahl plausibilisieren, aber nicht direkt validieren.</p>
+          </div>
+        </div>
+        <div class="panel caveat-item">
+          <span class="cv-num">03</span>
+          <div>
+            <h4>PISA-Bildungsrendite <span class="badge badge-umstritten"><span class="ic"></span>Umstritten</span></h4>
+            <p>Die 18–40-Bio.-€-Spanne ist diskontsatz-abhängig; die PISA-Wachstums-Kausalität selbst ist disputiert (Komatsu &amp; Rappleye).</p>
+          </div>
+        </div>
+        <div class="panel caveat-item">
+          <span class="cv-num">04</span>
+          <div>
+            <h4>TNE-Deutung <span class="badge badge-modell"><span class="ic"></span>Modell</span></h4>
+            <p>„Niedrigere IBS = höhere Effizienz" ist eine Deutung via Mutual Prediction Theory; der Befund (niedrigere IBS in trainierten Teams) ist Fakt, die Deutung nicht.</p>
+          </div>
+        </div>
+        <div class="panel caveat-item">
+          <span class="cv-num">05</span>
+          <div>
+            <h4>Auditive-Beats-Arm <span class="badge badge-umstritten"><span class="ic"></span>Umstritten</span></h4>
+            <p>Das ausgelagerte Delta-/Theta-Element ruht auf „low-certainty"-Evidenz; es ist als separater, explizit umstrittener Studienarm zu testen, nicht als gesicherte Wirkung.</p>
+          </div>
+        </div>
+        <div class="panel caveat-item">
+          <span class="cv-num">06</span>
+          <div>
+            <h4>Verblindung (S4) <span class="badge badge-teilweise"><span class="ic"></span>Teilweise</span></h4>
+            <p>Perzeptuell distinkte akustische Bedingungen sind probandenseitig nicht verblindbar; nur Auswerter-Verblindung ist möglich.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.25rem; margin-top:56px;">3.1 — Die Meta-Lektion: Revision ist nicht monoton</h3>
+      <p class="lede" style="margin-top:12px;">Die Überarbeitung selbst hat neue Probleme erzeugt, die erst durch erneute Prüfung auffielen.</p>
+      <div class="table-scroll">
+        <table class="regress-table">
+          <thead><tr><th>Neu aufgetreten</th><th>Risiko</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>853,5 statt 916,8 in einem S2-Entwurf</td><td>Inkonsistenter Fundamentwert</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Behoben</span></td></tr>
+            <tr><td>4,5-Hz-Delta-Wellen „unterschwellige Sicherheit" (S4)</td><td>Entrainment-Regression; re-konfundiert A/B</td><td><span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></td></tr>
+            <tr><td>Kymatik „432 Hz harmonischer in Flüssigkeiten" (S4)</td><td>Unbelegte physikalische Wirkbehauptung</td><td><span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="agg-line" style="margin-top:20px;">Verbesserung ist auch innerhalb des Revisionsprozesses nicht monoton: S4 löste den Rhythmus-Defekt und führte zugleich zwei neue Pseudowissenschafts-Elemente ein. <strong>Konsequenz für die Governance:</strong> Jede künftige Überarbeitung muss erneut validiert werden.</p>
+    </div>
+  </section>
+
+  <!-- EXOSKELETT SECTION -->
+  <section id="exoskelett-section">
+    <div class="container">
+      <span class="kicker">4 · Exoskelett-Reflexion &amp; Falsifikationskriterien</span>
+      <h2 class="section-title">Das epistemische Exoskelett</h2>
+      <p class="lede">Selbstreflexion im Code: Grenzen der Bilanz, Falsifikationsbedingungen, Governance-Mechanik und das verbleibende Forschungsprogramm — gebündelt in vier Perspektiven, plus ein transparentes Herkunfts-Ledger.</p>
+
+      <div class="panel exo-card" style="margin-top:30px;">
+        <div class="exo-text">
+          <h3>Vier Tabs, eine Selbstprüfung</h3>
+          <p>Grenzen · Gegenargumente · Netzwerk-Selbstoptimierung · Weiterentwicklung — inklusive der Deklaration, welche Prozesse KI-gestützt waren.</p>
+        </div>
+        <button class="btn-primary" id="open-exo" aria-haspopup="dialog">Exoskelett öffnen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPLIKATIONEN -->
+  <section id="implikationen">
+    <div class="container">
+      <span class="kicker">5 · Pragmatische Handlungsimplikationen</span>
+      <h2 class="section-title">Was jetzt zu tun ist</h2>
+
+      <ol class="agenda-list">
+        <li class="agenda-item">
+          <span class="ai-num">01</span>
+          <div><h4>Publikations-/Gremienreife ist erreicht — mit intakten Labels</h4>
+          <p>Die fünf bereinigten Knoten sind einsetzbar, solange die Fakt/Modell/Umstritten-Labels mitgeführt werden. Die Labels sind kein Schmuck, sondern der Schutz gegen genau die Kritik, die v1 auslöste.</p></div>
+        </li>
+        <li class="agenda-item">
+          <span class="ai-num">02</span>
+          <div><h4>Der einzige strukturelle Rest ist das Empirische, nicht das Formale</h4>
+          <p>Das Fundament (916,8 Mrd., η) bleibt [Modell]. Was es Richtung [Fakt] bewegen würde, ist nicht weitere Argumentation, sondern der Sprint-4-A/B-Test und Längsschnittdaten zum η-Mechanismus. Investition in die Empirie, nicht in die Rhetorik.</p></div>
+        </li>
+        <li class="agenda-item">
+          <span class="ai-num">03</span>
+          <div><h4>Governance: Re-Validierung als stehende Regel</h4>
+          <p>Jede Überarbeitung eines Knotens durchläuft dieselbe forensische Prüfung wie die Urfassung — die Meta-Lektion (Delta-Wellen-Regression) zeigt, warum.</p></div>
+        </li>
+        <li class="agenda-item">
+          <span class="ai-num">04</span>
+          <div><h4>Bewahren</h4>
+          <p>Die Artefakt-Disziplin (SCR, RSA-Kovariate), die aufgabentypische IBS-Differenzierung, die Effektstärken-Ehrlichkeit und das durchgängige Labeling als projektweiter Standard.</p></div>
+        </li>
+        <li class="agenda-item">
+          <span class="ai-num">05</span>
+          <div><h4>Schaltzentrale angleichen</h4>
+          <p>Der kanonische Referenzknoten sollte auf die bereinigten Werte aktualisiert werden (916,8 als 4-Block; Hebel ~1:1.000; PISA-Spanne; Polyvagal/Yerkes-Dodson als Umstritten), damit das Portal mit den Knoten konsistent ist.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- REFERENZEN -->
+  <section id="referenzen">
+    <div class="container">
+      <span class="kicker">Referenzen &amp; Validierungspfade</span>
+      <h2 class="section-title">Grundlage dieser Bilanz</h2>
+
+      <div class="ref-grid">
+        <div>
+          <h3 style="font-size:1rem; margin-bottom:16px; font-family:var(--mono); color:var(--muted); font-weight:500;">Bereinigte Serien-Knoten</h3>
+          <ul class="ref-list">
+            <li><code>sprint-1-hcc-3-0-bereinigt.md</code> — Makroökonomie (916,8 Mrd. 4-Block; Hebel ~1:1.000; PISA-Spanne)</li>
+            <li><code>sprint-2-hcc-3-0-bereinigt.md</code> — Neuropsychologie (η entkoppelt; SCR; g ≈ −0,15)</li>
+            <li><code>sprint-3-hcc-3-0-bereinigt.md</code> — HRV/IBS (Polyvagal als Linse; TNE-Belege repariert; SCR code-bestätigt)</li>
+            <li><code>sprint-4-hcc-3-0-bereinigt.md</code> — Psychoakustik (stetiger Masker; Delta-Wellen ausgelagert; Interaktions-Power)</li>
+            <li><code>hcc-3-0-meta-synthese-sprints-1-4.md</code> (v1) — Ausgangs-Defektregister, durch diese v2 abgelöst</li>
+            <li>Schaltzentrale der Metaanalyse 2026 — kanonischer Referenzknoten (Angleichung empfohlen, Abschnitt 5)</li>
+          </ul>
+        </div>
+
+        <div class="code-audit">
+          <h4>Nachweis der Code-Aggregate (Python)</h4>
+          <ul>
+            <li><span class="badge badge-berechnet"><span class="ic"></span>Berechnet</span> Defektregister: 18 → 14 geschlossen, 3 eingehegt, 1 teilweise; schwere Defekte 4 (3 geschlossen, 1 eingehegt)</li>
+            <li><span class="badge badge-berechnet"><span class="ic"></span>Berechnet</span> Fundament-Propagation: 916,8 Mrd. € in 4/4 bereinigten Knoten → SPOF geschlossen</li>
+            <li><span class="badge badge-berechnet"><span class="ic"></span>Berechnet</span> Methoden-Rubrik: S1 5→9, S2 2→8, S3 5→9, S4 5→8; alle v2 ≥ 8</li>
+            <li><span class="badge badge-berechnet"><span class="ic"></span>Berechnet</span> Revisions-Regressionen: 3 neu aufgetreten, 3 behoben/eingehegt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--serif); color:var(--parchment); font-size:1.05rem; margin-bottom:10px;">Projekt Sternenstaub</p>
+        <p>Gesamtbewertung: Aus einer methodisch reifenden, aber angreifbaren Serie ist ein konsistenter, defensibler Verbund geworden. Was bleibt, sind korrekt gelabelte Modell-Unsicherheiten und ein empirisches Forschungsprogramm — keine Fehler mehr.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Nach oben</a>
+        <a href="#exoskelett-section">Exoskelett</a>
+        <a href="#referenzen">Referenzen</a>
+      </div>
+    </div>
+    <p class="footer-meta">Evidenzstand: September 2026 · Entscheidende stehende Regel: Re-Validierung jeder Überarbeitung.</p>
+  </div>
+</footer>
+
+<div class="fab">
+  <button id="open-exo-fab" aria-haspopup="dialog"><span class="dot-pulse"></span>Exoskelett</button>
+</div>
+
+<!-- MODAL: Fundament -->
+<dialog id="modal-fundament" aria-labelledby="modal-fundament-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="modal-fundament-title">Das Fundament: Single Point of Failure geschlossen</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <table class="mini-table">
+        <thead><tr><th>Knoten</th><th>Fundamentwert</th></tr></thead>
+        <tbody>
+          <tr><td>S1 bereinigt</td><td>916,8 Mrd. €</td></tr>
+          <tr><td>S2 bereinigt</td><td>916,8 Mrd. €</td></tr>
+          <tr><td>S3 bereinigt</td><td>916,8 Mrd. €</td></tr>
+          <tr><td>S4 bereinigt</td><td>916,8 Mrd. €</td></tr>
+        </tbody>
+      </table>
+      <p>Eindeutiger Fundamentwert über alle Knoten. Der v1-Kernbefund — ein unreparierter, seriendurchziehender Wert als Single Point of Failure — ist damit geschlossen. Urfassungen waren uneinheitlich, u. a. 853,5 in einem S2-Entwurf vs. 916,8.</p>
+      <p>Die 4-Block-Zerlegung (172,5 + 227,0 + 454,0 + 63,3) summiert exakt; der Leverage-Faktor beruht auf einem plausiblen aggregierten Präventionsnenner (~1:1.000 statt 1:17.976).</p>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL: Reifikation -->
+<dialog id="modal-reifikation" aria-labelledby="modal-reifikation-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="modal-reifikation-title">Reifikation aufgelöst</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p>Der 0,70-Trugschluss (Last-Achse = Kapazitäts-Achse) ist in S2 bereinigt durch die explizite Trennung von <strong style="color:var(--parchment)">Nachfrage</strong> (individuelle kognitive Last) und <strong style="color:var(--parchment)">Angebot</strong> (η) ersetzt.</p>
+      <p>η ist als Kapazitäts-Abschlagsmodell aus beobachteten Ist-Totalen geführt, kognitive Überlast als vorgelagerter Treiber — arithmetisch konsistent, zirkelfrei.</p>
+      <p>Das „M/M/1"-Etikett und die entliehene „Phasen-Kopplungs"-Formel sind entfernt. <span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL: Belegketten -->
+<dialog id="modal-belegketten" aria-labelledby="modal-belegketten-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="modal-belegketten-title">Belegketten ersetzt, Sprache kalibriert</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p>Fehlattributionen (14-Bio.-US-Wert; UAV-Einzelhirn), Figuren-Seiten (MPT) und nicht-wissenschaftliche Quellen (Foren/Werbeseiten) sind durch reale Primärquellen ersetzt.</p>
+      <p>Superlative sind durch Effektstärken (g ≈ −0,15 „klein"; HRV R² &lt; 10 %) und diskonttransparente Spannen (PISA 18–40 Bio. €) ersetzt. <span class="badge badge-geschlossen"><span class="ic"></span>Geschlossen</span></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL: Rückgrate -->
+<dialog id="modal-rueckgrate" aria-labelledby="modal-rueckgrate-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="modal-rueckgrate-title">Umstrittene Rückgrate korrekt gelabelt</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <p>Yerkes-Dodson (S2) und Polyvagal-Theorie (S3) sind nicht „widerlegt und entfernt", sondern korrekt als <span class="badge badge-umstritten"><span class="ic"></span>Umstritten</span> geführt — Yerkes-Dodson als Heuristik, Polyvagal als heuristische Linse mit Nennung von Grossman et al. (2026).</p>
+      <p>Das ist die adäquate Behandlung einer aktiven Kontroverse. <span class="badge badge-eingehegt"><span class="ic"></span>Eingehegt</span></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL: Rubrik -->
+<dialog id="modal-rubrik" aria-labelledby="modal-rubrik-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="modal-rubrik-title">Methoden-Rubrik v1 → v2</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <table class="mini-table">
+        <thead><tr><th>Sprint</th><th>v1</th><th>v2</th><th>Δ</th></tr></thead>
+        <tbody>
+          <tr><td>S1 Makro</td><td>5</td><td>9</td><td>+4</td></tr>
+          <tr><td>S2 Neuro</td><td>2</td><td>8</td><td>+6</td></tr>
+          <tr><td>S3 HRV/IBS</td><td>5</td><td>9</td><td>+4</td></tr>
+          <tr><td>S4 Psychoakustik</td><td>5</td><td>8</td><td>+3</td></tr>
+        </tbody>
+      </table>
+      <p>Der Serien-Tiefpunkt S2 (2/10) ist auf 8/10 gehoben; alle Knoten liegen v2 ≥ 8 und erreichen damit die Defensibilitätsschwelle.</p>
+      <p>Die v1-Beobachtung „die Serie lernt Handwerk schneller als Quellenhygiene" ist v2 aufgelöst: Zitations-Integrität und Fundament sind nachgezogen.</p>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL: EXOSKELETT (4 tabs) -->
+<dialog id="exo-dialog" aria-labelledby="exo-dialog-title">
+  <div class="dialog-shell">
+    <div class="dialog-head">
+      <h3 id="exo-dialog-title">Epistemisches Exoskelett</h3>
+      <button class="dialog-close" data-close aria-label="Schließen">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div class="ledger-strip">
+        <strong>AI Contribution &amp; Human Verification Ledger</strong>
+        KI-gestützt waren Quellensichtung der Sprint-Dokumente, die Strukturierung des Defektregisters, die Aggregation der Kennzahlen (Python) sowie die Code-Erstellung dieser Seite. Inhaltliche Prüfung, die Bewertung der Status-Einstufungen (Geschlossen/Eingehegt/Teilweise) und die Gesamtverantwortung liegen beim menschlichen Autor dieser Bilanz — Human Verified.
+      </div>
+
+      <div class="tab-list" role="tablist" aria-label="Exoskelett-Perspektiven">
+        <button class="tab-btn" role="tab" id="tab-btn-grenzen" aria-controls="tab-panel-grenzen" aria-selected="true">Grenzen</button>
+        <button class="tab-btn" role="tab" id="tab-btn-gegenargumente" aria-controls="tab-panel-gegenargumente" aria-selected="false" tabindex="-1">Gegenargumente</button>
+        <button class="tab-btn" role="tab" id="tab-btn-netzwerk" aria-controls="tab-panel-netzwerk" aria-selected="false" tabindex="-1">Netzwerk-Selbstoptimierung</button>
+        <button class="tab-btn" role="tab" id="tab-btn-weiterentwicklung" aria-controls="tab-panel-weiterentwicklung" aria-selected="false" tabindex="-1">Weiterentwicklung</button>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="tab-panel-grenzen" aria-labelledby="tab-btn-grenzen" data-active="true">
+        <h4>Grenzen dieser Bilanz</h4>
+        <p>Die Status-Einstufungen (Geschlossen/Eingehegt/Teilweise) und die Rubrik-Werte sind begründete Bewertungen auf Basis der bereinigten Knoten, keine externen Messgrößen. Das Gesamtbild — Fundament konsistent, 14/18 geschlossen, Tiefpunkt aufgelöst — ist davon unberührt.</p>
+        <p>Sechs inhärente Rest-Caveats bleiben per Design bestehen und sind korrekt gelabelt, nicht eliminiert:</p>
+        <ul>
+          <li><strong style="color:var(--parchment)">η-Kausalrichtung</strong> — postuliert, nicht gemessen.</li>
+          <li><strong style="color:var(--parchment)">Makro-Attribution</strong> — 916,8 Mrd. € und 454 Mrd. € bleiben Modelloutputs.</li>
+          <li><strong style="color:var(--parchment)">PISA-Bildungsrendite</strong> — diskontsatz-abhängig, Kausalität disputiert.</li>
+          <li><strong style="color:var(--parchment)">TNE-Deutung</strong> — Befund ist Fakt, die Deutung nicht.</li>
+          <li><strong style="color:var(--parchment)">Auditive-Beats-Arm</strong> — ruht auf low-certainty-Evidenz.</li>
+          <li><strong style="color:var(--parchment)">Verblindung (S4)</strong> — probandenseitig nicht möglich.</li>
+        </ul>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="tab-panel-gegenargumente" aria-labelledby="tab-btn-gegenargumente" data-active="false">
+        <h4>Falsifikationsbedingungen</h4>
+        <p>Diese Bilanz ist zu revidieren, wenn eine der folgenden Bedingungen eintritt:</p>
+        <ul>
+          <li>In einem der bereinigten Knoten taucht ein anderer Fundamentwert als 916,8 Mrd. € auf — der Single Point of Failure ist wieder offen.</li>
+          <li>Ein als Geschlossen geführter Defekt kehrt in einer späteren Fassung zurück, etwa eine erneut nicht aufgehende Summe oder eine fehlplatzierte Quelle.</li>
+          <li>Ein Rest-Caveat wird als Fakt ausgegeben — ein Überclaim, obwohl die empirische Grundlage fehlt.</li>
+          <li>Eine künftige Revision führt neue Elemente ein, ohne erneut validiert zu werden — ein Verstoß gegen die Meta-Lektion.</li>
+        </ul>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="tab-panel-netzwerk" aria-labelledby="tab-btn-netzwerk" data-active="false">
+        <h4>Netzwerk-Selbstoptimierung</h4>
+        <p>Die Meta-Lektion aus der Delta-Wellen-Regression: Verbesserung ist auch innerhalb des Revisionsprozesses nicht monoton. S4 löste den Rhythmus-Defekt und führte zugleich zwei neue pseudowissenschaftliche Elemente ein.</p>
+        <p>Konsequenz für die Governance:</p>
+        <ul>
+          <li><strong style="color:var(--parchment)">Re-Validierung als stehende Regel</strong> — jede Überarbeitung eines Knotens durchläuft dieselbe forensische Prüfung wie die Urfassung.</li>
+          <li><strong style="color:var(--parchment)">Bewahren</strong> — Artefakt-Disziplin (SCR, RSA-Kovariate), aufgabentypische IBS-Differenzierung, Effektstärken-Ehrlichkeit, durchgängiges Labeling.</li>
+          <li><strong style="color:var(--parchment)">Schaltzentrale angleichen</strong> — der kanonische Referenzknoten sollte auf 916,8 (4-Block), Hebel ~1:1.000, PISA-Spanne und die Umstritten-Labels aktualisiert werden.</li>
+        </ul>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="tab-panel-weiterentwicklung" aria-labelledby="tab-btn-weiterentwicklung" data-active="false">
+        <h4>Weiterentwicklung — das Forschungsprogramm</h4>
+        <p>Offene empirische Fragen, nur durch neue Daten schließbar — sie gehören nicht ins Defektregister, sie sind das Forschungsprogramm:</p>
+        <ul>
+          <li>Die kausale Richtung des η-Mechanismus.</li>
+          <li>Der reale endogene Anteil an Absentismus/Bürokratie.</li>
+          <li>Die Wirksamkeit stetiger Masker im Feld — der Sprint-4-A/B-Test.</li>
+          <li>Der Beitrag auditiver Beats.</li>
+        </ul>
+        <p>Was das Fundament Richtung Fakt bewegen würde, ist nicht weitere Argumentation, sondern Investition in die Empirie: der Sprint-4-A/B-Test und Längsschnittdaten zum η-Mechanismus.</p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Mobile nav ---------- */
+  var navToggle = document.getElementById('nav-toggle');
+  var navList = document.getElementById('primary-nav-list');
+  function setNavState(open){
+    navList.setAttribute('data-open', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (window.matchMedia('(max-width: 860px)').matches) { setNavState(false); }
+  navToggle.addEventListener('click', function(){
+    var isOpen = navList.getAttribute('data-open') === 'true';
+    setNavState(!isOpen);
+  });
+  navList.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (window.matchMedia('(max-width: 860px)').matches) setNavState(false);
+    });
+  });
+
+  /* ---------- Generic dialog handling ---------- */
+  var lastTrigger = null;
+  function openDialog(dlg, trigger){
+    lastTrigger = trigger || document.activeElement;
+    dlg.showModal();
+  }
+  function closeDialog(dlg){
+    dlg.close();
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+  document.querySelectorAll('dialog').forEach(function(dlg){
+    dlg.querySelectorAll('[data-close]').forEach(function(btn){
+      btn.addEventListener('click', function(){ closeDialog(dlg); });
+    });
+    dlg.addEventListener('click', function(e){
+      var rect = dlg.getBoundingClientRect();
+      var inDialog = rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+                     rect.left <= e.clientX && e.clientX <= rect.left + rect.width;
+      if (!inDialog) closeDialog(dlg);
+    });
+  });
+
+  /* Muster cards */
+  document.querySelectorAll('.muster-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      var id = card.getAttribute('data-modal');
+      var dlg = document.getElementById(id);
+      if (dlg) openDialog(dlg, card);
+    });
+  });
+
+  /* Exoskelett open buttons */
+  var exoDialog = document.getElementById('exo-dialog');
+  document.getElementById('open-exo').addEventListener('click', function(e){ openDialog(exoDialog, e.currentTarget); });
+  document.getElementById('open-exo-fab').addEventListener('click', function(e){ openDialog(exoDialog, e.currentTarget); });
+
+  /* ---------- Exoskelett tabs ---------- */
+  var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+  function activateTab(btn){
+    tabBtns.forEach(function(b){
+      var panel = document.getElementById(b.getAttribute('aria-controls'));
+      var active = b === btn;
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+      b.tabIndex = active ? 0 : -1;
+      panel.setAttribute('data-active', active ? 'true' : 'false');
+    });
+    btn.focus();
+  }
+  tabBtns.forEach(function(btn, idx){
+    btn.addEventListener('click', function(){ activateTab(btn); });
+    btn.addEventListener('keydown', function(e){
+      var newIdx = null;
+      if (e.key === 'ArrowRight') newIdx = (idx + 1) % tabBtns.length;
+      if (e.key === 'ArrowLeft') newIdx = (idx - 1 + tabBtns.length) % tabBtns.length;
+      if (newIdx !== null){ e.preventDefault(); activateTab(tabBtns[newIdx]); }
+    });
+  });
+
+  /* ---------- Defektregister filters ---------- */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#register-table tbody tr'));
+  var liveRegion = document.getElementById('register-live');
+  var state = { sprint: 'all', status: 'all' };
+
+  function applyFilters(){
+    var visible = 0;
+    rows.forEach(function(row){
+      var sprintMatch = state.sprint === 'all' || row.getAttribute('data-sprint') === state.sprint;
+      var statusMatch = state.status === 'all' || row.getAttribute('data-status') === state.status;
+      var show = sprintMatch && statusMatch;
+      row.hidden = !show;
+      if (show) visible++;
+    });
+    liveRegion.textContent = visible + ' von ' + rows.length + ' Defekten angezeigt';
+  }
+
+  function wireFilterGroup(containerId, key){
+    var container = document.getElementById(containerId);
+    container.querySelectorAll('.fbtn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        container.querySelectorAll('.fbtn').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+        btn.setAttribute('aria-pressed','true');
+        state[key] = btn.getAttribute('data-' + key);
+        applyFilters();
+      });
+    });
+  }
+  wireFilterGroup('filter-sprint','sprint');
+  wireFilterGroup('filter-status','status');
+
+  /* ---------- Particle canvas ---------- */
+  var canvas = document.getElementById('particle-canvas');
+  if (canvas && !reduceMotion) {
+    var ctx = canvas.getContext('2d');
+    var W, H, particles = [];
+    var mouse = { x: -9999, y: -9999, active: false };
+    var COUNT = 70;
+    var LINK_DIST = 130;
+    var MAGNET_RADIUS = 170;
+    var REPEL_RADIUS = 40;
+
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function initParticles(){
+      particles = [];
+      for (var i=0; i<COUNT; i++){
+        particles.push({
+          x: Math.random()*W, y: Math.random()*H,
+          vx: (Math.random()-0.5)*0.35, vy: (Math.random()-0.5)*0.35,
+          r: 1 + Math.random()*1.6
+        });
+      }
+    }
+    initParticles();
+
+    window.addEventListener('pointermove', function(e){
+      mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
+    });
+    window.addEventListener('pointerleave', function(){ mouse.active = false; });
+
+    function step(){
+      ctx.clearRect(0,0,W,H);
+
+      for (var i=0; i<particles.length; i++){
+        var p = particles[i];
+
+        if (mouse.active){
+          var dx = mouse.x - p.x, dy = mouse.y - p.y;
+          var dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
+          if (dist < MAGNET_RADIUS && dist > REPEL_RADIUS){
+            var pull = (1 - dist/MAGNET_RADIUS) * 0.045;
+            p.vx += (dx/dist) * pull;
+            p.vy += (dy/dist) * pull;
+          } else if (dist <= REPEL_RADIUS){
+            var push = (1 - dist/REPEL_RADIUS) * 0.6;
+            p.vx -= (dx/dist) * push;
+            p.vy -= (dy/dist) * push;
+          }
+        }
+
+        p.vx *= 0.985; p.vy *= 0.985;
+        p.x += p.vx; p.y += p.vy;
+
+        if (p.x < -10) p.x = W+10; if (p.x > W+10) p.x = -10;
+        if (p.y < -10) p.y = H+10; if (p.y > H+10) p.y = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(217,163,92,0.55)';
+        ctx.fill();
+      }
+
+      for (var a=0; a<particles.length; a++){
+        for (var b=a+1; b<particles.length; b++){
+          var pa = particles[a], pb = particles[b];
+          var ddx = pa.x-pb.x, ddy = pa.y-pb.y;
+          var d = Math.sqrt(ddx*ddx + ddy*ddy);
+          if (d < LINK_DIST){
+            ctx.beginPath();
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
+            ctx.strokeStyle = 'rgba(217,163,92,' + (0.14 * (1 - d/LINK_DIST)) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+})();
+</script>
+
+</body>
+</html>

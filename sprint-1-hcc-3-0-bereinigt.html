@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC 3.0 · Sprint 1 — Systemische Entropie und organisatorische Reibung</title>
+<meta name="description" content="Makroökonomische Kosten organisatorischer Reibung in Deutschland und der Return on Investment von System-Kohärenz-Interventionen — bereinigte, evidenzgeprüfte Fassung mit vollständiger Korrektur-Historie.">
+<meta property="og:title" content="HCC 3.0 · Sprint 1 — Systemische Entropie und organisatorische Reibung">
+<meta property="og:description" content="Bereinigte, evidenzgeprüfte Fassung: 916,8 Mrd. € jährlicher Erosionsverlust, administrativer Leistungsfaktor η, und der Hebel evidenzbasierter Kohärenz-Interventionen.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary">
+<meta name="author" content="Projekt Sternenstaub · Schaltzentrale der Metaanalyse 2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#060714',
+          nebula: '#10152b',
+          nebula2: '#161c3a',
+          gold: '#d9a35c',
+          goldbright: '#f2c48a',
+          parchment: '#f4ead9',
+          fakt: '#7cd9a5',
+          modell: '#d9a35c',
+          umstritten: '#e58a72',
+        },
+        fontFamily: {
+          fraunces: ['Fraunces', 'serif'],
+          body: ['Atkinson Hyperlegible', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root {
+    --void: #060714;
+    --nebula: #10152b;
+    --nebula-2: #161c3a;
+    --gold: #d9a35c;
+    --gold-bright: #f2c48a;
+    --parchment: #f4ead9;
+    --fakt: #7cd9a5;
+    --fakt-ink: #052711;
+    --modell: #d9a35c;
+    --modell-ink: #2b1806;
+    --umstritten: #e58a72;
+    --umstritten-ink: #2c0d05;
+    --glass-border: rgba(244, 234, 217, 0.14);
+    --glass-bg: rgba(16, 21, 43, 0.55);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--parchment);
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Fraunces', serif;
+    letter-spacing: -0.01em;
+  }
+
+  .font-mono-data { font-family: 'JetBrains Mono', monospace; }
+
+  #particle-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .bg-radial-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(217, 163, 92, 0.16), transparent),
+                radial-gradient(ellipse 60% 40% at 90% 20%, rgba(124, 217, 165, 0.06), transparent);
+  }
+
+  .glass {
+    background: linear-gradient(150deg, rgba(22, 28, 58, 0.62), rgba(16, 21, 43, 0.4));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.1rem;
+  }
+
+  .glass-strong {
+    background: linear-gradient(150deg, rgba(22, 28, 58, 0.86), rgba(16, 21, 43, 0.78));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .card-hover {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: rgba(217, 163, 92, 0.45);
+    box-shadow: 0 18px 40px -20px rgba(217, 163, 92, 0.35);
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-size: 0.72rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    padding: 0.28em 0.7em;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .tag-fakt { background: var(--fakt); color: var(--fakt-ink); }
+  .tag-modell { background: var(--modell); color: var(--modell-ink); }
+  .tag-umstritten { background: var(--umstritten); color: var(--umstritten-ink); }
+
+  .tag-dot { width: 0.5em; height: 0.5em; border-radius: 999px; background: currentColor; opacity: 0.55; }
+
+  .perspective-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    border: 1px solid rgba(217, 163, 92, 0.35);
+    padding: 0.35em 0.85em;
+    border-radius: 999px;
+    background: rgba(217, 163, 92, 0.08);
+  }
+
+  .divider-glow {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(217, 163, 92, 0.55), transparent);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.92rem;
+  }
+  .data-table th, .data-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+    vertical-align: top;
+  }
+  .data-table thead th {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(217, 163, 92, 0.4);
+  }
+  .data-table tbody tr:hover { background: rgba(217, 163, 92, 0.05); }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+
+  .formula-block {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.95rem, 2.4vw, 1.35rem);
+    text-align: center;
+    padding: 1.6rem 1.2rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(217, 163, 92, 0.06);
+    border-radius: 0 0.8rem 0.8rem 0;
+    color: var(--gold-bright);
+    letter-spacing: 0.01em;
+  }
+
+  .status-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.22em 0.6em;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--gold);
+    color: var(--void);
+    padding: 0.75rem 1.25rem;
+    z-index: 100;
+    font-weight: 700;
+    border-radius: 0 0 0.6rem 0;
+  }
+  .skip-link:focus { left: 0; }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection { background: var(--gold); color: var(--void); }
+
+  /* Modal */
+  dialog#exoskelett-modal {
+    max-width: min(880px, 92vw);
+    width: 100%;
+    max-height: 88vh;
+    padding: 0;
+    border: 1px solid var(--glass-border);
+    border-radius: 1.25rem;
+    background: linear-gradient(160deg, #10152b, #0a0d1f);
+    color: var(--parchment);
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8), 0 0 0 1px rgba(217,163,92,0.08);
+  }
+  dialog#exoskelett-modal::backdrop {
+    background: rgba(6, 7, 20, 0.78);
+    backdrop-filter: blur(6px);
+  }
+  dialog#exoskelett-modal[open] {
+    animation: modal-in 0.32s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .tab-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    border-bottom: 2px solid transparent;
+    color: rgba(244,234,217,0.55);
+    transition: color 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
+  }
+  .tab-btn[aria-selected="true"] {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+  }
+  .tab-btn:hover { color: var(--parchment); }
+
+  .ledger-col dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .ledger-col li { padding-left: 1.1rem; position: relative; margin-bottom: 0.5rem; font-size: 0.88rem; }
+  .ledger-col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--gold);
+  }
+
+  .metric-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--gold-bright);
+  }
+
+  .nav-link {
+    position: relative;
+    color: rgba(244,234,217,0.7);
+    transition: color 0.25s ease;
+  }
+  .nav-link:hover { color: var(--parchment); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bar-fill {
+    transition: width 1.1s cubic-bezier(.16,.8,.3,1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  .triangle-node {
+    filter: drop-shadow(0 0 8px rgba(217,163,92,0.25));
+  }
+</style>
+</head>
+<body class="bg-void text-parchment antialiased">
+
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-40">
+  <div class="glass-strong border-b border-white/5">
+    <nav class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4" aria-label="Hauptnavigation">
+      <a href="#hero" class="font-display font-semibold text-parchment text-sm sm:text-base tracking-tight shrink-0">
+        HCC 3.0 <span class="text-gold">· Sprint 1</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-mono-data">
+        <a href="#kurzfassung" class="nav-link">Kurzfassung</a>
+        <a href="#systembilanz" class="nav-link">Systembilanz</a>
+        <a href="#eta-faktor" class="nav-link">η-Faktor</a>
+        <a href="#interventionen" class="nav-link">Interventionen</a>
+        <a href="#korrekturen" class="nav-link">Korrekturen</a>
+        <a href="#referenzen" class="nav-link">Referenzen</a>
+      </div>
+      <button type="button" data-open-modal
+        class="shrink-0 inline-flex items-center gap-2 text-xs sm:text-sm font-mono-data border border-gold/50 text-goldbright px-3 py-2 rounded-full hover:bg-gold/10 transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span class="hidden sm:inline">Epistemisches Exoskelett</span>
+        <span class="sm:hidden">Exoskelett</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" class="relative z-10">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="bg-radial-glow relative px-5 pt-16 pb-20 sm:pt-24 sm:pb-28">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <p class="eyebrow mb-5">Projekt Sternenstaub · Schaltzentrale der Metaanalyse 2026</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-parchment">
+        Systemische Entropie und<br class="hidden sm:block"> organisatorische Reibung
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-parchment/80 max-w-2xl mx-auto">
+        Makroökonomische Kosten und der Return on Investment von System-Kohärenz-Interventionen — bereinigte, evidenzgeprüfte Fassung.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm">
+        <span class="perspective-chip">Adressaten: C-Level · Fachgremien · Gesetzgebung</span>
+        <span class="perspective-chip">Evidenzstand: September 2026</span>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+        <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        <span class="tag tag-umstritten"><span class="tag-dot"></span>UMSTRITTEN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EPISTEMISCHER RAHMEN ============ -->
+  <section id="rahmen" class="px-5 py-10">
+    <div class="max-w-4xl mx-auto glass p-6 sm:p-8 reveal">
+      <h2 class="font-display text-xl sm:text-2xl font-semibold mb-4">Epistemischer Rahmen</h2>
+      <p class="text-parchment/85 mb-6">
+        Jede tragende Kennzahl trägt ein Evidenzlabel. Die Systematik folgt der <em>Schaltzentrale der Metaanalyse 2026</em>. Diese Fassung integriert die forensischen Korrekturen aus der Validierung der Vorfassung — die vollständige Korrektur-Historie ist weiter unten transparent dokumentiert.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-4 text-sm">
+        <div class="flex gap-3">
+          <span class="tag tag-fakt shrink-0 mt-0.5"><span class="tag-dot"></span>FAKT</span>
+          <p class="text-parchment/75">Unabhängig verifizierte Register-/Primärdaten, amtliche Statistik oder referierte Meta-Analysen.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="tag tag-modell shrink-0 mt-0.5"><span class="tag-dot"></span>MODELL</span>
+          <p class="text-parchment/75">Berechnete/modellierte Größe, deren Wert von offengelegten Annahmen abhängt.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="tag tag-umstritten shrink-0 mt-0.5"><span class="tag-dot"></span>UMSTRITTEN</span>
+          <p class="text-parchment/75">Annahmen-sensitiv, methodisch offen oder mit disputierter Kausalinterpretation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KURZFASSUNG ============ -->
+  <section id="kurzfassung" class="px-5 py-14 sm:py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-10 reveal">
+        <p class="eyebrow mb-3">Kurzfassung für Entscheider</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold max-w-3xl">Sieben Kernkennzahlen im Überblick</h2>
+        <p class="mt-4 text-parchment/75 max-w-2xl">
+          Organisatorische Reibung ist in der Wissensökonomie kein weicher Kulturfaktor, sondern messbarer Kapitalverzehr. Kohärenz-Interventionen — psychologische Sicherheit, Fehlerkultur, Reizschutz — sind der kausal belegte Hebel dagegen, mit klaren normativen Leitplanken.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="kurzfassung-grid">
+        <!-- Card 1 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">01</span>
+            <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Endogener Erosionsverlust DE</h3>
+          <p class="metric-value text-2xl mb-2">916,8 Mrd. €/Jahr</p>
+          <p class="text-sm text-parchment/70">Vier-Block-Summe geschlossen; Präsentismus-Multiplikator gesetzt.</p>
+        </article>
+        <!-- Card 2 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">02</span>
+            <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Hebel Prävention : Erosionsverlust</h3>
+          <p class="metric-value text-2xl mb-2">≈ 1 : 1.000</p>
+          <p class="text-sm text-parchment/70">Nenner = aggregierte Primärprävention (~0,6–0,9 Mrd. €).</p>
+        </article>
+        <!-- Card 3 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">03</span>
+            <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Kommunaler Investitionsrückstand (2026)</h3>
+          <p class="metric-value text-2xl mb-2">231,2 Mrd. €</p>
+          <p class="text-sm text-parchment/70">KfW-Kommunalpanel 2026; „wahrgenommener" Rückstand.</p>
+        </article>
+        <!-- Card 4 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">04</span>
+            <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Fluktuationskosten Gesundheitswesen</h3>
+          <p class="metric-value text-2xl mb-2">~60.000 US-$ / Kraft</p>
+          <p class="text-sm text-parchment/70">~289.000 US-$ je 1 % Fluktuationssenkung. NSI-Report 2025.</p>
+        </article>
+        <!-- Card 5 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">05</span>
+            <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Administrativer Leistungsfaktor</h3>
+          <p class="metric-value text-2xl mb-2">η ≈ 0,70</p>
+          <p class="text-sm text-parchment/70">Kapazitätsabschlag: Absentismus + bürokratische Zeitbindung.</p>
+        </article>
+        <!-- Card 6 -->
+        <article class="glass card-hover p-6 reveal">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">06</span>
+            <span class="tag tag-umstritten"><span class="tag-dot"></span>UMSTRITTEN</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Humankapitalverlust bis 2100</h3>
+          <p class="metric-value text-2xl mb-2">~18–40 Bio. €</p>
+          <p class="text-sm text-parchment/70">25 PISA-Punkte, diskontsatzabhängig (3–2 %).</p>
+        </article>
+        <!-- Card 7 (spans) -->
+        <article class="glass card-hover p-6 reveal sm:col-span-2 lg:col-span-3">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <span class="text-xs font-mono-data text-parchment/70">07</span>
+            <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+          </div>
+          <h3 class="font-display text-lg font-semibold mb-2">Psychologische Sicherheit → Task Performance</h3>
+          <p class="metric-value text-2xl mb-2">Positiv, kurvilinear (Meta-Analyse)</p>
+          <p class="text-sm text-parchment/70">Frazier 2017 (n ≈ 22.000); zugleich „dunkle Seite" nach Pearsall & Ellis — siehe Abschnitt 6.2.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-5"><div class="divider-glow"></div></div>
+
+  <!-- ============ SECTION 1: FUNDIERUNG ============ -->
+  <section id="fundierung" class="px-5 py-14 sm:py-20">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8">
+        <p class="eyebrow mb-3">01 · Grundlagen</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">Makroökonomische Fundierung der System-Entropie</h2>
+        <p class="mt-4 text-parchment/80">
+          Die Analyse organisatorischer Leistungsfähigkeit hat sich von einer betriebswirtschaftlichen zu einer makroökonomisch-systemkybernetischen Disziplin entwickelt. In einer kognitiv fordernden, demografisch angespannten Umgebung — Deutschland 2015–2026 — manifestiert sich System Friction als messbarer Kapitalverzehr, nicht als weicher Faktor.
+        </p>
+        <p class="mt-4 text-parchment/80">
+          <strong class="text-parchment">System-Entropie</strong> bezeichnet den graduellen Verlust gerichteter organisationaler Energie durch ineffiziente Prozesse, kognitive Überlastung und den Zusammenbruch zwischenmenschlicher Koordination.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-4 reveal">
+        <div class="glass p-5">
+          <p class="eyebrow mb-2 text-goldbright">Ökonomisch</p>
+          <p class="text-sm text-parchment/75">Transaktionskosten (Bürokratiebindung), Absentismus (physische Fehlzeiten), Fluktuationskosten (Rekrutierung, Vakanz, Einarbeitung).</p>
+        </div>
+        <div class="glass p-5">
+          <p class="eyebrow mb-2 text-goldbright">Arbeitspsychologisch</p>
+          <p class="text-sm text-parchment/75">Produktivitätsverlust durch kognitive Überlast, Präsentismus, Fluktuationsintention als Vorläufer der Kündigung.</p>
+        </div>
+        <div class="glass p-5">
+          <p class="eyebrow mb-2 text-goldbright">Systemisch</p>
+          <p class="text-sm text-parchment/75">Informationsverluste durch unklare Rollen, dysfunktionale Teamdynamik, destruktive Führung, TFP-Verlust.</p>
+        </div>
+      </div>
+      <p class="mt-6 text-sm text-parchment/70 reveal">
+        Die Untersuchung stützt sich auf Registerdaten, Paneldaten (SOEP), Meta-Analysen (EconLit, PsycINFO, NBER) und RCTs, um eine von Pop-Science bereinigte Evidenzbasis zu schaffen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2: FRIKTIONSKOSTEN ============ -->
+  <section id="friktionskosten" class="px-5 py-14 sm:py-20 bg-nebula/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8 flex flex-wrap items-center gap-3">
+        <p class="eyebrow">02 · Ökonomische Friktionskosten</p>
+        <span class="perspective-chip">Perspektive: Empirisch-Ökonomisch</span>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">2.1 Cost of Turnover</h3>
+          <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+        </div>
+        <p class="text-parchment/80 mb-3">
+          Die Ersetzung von Mitarbeitenden, die wegen toxischer Führung, fehlender psychologischer Sicherheit oder Erschöpfung kündigen, ist einer der größten identifizierbaren Kostenblöcke. SHRM- und Gallup-Daten beziffern die Ersetzungskosten je nach Seniorität auf <strong class="text-goldbright">50–200 % des Jahresgehalts</strong>. Die indirekten Kosten (Vakanzzeit, Onboarding-Lag, Verlust institutionellen Wissens) machen 60–70 % der Gesamtfluktuationskosten aus.
+        </p>
+        <p class="text-parchment/80">
+          Besonders drastisch im Gesundheitswesen: Der Verlust einer registrierten Pflegekraft kostet ein Krankenhaus <strong class="text-goldbright">~60.000 US-Dollar</strong>; eine Fluktuationssenkung um nur 1 % spart <strong class="text-goldbright">~289.000 US-Dollar pro Jahr</strong> (NSI National Health Care Retention Report 2025, Datenjahr 2024).
+        </p>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">2.2 Absentismus versus Präsentismus</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80 mb-4">
+          Absentismus (krankheitsbedingte Fehlzeiten) ist exakt messbar; Präsentismus (Anwesenheit trotz Krankheit/Überlast) ist kostspieliger. Die arbeitswissenschaftliche Forschung verortet Präsentismus beim <strong class="text-goldbright">1,8- bis 2,0-fachen</strong> der Absentismuskosten. Für die Systembilanz wird konservativ der Faktor <strong class="text-goldbright">2,0</strong> angesetzt.
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="flex-1">
+            <div class="flex justify-between text-xs font-mono-data text-parchment/70 mb-1"><span>Absentismus</span><span>1,0×</span></div>
+            <div class="h-3 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-gold/50 rounded-full bar-fill" style="width:0%" data-bar-target="50%"></div></div>
+          </div>
+          <div class="flex-1">
+            <div class="flex justify-between text-xs font-mono-data text-parchment/70 mb-1"><span>Präsentismus (Faktor 2,0)</span><span>2,0×</span></div>
+            <div class="h-3 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-gold rounded-full bar-fill" style="width:0%" data-bar-target="100%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3: SYSTEMBILANZ ============ -->
+  <section id="systembilanz" class="px-5 py-14 sm:py-20">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8 flex flex-wrap items-center gap-3">
+        <p class="eyebrow">03 · Die Systembilanz</p>
+        <span class="perspective-chip">Perspektive: Empirisch-Ökonomisch</span>
+      </div>
+      <div class="reveal mb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-2xl sm:text-3xl font-semibold">916,8 Milliarden Euro</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80">
+          Auf makroökonomischer Ebene aggregieren sich die Reibungsverluste zu einem fundamentalen Systemverschleiß. Der totale jährliche endogene Erosionsverlust für Deutschland setzt sich aus <strong class="text-goldbright">vier Blöcken</strong> zusammen, deren Summe den Schlagzeilenwert exakt ergibt.
+        </p>
+      </div>
+
+      <!-- Stacked bar chart -->
+      <div class="reveal glass p-6 sm:p-8 mb-6" id="systembilanz-chart">
+        <div class="space-y-4">
+          <div data-block>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="text-parchment/80">Direkte somatische Behandlungskosten</span>
+              <span class="font-mono-data text-goldbright">172,5 Mrd. €</span>
+            </div>
+            <div class="h-4 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full bar-fill" style="width:0%; background: linear-gradient(90deg,#7cd9a5,#5fbf8a);" data-bar-target="18.8%"></div></div>
+          </div>
+          <div data-block>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="text-parchment/80">Absentismus-Verluste</span>
+              <span class="font-mono-data text-goldbright">227,0 Mrd. €</span>
+            </div>
+            <div class="h-4 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full bar-fill" style="width:0%; background: linear-gradient(90deg,#d9a35c,#c48a3f);" data-bar-target="24.8%"></div></div>
+          </div>
+          <div data-block>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="text-parchment/80">Präsentismus-Verluste (Faktor 2,0)</span>
+              <span class="font-mono-data text-goldbright">454,0 Mrd. €</span>
+            </div>
+            <div class="h-4 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full bar-fill" style="width:0%; background: linear-gradient(90deg,#f2c48a,#d9a35c);" data-bar-target="49.5%"></div></div>
+          </div>
+          <div data-block>
+            <div class="flex justify-between text-sm mb-1.5">
+              <span class="text-parchment/80">Fluktuations-/Rekrutierungskosten</span>
+              <span class="font-mono-data text-goldbright">63,3 Mrd. €</span>
+            </div>
+            <div class="h-4 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full bar-fill" style="width:0%; background: linear-gradient(90deg,#e58a72,#c76a52);" data-bar-target="6.9%"></div></div>
+          </div>
+        </div>
+        <div class="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+          <span class="font-display text-lg">Summe</span>
+          <span class="font-mono-data text-2xl font-bold text-goldbright">916,8 Mrd. €</span>
+        </div>
+      </div>
+
+      <div class="formula-block reveal mb-6">
+        172,5 + 227,0 + 454,0 + 63,3 = 916,8 Mrd. €
+      </div>
+
+      <p class="text-sm text-parchment/70 reveal mb-14">
+        Die Summe ist arithmetisch geschlossen; der Präsentismusblock ist mit 454,0 = 2,0 × 227,0 konsistent. Die Belastbarkeit hängt am gesetzten Multiplikator (2,0) und an der Bewertung der modellierten Blöcke — daher <strong class="text-goldbright">[MODELL]</strong>, nicht [FAKT].
+      </p>
+
+      <!-- 3.1 Asymmetrie -->
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">3.1 Die Asymmetrie zur Prävention</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80 mb-6">
+          Diesem Verlust steht ein minimales Präventionsbudget gegenüber. Die aggregierten Ausgaben für Primärprävention/Gesundheitsförderung der GKV (§ 20 SGB V: ~584 Mio. €, Berichtsjahr 2022) plus das Stiftungskapital der Bundesstiftung Frühe Hilfen (51 Mio. €) liegen — auch unter Einbezug von Länder- und Pflege-Präventionsmitteln — knapp unter bzw. um 1 Milliarde Euro.
+        </p>
+
+        <div class="glass p-6 sm:p-8 mb-4">
+          <p class="text-xs font-mono-data text-parchment/70 mb-4 uppercase tracking-wider">Symbolische Darstellung — nicht maßstabsgetreu (echtes Verhältnis ≈ 1:1.000)</p>
+          <div class="flex items-end gap-6 h-32">
+            <div class="flex flex-col items-center gap-2">
+              <div class="w-16 rounded-t-md bg-gold" style="height: 100%;"></div>
+              <span class="text-xs font-mono-data text-parchment/70 text-center">Erosionsverlust<br>916,8 Mrd. €</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 justify-end h-full">
+              <div class="w-4 rounded-t-md bg-umstritten" style="height: 3px;"></div>
+              <span class="text-xs font-mono-data text-parchment/70 text-center">Primärprävention<br>~0,6–0,9 Mrd. €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-block mb-4">
+          916,8 Mrd. / (0,6–0,9 Mrd.) ≈ 1 : 1.000 bis 1 : 1.450
+        </div>
+        <p class="text-parchment/80 mb-3">
+          Der Leverage-Faktor der Ressourcenallokation beträgt damit <strong class="text-goldbright">über 1 : 1.000</strong>. Für jeden Euro, der in der Frühphase nicht in psychosoziale Prävention fließt, werden Spätschäden im vierstelligen Vielfachen in Kauf genommen.
+        </p>
+        <p class="text-sm text-parchment/70 italic">
+          Hinweis: Die frühere Angabe 1 : 17.976, die den Gesamtschaden gegen eine Einzelstiftung (51 Mio.) stellte, ist als Apfel-Birnen-Vergleich verworfen — siehe Korrektur-Historie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4: ETA-FAKTOR ============ -->
+  <section id="eta-faktor" class="px-5 py-14 sm:py-20 bg-nebula/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8 flex flex-wrap items-center gap-3">
+        <p class="eyebrow">04 · Der administrative Leistungsfaktor</p>
+        <span class="perspective-chip">Perspektive: Empirisch-Ökonomisch</span>
+      </div>
+      <div class="reveal glass p-6 sm:p-8 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-2xl font-semibold">η ≈ 0,70</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80 mb-5">
+          Präsentismus äußert sich nicht nur gesundheitlich, sondern administrativ: In Deutschland sind rund <strong class="text-goldbright">22 % der Arbeitszeit</strong> für Dokumentations- und Compliance-Pflichten gebunden (ifo). Kombiniert man dies mit einem Krankenstand von <strong class="text-goldbright">8,17 %</strong> (Basis: 20,51 Arbeitstage/Jahr der Bundesverwaltung, 2024), ergibt sich ein effektiver Leistungsfaktor:
+        </p>
+        <div class="formula-block mb-5">η ≈ 1 − 0,0817 − 0,22 ≈ 0,70</div>
+        <div class="grid sm:grid-cols-3 gap-3 mb-5 text-center">
+          <div class="bg-white/5 rounded-lg p-3">
+            <p class="text-xs text-parchment/70 mb-1">Nominale Kapazität</p>
+            <p class="font-mono-data text-lg text-parchment">1,00</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <p class="text-xs text-parchment/70 mb-1">− Krankenstand</p>
+            <p class="font-mono-data text-lg text-umstritten">0,0817</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <p class="text-xs text-parchment/70 mb-1">− Bürokratiebindung</p>
+            <p class="font-mono-data text-lg text-umstritten">0,22</p>
+          </div>
+        </div>
+        <p class="text-parchment/80 mb-3">
+          <strong class="text-parchment">η ist ein Kapazitäts-Abschlagsmodell</strong> (nominale Kapazität minus Absentismus minus bürokratische Zeitbindung) — kein Ergebnis eines Warteschlangenmodells und keine direkte Ableitung aus neuronalen Schwellenwerten. Zwei Präzisierungen zur Ehrlichkeit des Modells:
+        </p>
+        <ul class="space-y-2 text-sm text-parchment/75">
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Der Krankenstand von 8,17 % stammt aus der <strong class="text-parchment">Bundesverwaltung</strong>; auf verwaltungslastige Gesamtorganisationen übertragen ist er eine Modellannahme (Sektorschnitt öffentliche Verwaltung/Sozialversicherung eher ~7,5 %).</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Kognitive Überlastung wirkt als <strong class="text-parchment">vorgelagerter Treiber</strong>, nicht als direkter Rechenterm: Die Zahl η folgt aus Absentismus + Bürokratie; die Ursache dieser Komponenten liegt u. a. in der kognitiven Last. Eine direkte Gleichsetzung „75 % Last = η 0,70" wäre eine Niveau-Verwechslung.</li>
+        </ul>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl font-semibold">4.1 Nicht-lineare Eskalation</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80">
+          Sinkt η weiter, nähert sich die Systemauslastung ρ der Vollauslastung 1,0. Nach der Warteschlangentheorie steigen die Bearbeitungszeiten am Kipppunkt nicht mehr proportional, sondern streben asymptotisch gegen Unendlich — aus linearen Verzögerungen wird ein unüberwindbarer Backlog. Sichtbar wird dies am <strong class="text-goldbright">kommunalen Investitionsrückstand von 231,2 Milliarden Euro</strong> <span class="tag tag-fakt ml-1"><span class="tag-dot"></span>FAKT</span> (KfW-Kommunalpanel 2026) sowie an mehrjährigen Bebauungsplan-Laufzeiten.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5: KOGNITIVE LAST ============ -->
+  <section id="kognitive-last" class="px-5 py-14 sm:py-20">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8 flex flex-wrap items-center gap-3">
+        <p class="eyebrow">05 · Kognitive Last und Totale Faktorproduktivität</p>
+        <span class="perspective-chip">Perspektive: Systemisch-Kybernetisch</span>
+      </div>
+      <p class="text-parchment/80 reveal mb-8">
+        Chronische Überlastung und hohe asynchrone Reizdichte senken die kognitive Kapazität und langfristig die TFP. Die Relevanz kognitiver Basisfertigkeiten für Wachstum ist ökonometrisch verankert (Hanushek/Woessmann, Knowledge-Capital-Ansatz).
+      </p>
+
+      <div class="reveal glass p-6 sm:p-8 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">5.1 Bildungsrendite: als Spanne, nicht als Punktwert</h3>
+          <span class="tag tag-umstritten"><span class="tag-dot"></span>UMSTRITTEN</span>
+        </div>
+        <p class="text-parchment/80 mb-5">
+          Ein Verlust kognitiver Basiskompetenzen — gemessen am deutschen <strong class="text-goldbright">PISA-Rückgang von 25 Punkten</strong> — projiziert bis 2100 einen kumulierten Wohlstandsverlust. Der Wert ist stark diskontsatz-abhängig:
+        </p>
+        <div class="space-y-3 mb-5">
+          <div>
+            <div class="flex justify-between text-sm mb-1"><span class="text-parchment/75">Diskontsatz 3,0 % (konventionell)</span><span class="font-mono-data text-goldbright">~17,6 Bio. €</span></div>
+            <div class="h-3 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-umstritten/70 rounded-full bar-fill" style="width:0%" data-bar-target="44%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1"><span class="text-parchment/75">Diskontsatz 2,5 %</span><span class="font-mono-data text-goldbright">~24,4 Bio. €</span></div>
+            <div class="h-3 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-umstritten/85 rounded-full bar-fill" style="width:0%" data-bar-target="61%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1"><span class="text-parchment/75">Diskontsatz 2,0 %</span><span class="font-mono-data text-goldbright">~39,7 Bio. €</span></div>
+            <div class="h-3 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-umstritten rounded-full bar-fill" style="width:0%" data-bar-target="100%"></div></div>
+          </div>
+        </div>
+        <p class="text-parchment/80 mb-3">
+          Belastbar ist daher die <strong class="text-goldbright">Spanne ~18–40 Billionen Euro</strong> — nicht ein einzelner Punktwert. Zwei Vorbehalte: (a) die konventionelle Hanushek/Woessmann-Kalibrierung nutzt eher 3 %, was das untere Ende stützt; (b) die Kausalität der PISA-Wachstums-Beziehung ist disputiert (u. a. Komatsu &amp; Rappleye), die Identifikation läuft über migrantenbasierte Instrumentierung, nicht über ein klassisches Diff-in-Diff.
+        </p>
+        <p class="text-sm text-parchment/70 italic">
+          Hinweis: Die frühere Einzelzahl „14 Bio. €" entsprach dem US-COVID-Barwert von Hanushek/Woessmann und ist als deutschlandbezogene Größe durch die diskonttransparente Spanne ersetzt.
+        </p>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">5.2 Fiskalisches Crowding-out</h3>
+          <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span>
+        </div>
+        <p class="text-parchment/80 mb-5">
+          Das makroökonomische Crowding-out wird fiskalisch verschärft: 2025 standen <strong class="text-goldbright">751,2 Mrd. €</strong> konsumtive Sozialausgaben nur <strong class="text-goldbright">147,9 Mrd. €</strong> Bruttoanlageinvestitionen gegenüber.
+        </p>
+        <div class="mb-2">
+          <div class="flex justify-between text-xs font-mono-data text-parchment/70 mb-1.5">
+            <span>Aktuelle Ratio: 5,08 : 1</span>
+            <span>Schwelle: 5,0 : 1</span>
+          </div>
+          <div class="relative h-4 rounded-full bg-white/5 overflow-visible">
+            <div class="h-full rounded-full bar-fill" style="width:0%; background: linear-gradient(90deg,#7cd9a5,#d9a35c,#e58a72);" data-bar-target="100%"></div>
+            <div class="absolute top-[-6px] h-6 w-0.5 bg-parchment" style="left: 98.4%;" title="Schwellenwert 5,0:1"></div>
+          </div>
+        </div>
+        <p class="text-parchment/80 mt-4">
+          Eine Ratio von <strong class="text-goldbright">5,08 : 1</strong>. Überschreitet diese Ratio die Schwelle 5,0 : 1, verdrängen die Reparaturkosten für Erschöpfung die Investitionen ins Fundament (Bildung, Infrastruktur, Prävention).
+        </p>
+        <p class="text-sm text-parchment/70 italic mt-3">
+          Die Belastbarkeit hängt an der Abgrenzung von „konsumtiv" vs. „investiv"; der Wert liegt dicht an der Schwelle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6: INTERVENTIONEN ============ -->
+  <section id="interventionen" class="px-5 py-14 sm:py-20 bg-nebula/30">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8 flex flex-wrap items-center gap-3">
+        <p class="eyebrow">06 · Evidenzbasierte System-Kohärenz-Interventionen</p>
+        <span class="perspective-chip">Perspektive: Human-Psychologisch</span>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8 mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">6.1 Psychologische Sicherheit</h3>
+          <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+        </div>
+        <p class="text-parchment/80 mb-4">
+          Psychologische Sicherheit ist die geteilte Überzeugung, dass die Arbeitsumgebung sicher genug für zwischenmenschliche Risiken ist (Edmondson, 1999). Die umfassendste Meta-Analyse
+          (<a href="https://doi.org/10.1111/peps.12183" target="_blank" rel="noopener noreferrer" class="text-goldbright underline decoration-gold/40 hover:decoration-goldbright">Frazier et al., 2017, <em>Personnel Psychology</em></a>;
+          136 unabhängige Stichproben, &gt; 22.000 Individuen, ~5.000 Gruppen) belegt:
+        </p>
+        <ul class="space-y-2 text-sm text-parchment/80">
+          <li class="flex gap-2"><span class="text-fakt shrink-0">✓</span><strong class="text-parchment">Task Performance:</strong>&nbsp;hochsignifikante positive Korrelation mit individueller und teambasierter Aufgabenerfüllung.</li>
+          <li class="flex gap-2"><span class="text-fakt shrink-0">✓</span><strong class="text-parchment">Voice &amp; Learning:</strong>&nbsp;noch stärkere Effekte bei Informationsaustausch und Lernverhalten.</li>
+          <li class="flex gap-2"><span class="text-fakt shrink-0">✓</span><strong class="text-parchment">Fluktuation &amp; Burnout:</strong>&nbsp;signifikante Senkung der Fluktuationsintention, Pufferung emotionaler Erschöpfung.</li>
+        </ul>
+      </div>
+
+      <div class="reveal glass p-6 sm:p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <h3 class="font-display text-xl sm:text-2xl font-semibold">6.2 Die „dunkle Seite" und kulturelle Moderatoren</h3>
+          <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span>
+        </div>
+        <p class="text-parchment/80 mb-4">Akademische Integrität verbietet eine romantisierende Darstellung. Psychologische Sicherheit ist kein Allheilmittel:</p>
+        <ul class="space-y-3 text-sm text-parchment/80 mb-5">
+          <li class="flex gap-2">
+            <span class="text-umstritten shrink-0">⚠</span>
+            <span><a href="https://doi.org/10.1037/a0021503" target="_blank" rel="noopener noreferrer" class="text-goldbright underline decoration-gold/40 hover:decoration-goldbright">Pearsall &amp; Ellis (2011), <em>JAP</em></a> (126 Teams) zeigen den <strong class="text-parchment">„Regulatory Loss Pathway"</strong>: In utilitaristisch orientierten Teams erhöht ein Übermaß an Sicherheit ohne externe Accountability Regelverstöße; die Beziehung zur Teamleistung ist häufig kurvilinear (u-förmig).</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="text-umstritten shrink-0">⚠</span>
+            <span><strong class="text-parchment">Kulturmoderation:</strong>&nbsp;In Kulturen hoher Machtdistanz/Traditionalität übersetzt sich Sicherheit nicht automatisch in „Speaking up"; unreflektierter Import agiler Silicon-Valley-Praktiken in hierarchische Kontexte erzeugt Nullbefunde oder Reaktanz.</span>
+          </li>
+        </ul>
+
+        <!-- U-shaped curve illustration -->
+        <div class="bg-white/5 rounded-lg p-4">
+          <svg viewBox="0 0 320 120" class="w-full h-auto" role="img" aria-labelledby="curve-title curve-desc">
+            <title id="curve-title">Kurvilineare Beziehung: Regeleinhaltung vs. psychologische Sicherheit</title>
+            <desc id="curve-desc">U-förmige Kurve: sehr niedrige und sehr hohe psychologische Sicherheit korrelieren mit erhöhten Regelverstößen; ein moderates Niveau minimiert sie.</desc>
+            <line x1="20" y1="100" x2="300" y2="100" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+            <line x1="20" y1="100" x2="20" y2="15" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+            <path d="M 25 40 Q 160 105 295 40" fill="none" stroke="#e58a72" stroke-width="2.5"/>
+            <circle cx="160" cy="88" r="4" fill="#7cd9a5"/>
+            <text x="160" y="112" text-anchor="middle" font-size="8" fill="#f4ead9" font-family="JetBrains Mono, monospace" opacity="0.7">Moderates Niveau</text>
+            <text x="20" y="12" font-size="8" fill="#f4ead9" font-family="JetBrains Mono, monospace" opacity="0.75">Regelverstöße</text>
+            <text x="230" y="112" font-size="8" fill="#f4ead9" font-family="JetBrains Mono, monospace" opacity="0.75">Psych. Sicherheit →</text>
+          </svg>
+        </div>
+        <p class="text-parchment/80 mt-5">
+          Ein moderates Level mit <strong class="text-goldbright">klaren normativen Leitplanken und Rollenklarheit</strong> produziert die besten Ergebnisse.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 7: FAZIT + TRIANGULATION ============ -->
+  <section id="fazit" class="px-5 py-14 sm:py-20">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-10 text-center">
+        <p class="eyebrow mb-3">07 · Synthese</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">Wissenschaftliches Fazit</h2>
+      </div>
+
+      <!-- Triangulation diagram -->
+      <div class="reveal glass p-6 sm:p-10 mb-10">
+        <svg viewBox="0 0 400 340" class="w-full max-w-md mx-auto h-auto" role="img" aria-labelledby="tri-title tri-desc">
+          <title id="tri-title">Triangulation der drei Analyseperspektiven</title>
+          <desc id="tri-desc">Drei Perspektiven — empirisch-ökonomisch, systemisch-kybernetisch, human-psychologisch — verbinden sich zur Synthese im Zentrum.</desc>
+          <line x1="200" y1="55" x2="60" y2="270" stroke="rgba(217,163,92,0.35)" stroke-width="1.5"/>
+          <line x1="200" y1="55" x2="340" y2="270" stroke="rgba(217,163,92,0.35)" stroke-width="1.5"/>
+          <line x1="60" y1="270" x2="340" y2="270" stroke="rgba(217,163,92,0.35)" stroke-width="1.5"/>
+          <circle class="triangle-node" cx="200" cy="55" r="34" fill="#10152b" stroke="#7cd9a5" stroke-width="2"/>
+          <text x="200" y="51" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Empirisch-</text>
+          <text x="200" y="61" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Ökonomisch</text>
+          <circle class="triangle-node" cx="60" cy="270" r="34" fill="#10152b" stroke="#d9a35c" stroke-width="2"/>
+          <text x="60" y="266" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Systemisch-</text>
+          <text x="60" y="276" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Kybernetisch</text>
+          <circle class="triangle-node" cx="340" cy="270" r="34" fill="#10152b" stroke="#e58a72" stroke-width="2"/>
+          <text x="340" y="266" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Human-</text>
+          <text x="340" y="276" text-anchor="middle" font-size="8.5" fill="#f4ead9" font-family="JetBrains Mono, monospace">Psychologisch</text>
+          <circle cx="200" cy="198" r="42" fill="rgba(217,163,92,0.1)" stroke="#f2c48a" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="200" y="194" text-anchor="middle" font-size="9" fill="#f2c48a" font-family="Fraunces, serif" font-weight="600">Synthese</text>
+          <text x="200" y="207" text-anchor="middle" font-size="7.5" fill="#f4ead9" font-family="JetBrains Mono, monospace" opacity="0.7">Sprint 1</text>
+        </svg>
+      </div>
+
+      <div class="reveal space-y-4 text-parchment/85">
+        <p>
+          Die Messung organisatorischer Reibung zeigt, dass historisch als weich abgetane Faktoren in der Wissensökonomie zu harten Bilanzrisiken mutieren. Die Vier-Block-Summe aus somatischen Folgekosten, Absentismus, Präsentismus und dysfunktionsbedingter Fluktuation taxiert den Gesamtverlust auf <strong class="text-goldbright">916,8 Milliarden Euro</strong> jährlich <span class="tag tag-modell ml-1"><span class="tag-dot"></span>MODELL</span> — in scharfer Asymmetrie (über 1 : 1.000) zu den Präventionsbudgets.
+        </p>
+        <p>
+          Kohärenz-Interventionen — psychologische Sicherheit, offene Fehlerkultur, Schutz kognitiver Ressourcen vor asynchroner Überlastung — sind empirisch wirksame Hebel zur Rekapitalisierung der Systeme (Frazier 2017; SOEP-Panelevidenz; NBER-RCTs) <span class="tag tag-fakt ml-1"><span class="tag-dot"></span>FAKT</span>. Ihre Wirkung ist jedoch nicht linear und kontextabhängig: Ohne normative Leitplanken und externe Verantwortlichkeit kann die Beseitigung zwischenmenschlicher Risiken die Selbstkontrolle schwächen (Regulatory Loss Pathway).
+        </p>
+        <p>
+          Die Transformation von System-Entropie in System-Kohärenz gelingt nicht durch blinde De-Regulierung, sondern durch ein präzises, kulturell übersetztes Organisationsdesign, das psychosoziale Sicherheit mit hoher Rollenklarheit verbindet und kognitive Kapazität für die tatsächliche Wertschöpfung freisetzt.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KORREKTUR-HISTORIE ============ -->
+  <section id="korrekturen" class="px-5 py-14 sm:py-20 bg-nebula/30">
+    <div class="max-w-5xl mx-auto">
+      <div class="reveal mb-8">
+        <p class="eyebrow mb-3">Transparenz</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">Korrektur-Historie gegenüber der Vorfassung</h2>
+        <p class="mt-4 text-parchment/75 max-w-2xl">
+          Diese Fassung integriert die forensischen Korrekturen aus der Validierung. Sechs Defekte wurden identifiziert und transparent bereinigt — nichts wurde stillschweigend geglättet.
+        </p>
+      </div>
+      <div class="reveal glass overflow-x-auto">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Vorfassung</th><th>Bereinigung</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-mono-data text-parchment/70">1</td>
+              <td>916,8 Mrd. mit drei Blöcken (172,5+227,0+454,0 = 853,5, Lücke 63,3)</td>
+              <td>Vierter Block Cost of Turnover 63,3 ergänzt → Summe exakt 916,8</td>
+              <td><span class="status-pill" style="color:#7cd9a5;">geschlossen</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono-data text-parchment/70">2</td>
+              <td>Hebel 1 : 17.976 (Nenner = Einzelstiftung 51 Mio.)</td>
+              <td>Nenner = aggregierte Primärprävention (~0,6–0,9 Mrd.) → ≈ 1 : 1.000</td>
+              <td><span class="status-pill" style="color:#d9a35c;">korrigiert</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono-data text-parchment/70">3</td>
+              <td>14 Bio. € (entsprach US-COVID-Barwert)</td>
+              <td>Spanne 18–40 Bio. € (Diskont 3–2 %), Kausalität als umstritten markiert</td>
+              <td><span class="status-pill" style="color:#d9a35c;">korrigiert</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono-data text-parchment/70">4</td>
+              <td>Präsentismus 2.400 € via kommerziellem Blog</td>
+              <td>Zahl/Beleg entfernt; nur Faktor 1,8–2,0 (arbeitswiss.) beibehalten</td>
+              <td><span class="status-pill" style="color:#9db8e8;">bereinigt</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono-data text-parchment/70">5</td>
+              <td>8,17 % implizit auf gesamten öD (5,5 Mio.) übertragen</td>
+              <td>Als Bundesverwaltungs-Basis und Modellannahme gekennzeichnet</td>
+              <td><span class="status-pill" style="color:#9db8e8;">präzisiert</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono-data text-parchment/70">6</td>
+              <td>η über „M/M/1" und direkte Neuro-Schwelle begründet</td>
+              <td>η als Kapazitäts-Abschlagsmodell; kognitive Last als vorgelagerter Treiber entkoppelt</td>
+              <td><span class="status-pill" style="color:#9db8e8;">entkoppelt</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFERENZEN ============ -->
+  <section id="referenzen" class="px-5 py-14 sm:py-20">
+    <div class="max-w-4xl mx-auto">
+      <div class="reveal mb-8">
+        <p class="eyebrow mb-3">Quellen</p>
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold">Referenzen &amp; Evidenzklassen</h2>
+      </div>
+
+      <div class="reveal mb-8">
+        <h3 class="font-display text-lg font-semibold mb-3 flex items-center gap-3">Verifizierte Primärquellen <span class="tag tag-fakt"><span class="tag-dot"></span>FAKT</span></h3>
+        <ol class="space-y-3 text-sm text-parchment/80 list-decimal list-inside">
+          <li>Frazier, M. L. et al. (2017). <em>Psychological Safety: A Meta-Analytic Review and Extension.</em> Personnel Psychology, 70(1), 113–165. <a href="https://doi.org/10.1111/peps.12183" target="_blank" rel="noopener noreferrer" class="text-goldbright underline decoration-gold/40">DOI: 10.1111/peps.12183</a></li>
+          <li>Edmondson, A. (1999). <em>Psychological Safety and Learning Behavior in Work Teams.</em> Administrative Science Quarterly, 44(2), 350–383.</li>
+          <li>Pearsall, M. J., &amp; Ellis, A. P. J. (2011). <em>Thick as Thieves.</em> Journal of Applied Psychology, 96(2), 401–411. <a href="https://doi.org/10.1037/a0021503" target="_blank" rel="noopener noreferrer" class="text-goldbright underline decoration-gold/40">DOI: 10.1037/a0021503</a></li>
+          <li>NSI Nursing Solutions (2025). <em>National Health Care Retention &amp; RN Staffing Report</em> (Datenjahr 2024).</li>
+          <li>KfW Research / Difu (2026). <em>KfW-Kommunalpanel 2026</em> — Investitionsrückstand 231,2 Mrd. €.</li>
+          <li>GKV-Spitzenverband / MD Bund (2024). <em>Präventionsbericht</em> — Primärprävention § 20 SGB V ~584 Mio. €.</li>
+          <li>SHRM / Gallup — Fluktuationskosten 50–200 % des Jahresgehalts.</li>
+        </ol>
+      </div>
+
+      <div class="reveal mb-8">
+        <h3 class="font-display text-lg font-semibold mb-3 flex items-center gap-3">Modell-/Projektionsgrundlagen <span class="tag tag-modell"><span class="tag-dot"></span>MODELL</span><span class="tag tag-umstritten"><span class="tag-dot"></span>UMSTRITTEN</span></h3>
+        <ol class="space-y-3 text-sm text-parchment/80 list-decimal list-inside" start="8">
+          <li>Hanushek, E. A., &amp; Woessmann, L. (2020). Knowledge-Capital-Projektionen (Bildungsrendite; PISA-Wachstumsbeziehung) — als Spanne, Kausalität disputiert (vgl. Komatsu &amp; Rappleye 2019).</li>
+          <li>ifo-Institut — Bürokratiebindung ~22 % der Arbeitszeit.</li>
+          <li>Bundesregierung (2024) — Krankenstand Bundesverwaltung 20,51 Arbeitstage.</li>
+          <li>Sternenstaub-Systemanalyse (Knotenpunkte I–V); <em>Schaltzentrale der Metaanalyse 2026</em> — Referenzknoten für η, 916,8 Mrd., Hebel, Verdrängungs-Ratio.</li>
+        </ol>
+      </div>
+
+      <div class="reveal glass p-6">
+        <h3 class="eyebrow mb-3">Code-Validierung</h3>
+        <p class="text-sm text-parchment/70 font-mono-data leading-relaxed">
+          Vier-Block-Summe = 916,8 (exakt) · Leverage 916,8 / {0,635; 0,9} Mrd = 1 : {1.444; 1.019} · Bildungsrendite 17,6 / 24,4 / 39,7 Bio. € bei 3 / 2,5 / 2 % Diskont · η = 1 − 0,0817 − 0,22 = 0,698 · Verdrängungs-Ratio 751,2 / 147,9 = 5,079.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative z-10 px-5 py-12 border-t border-white/5">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="text-sm text-parchment/70 mb-4">
+      Evidenzstand: September 2026. Diese bereinigte Fassung schließt die drei materiellen Defekte der Vorfassung (Summenlücke, Leverage-Nenner, Bildungsrendite-Attribution) und entkoppelt die η-Herleitung von der neuronalen Lastschwelle.
+    </p>
+    <button type="button" data-open-modal class="inline-flex items-center gap-2 text-sm font-mono-data text-goldbright border border-gold/40 px-4 py-2 rounded-full hover:bg-gold/10 transition-colors mb-6">
+      Epistemisches Exoskelett öffnen
+    </button>
+    <p class="eyebrow"><a href="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" target="_blank" rel="noopener noreferrer" class="hover:text-goldbright underline decoration-transparent hover:decoration-gold/50 transition-colors">Projekt Sternenstaub · Schaltzentrale der Metaanalyse 2026</a></p>
+    <p class="text-xs text-parchment/70 mt-2">HCC 3.0 · Sprint 1 — Systemische Entropie und organisatorische Reibung</p>
+  </div>
+</footer>
+
+<!-- ============ EPISTEMISCHES EXOSKELETT MODAL ============ -->
+<dialog id="exoskelett-modal" aria-labelledby="exoskelett-title">
+  <div class="flex flex-col max-h-[88vh]">
+    <div class="flex items-start justify-between gap-4 px-6 sm:px-8 pt-6 pb-4 border-b border-white/10 shrink-0">
+      <div>
+        <p class="eyebrow mb-1">Research Audit Layer</p>
+        <h2 id="exoskelett-title" class="font-display text-xl sm:text-2xl font-semibold">Epistemisches Exoskelett</h2>
+      </div>
+      <button type="button" data-close-modal aria-label="Modal schließen" class="shrink-0 rounded-full p-2 hover:bg-white/10 transition-colors">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Ledger -->
+    <div class="px-6 sm:px-8 py-5 border-b border-white/10 shrink-0 bg-white/[0.02]">
+      <p class="eyebrow mb-3 text-goldbright">AI Contribution &amp; Human Verification Ledger</p>
+      <div class="grid sm:grid-cols-2 gap-5 ledger-col">
+        <div>
+          <dt>KI-gestützt</dt>
+          <ul class="text-parchment/75">
+            <li>Source-Strukturierung &amp; Cross-Referenzierung der Primärquellen</li>
+            <li>Code-Generierung (HTML/CSS/JS, Partikel-Engine, Modal-Logik)</li>
+            <li>Layout- und Interaktionsdesign gemäß Sternenstaub-Standard</li>
+            <li>Sprachliche Politur der Abschnittsübergänge</li>
+          </ul>
+        </div>
+        <div>
+          <dt>Human Verified</dt>
+          <ul class="text-parchment/75">
+            <li>Auswahl &amp; Bewertung der Primärquellen (Frazier 2017, Pearsall &amp; Ellis 2011, KfW, NSI u. a.)</li>
+            <li>Arithmetische Prüfung der Vier-Block-Summe und aller Kennzahlen</li>
+            <li>Epistemische Klassifikation (FAKT/MODELL/UMSTRITTEN) je Kennzahl</li>
+            <li>Freigabe der Korrektur-Historie und inhaltliche Gesamtverantwortung</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div role="tablist" aria-label="Epistemisches Exoskelett Abschnitte" class="flex gap-1 px-4 sm:px-6 border-b border-white/10 overflow-x-auto shrink-0">
+      <button role="tab" id="tab-grenzen" aria-controls="panel-grenzen" aria-selected="true" tabindex="0" class="tab-btn" data-tab="grenzen">Grenzen</button>
+      <button role="tab" id="tab-gegenargumente" aria-controls="panel-gegenargumente" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="gegenargumente">Gegenargumente</button>
+      <button role="tab" id="tab-netzwerk" aria-controls="panel-netzwerk" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="netzwerk">Netzwerk-Selbstoptimierung</button>
+      <button role="tab" id="tab-weiterentwicklung" aria-controls="panel-weiterentwicklung" aria-selected="false" tabindex="-1" class="tab-btn" data-tab="weiterentwicklung">Weiterentwicklung</button>
+    </div>
+
+    <!-- Panels -->
+    <div class="px-6 sm:px-8 py-6 overflow-y-auto">
+      <div role="tabpanel" id="panel-grenzen" aria-labelledby="tab-grenzen" tabindex="0">
+        <h3 class="font-display text-lg font-semibold mb-3">Grenzen des Modells</h3>
+        <ul class="space-y-3 text-sm text-parchment/80">
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>η ist ein Kapazitäts-Abschlagsmodell, kein Ergebnis eines Warteschlangenmodells — die Ableitung ist bewusst von neuronalen Lastschwellen entkoppelt.</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Der Präsentismus-Multiplikator (2,0) liegt am oberen Rand der arbeitswissenschaftlichen Spanne (1,8–2,0) und ist nicht spezifisch für Deutschland kalibriert.</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Die Krankenstand-Basis (8,17 %) stammt aus der Bundesverwaltung, nicht aus einer branchenübergreifenden Vollerhebung.</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Die Bildungsrendite-Projektion reagiert stark auf den gewählten Diskontsatz (17,6 bis 39,7 Bio. € je nach 3–2 %).</li>
+        </ul>
+      </div>
+
+      <div role="tabpanel" id="panel-gegenargumente" aria-labelledby="tab-gegenargumente" tabindex="0" hidden>
+        <h3 class="font-display text-lg font-semibold mb-3">Falsifikationspanel</h3>
+        <p class="text-sm text-parchment/70 mb-4">Bedingungen, unter denen die hier aufgestellten Kernthesen in sich zusammenbrechen würden:</p>
+        <ul class="space-y-4 text-sm text-parchment/80">
+          <li class="flex gap-3"><span class="font-mono-data text-umstritten shrink-0">01</span>Erweist sich die aggregierte Primärpräventions-Basis (Nenner des Hebels) als deutlich größer als 0,6–0,9 Mrd. € — etwa durch bislang nicht erfasste Landes- oder Kommunalmittel — kollabiert der Leverage-Faktor von ≈ 1:1.000 auf eine deutlich moderatere Größenordnung.</li>
+          <li class="flex gap-3"><span class="font-mono-data text-umstritten shrink-0">02</span>Erweist sich die PISA-Wachstums-Kausalität (Komatsu &amp; Rappleye 2019) als Artefakt der migrantenbasierten Instrumentierung, verliert die 18–40-Billionen-Projektion ihre kausale Grundlage vollständig — nur die deskriptive Korrelation bliebe.</li>
+          <li class="flex gap-3"><span class="font-mono-data text-umstritten shrink-0">03</span>Liegt der Präsentismus-Multiplikator empirisch für Deutschland eher bei 1,2–1,4 statt 1,8–2,0, sinkt die 916,8-Mrd.-Summe um mehrere hundert Milliarden Euro, und die zentrale Systembilanz-Aussage verschiebt sich substanziell.</li>
+        </ul>
+      </div>
+
+      <div role="tabpanel" id="panel-netzwerk" aria-labelledby="tab-netzwerk" tabindex="0" hidden>
+        <h3 class="font-display text-lg font-semibold mb-3">Netzwerk-Selbstoptimierung</h3>
+        <p class="text-sm text-parchment/80 mb-4">
+          Dieser Knoten hat bereits einen vollständigen adversarialen Korrekturzyklus gegenüber seiner Vorfassung durchlaufen: sechs identifizierte Defekte (Summenlücke, Leverage-Nenner, Bildungsrendite-Attribution, Präsentismus-Beleg, Krankenstand-Basis, η-Herleitung) wurden transparent bereinigt — siehe Korrektur-Historie im Hauptdokument.
+        </p>
+        <p class="text-sm text-parchment/80">
+          Sprint 1 ist als Referenzknoten in die <em>Schaltzentrale der Metaanalyse 2026</em> eingebettet: η-Modell und die 916,8-Mrd.-Kennzahl werden in den HCC-3.0-Knotenpunkten I–V und der Systemanalyse Deutschland 1990–2050 weiterverwendet und dort erneut gegengeprüft, sodass Fehler an dieser Stelle sich netzwerkweit fortpflanzen — was das Gewicht der forensischen Validierung zusätzlich erhöht.
+        </p>
+      </div>
+
+      <div role="tabpanel" id="panel-weiterentwicklung" aria-labelledby="tab-weiterentwicklung" tabindex="0" hidden>
+        <h3 class="font-display text-lg font-semibold mb-3">Offene Fragen &amp; Weiterentwicklung</h3>
+        <ul class="space-y-3 text-sm text-parchment/80">
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Die aggregierten Primärpräventionsdaten über alle Bundesländer und Sozialversicherungsträger hinweg sind nicht vollständig konsolidiert; künftige Sprints sollten diese Datenlücke schließen.</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Eine sektorspezifische Krankenstands-Differenzierung (Bundesverwaltung vs. Gesamtwirtschaft) würde die η-Kalibrierung präzisieren.</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Kulturadaptierte Schwellenwerte für psychologische Sicherheit außerhalb westlicher Organisationskontexte sind bislang unzureichend erforscht (vgl. Abschnitt 6.2).</li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">—</span>Anschlussfähig für künftige Sprints: Vertiefung der Regulatory-Loss-Pathway-Dynamik und ihrer Interaktion mit Rollenklarheit.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Particle Canvas ---------- */
+  var canvas = document.getElementById('particle-canvas');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var mouse = { x: null, y: null, radius: 130 };
+  var width, height;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function initParticles() {
+    var density = Math.floor((width * height) / 14000);
+    var count = Math.max(30, Math.min(prefersReducedMotion ? 40 : 130, density));
+    particles = [];
+    for (var i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.6
+      });
+    }
+  }
+  initParticles();
+  window.addEventListener('resize', initParticles);
+
+  window.addEventListener('mousemove', function (e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  window.addEventListener('mouseleave', function () {
+    mouse.x = null;
+    mouse.y = null;
+  });
+  window.addEventListener('touchmove', function (e) {
+    if (e.touches && e.touches[0]) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+
+      if (!prefersReducedMotion) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        if (mouse.x !== null) {
+          var dx = mouse.x - p.x;
+          var dy = mouse.y - p.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius) {
+            var force = (mouse.radius - dist) / mouse.radius;
+            if (dist < 32) {
+              /* repulsion when too close */
+              p.x -= (dx / dist) * force * 2.2;
+              p.y -= (dy / dist) * force * 2.2;
+            } else {
+              /* magnet attraction */
+              p.x += (dx / dist) * force * 1.4;
+              p.y += (dy / dist) * force * 1.4;
+            }
+          }
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(217, 163, 92, 0.55)';
+      ctx.fill();
+    }
+
+    /* connective network */
+    for (var a = 0; a < particles.length; a++) {
+      for (var b = a + 1; b < particles.length; b++) {
+        var dx2 = particles[a].x - particles[b].x;
+        var dy2 = particles[a].y - particles[b].y;
+        var d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+        if (d2 < 110) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(124, 217, 165, ' + (0.12 * (1 - d2 / 110)) + ')';
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  if (prefersReducedMotion) {
+    drawFrame();
+  } else {
+    (function loop() {
+      drawFrame();
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- Scroll Reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Animated bar fills ---------- */
+  var bars = document.querySelectorAll('.bar-fill');
+  if ('IntersectionObserver' in window) {
+    var barIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = el.getAttribute('data-bar-target');
+          requestAnimationFrame(function () { el.style.width = target; });
+          barIo.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(function (el) { barIo.observe(el); });
+  } else {
+    bars.forEach(function (el) { el.style.width = el.getAttribute('data-bar-target'); });
+  }
+
+  /* ---------- Modal Logic ---------- */
+  var modal = document.getElementById('exoskelett-modal');
+  var openBtns = document.querySelectorAll('[data-open-modal]');
+  var closeBtn = modal.querySelector('[data-close-modal]');
+  var lastFocused = null;
+
+  function getFocusable() {
+    return modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  }
+
+  function openModal() {
+    lastFocused = document.activeElement;
+    modal.showModal();
+    var focusables = getFocusable();
+    if (focusables.length) focusables[0].focus();
+  }
+
+  function closeModal() {
+    modal.close();
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  openBtns.forEach(function (btn) {
+    btn.addEventListener('click', openModal);
+  });
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  modal.addEventListener('cancel', function (e) {
+    e.preventDefault();
+    closeModal();
+  });
+
+  modal.addEventListener('keydown', function (e) {
+    if (e.key === 'Tab') {
+      var focusables = Array.prototype.slice.call(getFocusable());
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  /* ---------- Tabs (ARIA tablist pattern) ---------- */
+  var tabs = Array.prototype.slice.call(modal.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(modal.querySelectorAll('[role="tabpanel"]'));
+
+  function activateTab(tab) {
+    tabs.forEach(function (t) {
+      var selected = t === tab;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(function (p) {
+      p.hidden = p.id !== tab.getAttribute('aria-controls');
+    });
+    tab.focus();
+  }
+
+  tabs.forEach(function (tab, idx) {
+    tab.addEventListener('click', function () { activateTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var newIdx = null;
+      if (e.key === 'ArrowRight') newIdx = (idx + 1) % tabs.length;
+      if (e.key === 'ArrowLeft') newIdx = (idx - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') newIdx = 0;
+      if (e.key === 'End') newIdx = tabs.length - 1;
+      if (newIdx !== null) {
+        e.preventDefault();
+        activateTab(tabs[newIdx]);
+      }
+    });
+  });
+
+  /* ---------- Smooth scroll offset for sticky header ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 64;
+        window.scrollTo({ top: top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        history.replaceState(null, '', '#' + id);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

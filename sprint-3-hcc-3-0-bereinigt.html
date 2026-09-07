@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC 3.0 · Sprint 3 — HRV &amp; Interbrain Synchrony in der Teamkoordination</title>
+<meta name="description" content="Systematische Entflechtung sozialer und physiologischer Regulation: vagale Autonomie, fNIRS-Artefaktkritik, aufgabentypische Interbrain Synchrony und Team Neural Efficiency — evidenzgeprüfte Analyse mit vollständigem epistemischem Audit.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCC 3.0 · Sprint 3 — HRV & Interbrain Synchrony in der Teamkoordination">
+<meta property="og:description" content="Bereinigte, evidenzgeprüfte Fassung: vagale Autonomie, fNIRS-Methodenkritik und Team Neural Efficiency — mit vollständigem Falsifikations- und Quellenaudit.">
+<meta name="theme-color" content="#060714">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --void:#060714;
+    --void-2:#08091a;
+    --nebula:#10152b;
+    --nebula-light:#171d3d;
+    --gold:#d9a35c;
+    --gold-soft:#e8c088;
+    --parchment:#f4ead9;
+    --parchment-dim:#cfc4b0;
+    --modell:#7ba7d9;
+    --modell-soft:#a9c8ea;
+    --umstritten:#d9808c;
+    --umstritten-soft:#eaa7b0;
+    --line:rgba(244,234,217,0.12);
+    --line-strong:rgba(244,234,217,0.24);
+    --shadow:rgba(3,4,12,0.55);
+    --focus:#f4c77a;
+    --font-display:'Fraunces',serif;
+    --font-body:'Atkinson Hyperlegible',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--font-body);
+    line-height:1.7;
+    font-size:1.05rem;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:500; color:var(--parchment); letter-spacing:-0.01em; }
+
+  a{ color:var(--gold-soft); text-underline-offset:3px; }
+  a:hover{ color:var(--gold); }
+
+  ::selection{ background:rgba(217,163,92,0.35); color:var(--parchment); }
+
+  :focus{ outline:none; }
+  :focus-visible{ outline:2px solid var(--focus); outline-offset:3px; border-radius:4px; }
+
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  .skip-link{
+    position:absolute; left:-9999px; top:0; z-index:300;
+    background:var(--gold); color:var(--void); font-weight:700;
+    padding:.85rem 1.4rem; border-radius:0 0 8px 0; text-decoration:none;
+  }
+  .skip-link:focus{ left:0; }
+
+  #particle-canvas{
+    position:fixed; inset:0; width:100%; height:100%; z-index:0;
+    pointer-events:none;
+  }
+
+  .content-layer{ position:relative; z-index:1; }
+
+  /* ---------- Glass panel ---------- */
+  .glass{
+    background:linear-gradient(180deg, rgba(23,29,61,0.72), rgba(16,21,43,0.72));
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line);
+    box-shadow:0 20px 50px -25px var(--shadow);
+  }
+
+  /* ---------- Hero ---------- */
+  .site-hero{ position:relative; padding:6.5rem 1.5rem 4rem; }
+  .hero-inner{ max-width:840px; margin:0 auto; }
+  .hero-eyebrow{
+    display:block; font-family:var(--font-mono); font-size:0.82rem;
+    color:var(--gold-soft); margin-bottom:1rem; letter-spacing:0.02em;
+  }
+  .hero-main{
+    font-size:clamp(2.1rem,5.2vw,3.7rem); line-height:1.08; font-weight:500;
+    color:var(--parchment);
+  }
+  .hero-subtitle{
+    font-family:var(--font-display); font-style:italic; font-weight:400;
+    color:var(--gold-soft); font-size:clamp(1.1rem,2vw,1.4rem);
+    margin-top:1.4rem; max-width:44ch; line-height:1.45;
+  }
+  .hero-meta{ color:var(--parchment-dim); margin-top:1rem; font-size:0.98rem; }
+  .hero-note{
+    margin-top:2.2rem; padding:1.1rem 1.4rem; border-left:3px solid var(--gold);
+    border-radius:4px; font-size:0.95rem; color:var(--parchment-dim);
+  }
+  .hero-note strong{ color:var(--parchment); font-weight:700; }
+  .hero-badges{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem; }
+  .stat-pill{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--parchment-dim);
+    border:1px solid var(--line-strong); padding:.35rem .8rem; border-radius:999px;
+  }
+
+  /* ---------- Sticky nav / legend ---------- */
+  #site-nav{
+    position:sticky; top:0; z-index:50;
+    border-bottom:1px solid var(--line);
+    background:rgba(6,7,20,0.86);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:.7rem 1.2rem;
+    display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap;
+  }
+  .nav-toc{ list-style:none; display:flex; gap:1.1rem; padding:0; margin:0;
+    overflow-x:auto; flex:1 1 auto; scrollbar-width:thin; }
+  .nav-toc::-webkit-scrollbar{ height:4px; }
+  .nav-toc::-webkit-scrollbar-thumb{ background:var(--line-strong); border-radius:4px; }
+  .nav-toc a{
+    white-space:nowrap; font-size:0.85rem; color:var(--parchment-dim);
+    text-decoration:none; padding:.3rem 0; border-bottom:2px solid transparent;
+  }
+  .nav-toc a:hover{ color:var(--gold-soft); border-color:var(--gold); }
+  .nav-filter{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+  .nav-filter-label{ font-size:0.78rem; color:var(--parchment-dim); font-family:var(--font-mono); }
+  .filter-reset{
+    font-family:var(--font-mono); font-size:0.74rem; color:var(--parchment-dim);
+    background:none; border:1px solid var(--line-strong); border-radius:999px;
+    padding:.15rem .6rem; cursor:pointer; display:none;
+  }
+  .filter-reset.is-visible{ display:inline-block; }
+  .filter-reset:hover{ color:var(--parchment); border-color:var(--parchment-dim); }
+
+  /* ---------- Tags / evidence badges ---------- */
+  .tag{
+    display:inline-flex; align-items:center; gap:.3em;
+    font-family:var(--font-mono); font-weight:600; font-size:0.72rem;
+    padding:.18em .65em; border-radius:999px; border:1px solid; line-height:1.5;
+    white-space:nowrap; cursor:default; transition:opacity .25s ease, filter .25s ease;
+    background:transparent;
+  }
+  button.tag{ cursor:pointer; }
+  .tag-fakt{ color:var(--gold-soft); border-color:rgba(217,163,92,.5); background:rgba(217,163,92,.12); }
+  .tag-modell{ color:var(--modell-soft); border-color:rgba(123,167,217,.5); background:rgba(123,167,217,.12); }
+  .tag-umstritten{ color:var(--umstritten-soft); border-color:rgba(217,128,140,.5); background:rgba(217,128,140,.12); }
+  .tag[aria-pressed="true"]{ box-shadow:0 0 0 2px var(--focus) inset; }
+  .tag-sep{ color:var(--parchment-dim); margin:0 .15rem; font-family:var(--font-mono); font-size:0.8rem; }
+  .tag-group{ display:inline-flex; align-items:center; white-space:nowrap; }
+
+  body.filters-active .tag.is-dimmed{ opacity:0.22; filter:grayscale(55%); }
+
+  .risk{ font-family:var(--font-mono); font-size:0.78rem; font-weight:600; padding:.15em .55em; border-radius:6px; }
+  .risk-niedrig{ color:var(--parchment-dim); border:1px solid var(--line-strong); }
+  .risk-mittel{ color:var(--gold-soft); border:1px solid rgba(217,163,92,.45); }
+  .risk-hoch{ color:var(--umstritten-soft); border:1px solid rgba(217,128,140,.45); }
+
+  /* ---------- Layout helpers ---------- */
+  main{ position:relative; z-index:1; }
+  .prose-col{ max-width:720px; margin:0 auto; padding:0 1.5rem; }
+  .wide-col{ max-width:1100px; margin:0 auto; padding:0 1.5rem; }
+  section{ padding:4rem 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-kicker{ font-family:var(--font-mono); font-size:0.82rem; color:var(--gold-soft); display:block; margin-bottom:.6rem; }
+  h2.section-title{ font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:1.4rem; }
+  h3.sub-title{ font-size:1.25rem; margin-top:2.2rem; margin-bottom:.8rem; color:var(--gold-soft); font-weight:500; font-style:italic;}
+  p{ margin-bottom:1.1rem; color:var(--parchment); }
+  .dim{ color:var(--parchment-dim); }
+  .lede{ font-size:1.12rem; color:var(--parchment-dim); }
+
+  blockquote.code-beleg{
+    font-family:var(--font-mono); font-size:0.92rem; padding:1.3rem 1.5rem;
+    border-left:3px solid var(--gold); border-radius:6px; margin:1.6rem 0;
+    color:var(--parchment-dim); background:rgba(217,163,92,0.05);
+  }
+  blockquote.code-beleg strong{ color:var(--gold-soft); }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{ overflow-x:auto; margin:1.6rem 0; border-radius:12px; border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; min-width:560px; }
+  caption{ text-align:left; font-size:0.85rem; color:var(--parchment-dim); padding:.8rem 1rem 0; }
+  th,td{ padding:.85rem 1rem; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; font-size:0.95rem; }
+  thead th{ font-family:var(--font-mono); font-size:0.76rem; color:var(--parchment-dim); font-weight:600; background:rgba(244,234,217,0.03); }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:hover{ background:rgba(244,234,217,0.03); }
+
+  @media (max-width:700px){
+    table, thead, tbody, th, td, tr{ display:block; }
+    thead{ display:none; }
+    table{ min-width:0; }
+    tr{ border-bottom:1px solid var(--line); padding:1rem; }
+    tr:last-child{ border-bottom:none; }
+    td{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; border-bottom:1px dashed var(--line); padding:.5rem 0; }
+    td:last-child{ border-bottom:none; }
+    td::before{ content:attr(data-label); font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-soft); flex:0 0 42%; padding-top:.1rem; }
+  }
+
+  /* ---------- Cards ---------- */
+  .card{ border:1px solid var(--line); border-radius:14px; padding:1.6rem; }
+  .grid-cards{ display:grid; gap:1.2rem; }
+
+  .kern-card-grid{ grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+
+  .fold-card{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    width:100%; text-align:left; cursor:pointer; border:1px solid var(--line-strong);
+    border-radius:14px; padding:1.3rem 1.5rem; background:rgba(244,234,217,0.02);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .fold-card:hover{ border-color:var(--gold); background:rgba(217,163,92,0.06); }
+  .fold-card h3{ font-size:1.1rem; margin:0 0 .3rem; }
+  .fold-card p{ margin:0; font-size:0.9rem; color:var(--parchment-dim); }
+  .fold-card .arrow{ font-family:var(--font-mono); color:var(--gold-soft); font-size:1.3rem; flex-shrink:0; }
+
+  /* ---------- Mini bar charts (data viz, no external libs) ---------- */
+  .barchart{ display:flex; flex-direction:column; gap:.7rem; margin:1.2rem 0; font-family:var(--font-mono); }
+  .barchart .row{ display:grid; grid-template-columns:9rem 1fr 4.5rem; align-items:center; gap:.8rem; font-size:0.82rem; }
+  .barchart .label{ color:var(--parchment-dim); }
+  .barchart .track{ height:10px; border-radius:999px; background:rgba(244,234,217,0.08); overflow:hidden; }
+  .barchart .fill{ height:100%; border-radius:999px; }
+  .barchart .fill.raw{ background:var(--umstritten); }
+  .barchart .fill.control{ background:var(--modell); }
+  .barchart .fill.corrected{ background:var(--gold); }
+  .barchart .value{ text-align:right; color:var(--parchment); }
+
+  /* ---------- Triangulation ---------- */
+  .tri-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; margin-top:1.8rem; }
+  .tri-card{ border-radius:14px; padding:1.6rem; border:1px solid var(--line); position:relative; }
+  .tri-card .tri-num{ font-family:var(--font-mono); color:var(--gold-soft); font-size:0.8rem; display:block; margin-bottom:.5rem; }
+  .tri-card h3{ font-size:1.15rem; margin-bottom:.7rem; }
+  .tri-card ul{ padding-left:1.1rem; color:var(--parchment-dim); font-size:0.94rem; }
+  .tri-card li{ margin-bottom:.4rem; }
+  .tri-synth{ margin-top:1.8rem; padding:1.5rem; border-radius:14px; border:1px dashed var(--line-strong); background:rgba(217,163,92,0.04); }
+
+  .osto-wrap{ display:flex; justify-content:center; margin:1.6rem 0; }
+  .osto-wrap svg{ max-width:340px; width:100%; height:auto; }
+
+  /* ---------- FAB ---------- */
+  #exoskelett-fab{
+    position:fixed; right:1.4rem; bottom:1.4rem; z-index:60;
+    display:flex; align-items:center; gap:.6rem;
+    background:var(--nebula-light); border:1px solid var(--line-strong);
+    color:var(--parchment); font-family:var(--font-mono); font-size:0.85rem;
+    padding:.75rem 1.1rem; border-radius:999px; cursor:pointer;
+    box-shadow:0 15px 35px -15px var(--shadow);
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  #exoskelett-fab:hover{ border-color:var(--gold); transform:translateY(-2px); }
+  #exoskelett-fab .dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  @media (prefers-reduced-motion:no-preference){ #exoskelett-fab .dot{ animation:pulse 2.4s ease-in-out infinite; } }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.35; } }
+
+  /* ---------- Dialogs ---------- */
+  dialog{
+    background:var(--nebula); color:var(--parchment); border:1px solid var(--line-strong);
+    border-radius:18px; max-width:720px; width:92vw; max-height:85vh;
+    padding:0; box-shadow:0 30px 70px -20px var(--shadow);
+  }
+  dialog::backdrop{ background:rgba(4,5,14,0.78); backdrop-filter:blur(3px); }
+  .dialog-inner{ padding:1.8rem 1.8rem 2.2rem; overflow-y:auto; max-height:85vh; }
+  .dialog-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1.2rem; position:sticky; top:0; }
+  .dialog-head h2{ font-size:1.35rem; margin:0; }
+  .dialog-close{
+    background:none; border:1px solid var(--line-strong); color:var(--parchment-dim);
+    border-radius:999px; width:2.1rem; height:2.1rem; flex-shrink:0; cursor:pointer; font-size:1rem;
+    line-height:1;
+  }
+  .dialog-close:hover{ color:var(--parchment); border-color:var(--gold); }
+
+  /* ---------- Tabs (Exoskelett) ---------- */
+  .tabs{ display:flex; gap:.4rem; flex-wrap:wrap; border-bottom:1px solid var(--line); margin-bottom:1.4rem; padding-bottom:.6rem; }
+  .tab-btn{
+    font-family:var(--font-mono); font-size:0.8rem; color:var(--parchment-dim);
+    background:none; border:1px solid var(--line-strong); border-radius:999px;
+    padding:.4rem .9rem; cursor:pointer; transition:all .2s ease;
+  }
+  .tab-btn[aria-selected="true"]{ color:var(--void); background:var(--gold-soft); border-color:var(--gold-soft); font-weight:600; }
+  .tab-btn:hover:not([aria-selected="true"]){ border-color:var(--gold); color:var(--gold-soft); }
+  .tabpanel{ display:none; }
+  .tabpanel.is-active{ display:block; }
+  .tabpanel h3{ font-size:1.05rem; margin-bottom:.6rem; color:var(--gold-soft); font-weight:500; }
+  .tabpanel p, .tabpanel li{ font-size:0.94rem; color:var(--parchment-dim); }
+  .tabpanel ul, .tabpanel ol{ padding-left:1.2rem; margin-bottom:1rem; }
+  .tabpanel li{ margin-bottom:.55rem; }
+  .ledger-row{ display:flex; gap:.7rem; margin-bottom:.7rem; font-size:0.94rem; }
+  .ledger-row .who{ font-family:var(--font-mono); font-size:0.72rem; color:var(--gold-soft); flex:0 0 6.5rem; padding-top:.15rem; }
+
+  /* ---------- Refs modal ---------- */
+  .ref-item{ display:flex; gap:.9rem; padding:.85rem 0; border-bottom:1px solid var(--line); font-size:0.92rem; }
+  .ref-item:last-child{ border-bottom:none; }
+  .ref-num{ font-family:var(--font-mono); color:var(--gold-soft); flex-shrink:0; font-size:0.85rem; }
+  .ref-item p{ margin:0; color:var(--parchment-dim); }
+  .ref-item .ref-src{ color:var(--parchment); }
+
+  footer{ padding:3.5rem 1.5rem 3rem; border-top:1px solid var(--line); position:relative; z-index:1; }
+  .footer-inner{ max-width:840px; margin:0 auto; font-size:0.9rem; color:var(--parchment-dim); }
+  .footer-inner a{ color:var(--gold-soft); }
+  .footer-brand{ font-family:var(--font-display); font-style:italic; color:var(--parchment); font-size:1.15rem; margin-bottom:.6rem; }
+
+  @media (max-width:640px){
+    .site-hero{ padding:4.5rem 1.2rem 3rem; }
+    section{ padding:3rem 0; }
+    .ledger-row{ flex-direction:column; gap:.2rem; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+<div id="filter-announce" class="sr-only" role="status" aria-live="polite"></div>
+
+<header class="site-hero content-layer">
+  <div class="hero-inner">
+    <h1>
+      <span class="hero-eyebrow">HCC 3.0 · Sprint 3</span>
+      <span class="hero-main">HRV &amp; Interbrain Synchrony in der Teamkoordination</span>
+    </h1>
+    <p class="hero-subtitle">Systematische Entflechtung sozialer und physiologischer Regulation — bereinigte, evidenzgeprüfte Fassung</p>
+    <p class="hero-meta">Adressiert an C-Level-Entscheider, Fachgremien und Gesetzgebung</p>
+    <div class="hero-badges">
+      <span class="stat-pill">Evidenzstand: September 2026</span>
+      <span class="stat-pill">Serie: Schaltzentrale der Metaanalyse 2026</span>
+      <span class="stat-pill">Methodisch stärkster Baustein der Serie</span>
+    </div>
+    <div class="hero-note glass">
+      <strong>Validierungshinweis.</strong> Diese Fassung integriert die forensischen Korrekturen aus der begleitenden Validierung (<code>sprint-3-hcc-3-0-validierung.md</code>) und ist mit den bereinigten Sprint-1/2-Fassungen konsistent gehalten. Die vollständige Korrektur-Historie ist im Anhang dokumentiert.
+    </div>
+  </div>
+</header>
+
+<nav id="site-nav" aria-label="Seiteninhalt und Evidenz-Filter">
+  <div class="nav-inner">
+    <ul class="nav-toc" aria-label="Abschnitte dieser Seite">
+      <li><a href="#kurzfassung">Kurzfassung</a></li>
+      <li><a href="#sec-1">1 · Rahmen</a></li>
+      <li><a href="#sec-2">2 · HRV</a></li>
+      <li><a href="#sec-3">3 · Polyvagal</a></li>
+      <li><a href="#sec-4">4 · fNIRS-Forensik</a></li>
+      <li><a href="#sec-5">5 · Aufgabentyp</a></li>
+      <li><a href="#sec-6">6 · TNE</a></li>
+      <li><a href="#sec-7">7 · Fazit</a></li>
+      <li><a href="#synthese">Synthese</a></li>
+      <li><a href="#anhang">Anhang</a></li>
+    </ul>
+    <div class="nav-filter" role="group" aria-label="Nach Evidenzklasse filtern">
+      <span class="nav-filter-label">Filtern:</span>
+      <button type="button" class="tag tag-fakt" data-filter="fakt" aria-pressed="false">FAKT</button>
+      <button type="button" class="tag tag-modell" data-filter="modell" aria-pressed="false">MODELL</button>
+      <button type="button" class="tag tag-umstritten" data-filter="umstritten" aria-pressed="false">UMSTRITTEN</button>
+      <button type="button" class="filter-reset" id="filter-reset">Zurücksetzen</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- ================= EPISTEMISCHER RAHMEN / LEGENDE ================= -->
+  <section id="rahmen-legende" aria-labelledby="rahmen-legende-title">
+    <div class="prose-col">
+      <span class="section-kicker">Epistemischer Rahmen</span>
+      <h2 class="section-title" id="rahmen-legende-title">Wie Aussagen hier gekennzeichnet sind</h2>
+      <p class="lede">Jede tragende Aussage trägt ein Evidenzlabel nach der Systematik der <em>Schaltzentrale der Metaanalyse 2026</em>. Ein Klick auf ein Label oben in der Navigation hebt alle passenden Stellen im Text hervor.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Evidenzklassen dieses Dokuments</caption>
+          <thead><tr><th scope="col">Label</th><th scope="col">Bedeutung</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Label"><span class="tag tag-fakt">FAKT</span></td><td data-label="Bedeutung">Verifizierte Primärdaten oder referierte Meta-Analysen.</td></tr>
+            <tr><td data-label="Label"><span class="tag tag-modell">MODELL</span></td><td data-label="Bedeutung">Berechnete/modellierte Größe, theoretische Linse oder Deutung, abhängig von offengelegten Annahmen.</td></tr>
+            <tr><td data-label="Label"><span class="tag tag-umstritten">UMSTRITTEN</span></td><td data-label="Bedeutung">Wissenschaftlich aktiv debattiert, methodisch offen oder mit disputierter Kausalinterpretation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KURZFASSUNG ================= -->
+  <section id="kurzfassung" aria-labelledby="kurzfassung-title">
+    <div class="wide-col">
+      <span class="section-kicker">Für Entscheider</span>
+      <h2 class="section-title" id="kurzfassung-title">Kurzfassung</h2>
+      <p class="lede" style="max-width:70ch;">Team-Resilienz entspringt nicht erzwungener neuronaler Gleichschaltung, sondern (a) der vagalen individuellen Autonomie (HRV) und (b) einer Architektur geteilter mentaler Modelle, die Hochleistungsteams erlaubt, die Last der Synchronisation abzuwerfen (Team Neural Efficiency).</p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>Sechs Kernaussagen mit Evidenzlabel und Falsifikationsrisiko</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Kernaussage</th><th scope="col">Label</th><th scope="col">Falsifikationsrisiko</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="#">1</td>
+              <td data-label="Kernaussage">fNIRS-Artefaktkritik: Short-Channel Regression (SCR) ist obligatorisch (Mayer-Wellen etc.)</td>
+              <td data-label="Label"><span class="tag tag-fakt">FAKT</span></td>
+              <td data-label="Risiko"><span class="risk risk-niedrig">Niedrig</span> — sachlich korrekt (§4, code-bestätigt)</td>
+            </tr>
+            <tr>
+              <td data-label="#">2</td>
+              <td data-label="Kernaussage">IBS ist aufgabentyp-abhängig (rhythmisch positiv, Entscheidungsfindung gemischt)</td>
+              <td data-label="Label"><span class="tag-group"><span class="tag tag-fakt">FAKT</span><span class="tag-sep">/</span><span class="tag tag-umstritten">UMSTRITTEN</span></span></td>
+              <td data-label="Risiko"><span class="risk risk-niedrig">Niedrig–mittel</span> — literaturkonform</td>
+            </tr>
+            <tr>
+              <td data-label="#">3</td>
+              <td data-label="Kernaussage">HRV (RMSSD/HF) → exekutive Kapazität, aber R² &lt; 10 %</td>
+              <td data-label="Label"><span class="tag tag-fakt">FAKT</span></td>
+              <td data-label="Risiko"><span class="risk risk-mittel">Mittel</span> — klein, RSA/Alter/Fitness konfundieren</td>
+            </tr>
+            <tr>
+              <td data-label="#">4</td>
+              <td data-label="Kernaussage">Team Neural Efficiency: trainierte Teams oft ↓ präfrontale IBS</td>
+              <td data-label="Label"><span class="tag-group"><span class="tag tag-fakt">FAKT</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span></td>
+              <td data-label="Risiko"><span class="risk risk-mittel">Mittel</span> — aufgabentyp-abhängig</td>
+            </tr>
+            <tr>
+              <td data-label="#">5</td>
+              <td data-label="Kernaussage">Polyvagal-Theorie / Neurozeption als heuristische Linse</td>
+              <td data-label="Label"><span class="tag-group"><span class="tag tag-umstritten">UMSTRITTEN</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span></td>
+              <td data-label="Risiko"><span class="risk risk-hoch">Hoch</span> — Theorie aktiv debattiert (Grossman 2026)</td>
+            </tr>
+            <tr>
+              <td data-label="#">6</td>
+              <td data-label="Kernaussage">HRV-Baseline moderiert, ob organisationale Sicherheitssignale „andocken"</td>
+              <td data-label="Label"><span class="tag tag-modell">MODELL</span></td>
+              <td data-label="Risiko"><span class="risk risk-mittel">Mittel</span> — plausibel, korrelativ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section id="sec-1" aria-labelledby="sec-1-title">
+    <div class="prose-col">
+      <span class="section-kicker">1</span>
+      <h2 class="section-title" id="sec-1-title">Der epistemische Rahmen</h2>
+      <p>Die moderne Arbeitswelt erzwingt hochkomplexe, interdependente Kooperationsleistungen unter kognitiver Last und Ambiguität. Um diese Teamdynamiken zu untersuchen, rückt die Neuroergonomie physiologische Tracer in den Fokus: intra-individuell die <strong>Herzratenvariabilität (HRV)</strong> und inter-individuell die <strong>interpersonale neuronale Synchronität (Interbrain Synchrony, IBS)</strong>.</p>
+      <p>Diese Synthese entflechtet beide Indikatoren methodenkritisch — mit dem Ziel, das „Betriebssystem" der Organisation vom unbewussten Autopiloten auf bewusste Selbstregulation umzustellen.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section id="sec-2" aria-labelledby="sec-2-title">
+    <div class="prose-col">
+      <span class="section-kicker">2</span>
+      <h2 class="section-title" id="sec-2-title">Die individuelle Ebene: Vagale Autonomie und HRV</h2>
+      <p>Die Basis kollektiver Leistung ist die physiologische Integrität des Individuums. Das <strong>Neurovisceral Integration Model</strong> (Thayer &amp; Lane) postuliert ein zentrales autonomes Netzwerk, das die präfrontale exekutive Kontrolle mit der viszeralen Steuerung des Herzens verknüpft <span class="tag tag-modell">MODELL</span>.</p>
+      <p>Ein parasympathisch dominierter Zustand spiegelt sich <em>weitgehend</em> in einer höheren Herzratenvariabilität (RMSSD/HF-HRV) wider <span class="tag tag-fakt">FAKT</span> — wobei die präzise Gleichsetzung „RMSSD = Vagustonus" Teil derselben wissenschaftlichen Debatte ist wie die Polyvagal-Theorie (§3; Grossman &amp; Taylor 2007: RSA ist atmungskonfundiert). Epidemiologische Daten zeigen, dass diese vagale Regulation <em>assoziativ</em> mit psychologischer Flexibilität und exekutiver Kapazität korreliert <span class="tag tag-fakt">FAKT</span>.</p>
+
+      <h3 class="sub-title">Wissenschaftliche Einordnung</h3>
+      <p>HRV ist ein valider Signalgeber, jedoch <strong>kein absoluter Präzisionsmarker</strong>. Die Korrelationen zur kognitiven Varianz sind <strong>klein</strong> (R² &lt; 10 %) und werden durch Alter, physische Fitness und vor allem die <strong>respiratorische Sinusarrhythmie</strong> (Atmung) stark konfundiert <span class="tag tag-fakt">FAKT</span>.</p>
+
+      <div class="barchart" role="img" aria-label="Erklärte Varianz R² bei unterschiedlichen Korrelationskoeffizienten r: 1,0 Prozent bei r=0,10; 4,0 Prozent bei r=0,20; 9,0 Prozent bei r=0,30. Alle Werte liegen unter der 10-Prozent-Schwelle.">
+        <div class="row"><span class="label">r = 0,10</span><span class="track"><span class="fill raw" style="width:10%"></span></span><span class="value">R² = 1,0 %</span></div>
+        <div class="row"><span class="label">r = 0,20</span><span class="track"><span class="fill control" style="width:40%"></span></span><span class="value">R² = 4,0 %</span></div>
+        <div class="row"><span class="label">r = 0,30</span><span class="track"><span class="fill corrected" style="width:90%"></span></span><span class="value">R² = 9,0 %</span></div>
+      </div>
+      <p class="dim" style="font-size:0.88rem;">Selbst am oberen Ende plausibler HRV-Kognitions-Korrelationen bleibt die erklärte Varianz einstellig — Grundlage für die Einstufung „kein Präzisionsmarker".</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3 ================= -->
+  <section id="sec-3" aria-labelledby="sec-3-title">
+    <div class="prose-col">
+      <span class="section-kicker">3</span>
+      <h2 class="section-title" id="sec-3-title">Die Polyvagal-Theorie als heuristische Linse <span class="tag-group"><span class="tag tag-umstritten">UMSTRITTEN</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span></h2>
+      <p>Um die Verbindung von physiologischer Sicherheit und organisationaler Performance zu erklären, nutzt dieses Framework die <strong>Polyvagal-Theorie</strong> (Stephen Porges) als <em>theoretische Linse</em> — ausdrücklich nicht als biologisches Gesetz. Zentrale Prämissen dieser Theorie werden in der Neurophysiologie stark debattiert (u. a. <strong>Grossman et al., 2026</strong>, die die evolutionären und autonomen Kernannahmen als unhaltbar einstufen); als <em>Verhaltensmodell</em> für den organisationalen Alltag bleibt sie dennoch plausibel und erklärungsstark.</p>
+      <p>Sie beschreibt <strong>„Neurozeption"</strong> — das unbewusste Scannen der Umgebung nach Sicherheit (ventraler Vagus / „Weise Eule") oder Bedrohung (Sympathikus / „Wachhund") <span class="tag tag-modell">MODELL</span>. Ein System im chronischen Defensivmodus interpretiert selbst neutrale soziale Signale als Bedrohung.</p>
+
+      <h3 class="sub-title">Synthese mit Sprint 1 — Auflösung des Serien-Widerspruchs</h3>
+      <p>Psychologische Sicherheit <strong>bleibt</strong> ein zentraler, kausal belegter organisationaler Hebel (Frazier et al. 2017; Edmondson) und lässt sich durch Führung/Kultur implementieren. Der autonome Zustand des Individuums (HRV-Baseline) wirkt dabei als <strong>Moderator</strong>: Er bestimmt, wie gut diese organisationalen Sicherheitssignale kognitiv überhaupt „andocken" können <span class="tag tag-modell">MODELL</span>. Organisation <em>und</em> Individuum, nicht Entweder-oder.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4 ================= -->
+  <section id="sec-4" aria-labelledby="sec-4-title">
+    <div class="prose-col">
+      <span class="section-kicker">4</span>
+      <h2 class="section-title" id="sec-4-title">Methodologische Forensik: Systemische Artefakte bei fNIRS</h2>
+      <p>Beim Übergang zur interpersonalen Ebene (IBS) mittels funktioneller Nah-Infrarotspektroskopie (fNIRS) drohen gravierende epistemische Verzerrungen. fNIRS misst nicht die neuronale Aktivität direkt, sondern die neurovaskuläre Kopplung.</p>
+      <p>Die <strong>Kopfhaut</strong> ist extrem dicht vaskularisiert und autonom kontrolliert. Bei kognitivem oder emotionalem Stress (Sympathikus-Aktivierung) verändern sich Blutdruck und Hautdurchblutung massiv <span class="tag tag-fakt">FAKT</span>. In Hyperscanning-Experimenten reagiert das Nervensystem beider Personen auf dieselbe Aufgabe oft <em>parallel</em> (task-evozierte systemische Reaktion). Werden diese Reaktionen nicht methodisch hart isoliert, erfasst die fNIRS-Messung lediglich synchrones Stress-Schwitzen oder synchrone Blutdruckanstiege und weist sie fälschlich als „interpersonale neuronale Synchronität" aus <span class="tag tag-fakt">FAKT</span>.</p>
+
+      <h3 class="sub-title">Obligatorische Rauschbereinigung</h3>
+      <p>Dieses Framework wertet fNIRS-Studien nur als belastbar, wenn sie zwingend <strong>Short-Channel Regression (SCR)</strong> nutzen. Kurzdistanz-Kanäle von <strong>ca. 8,4 mm</strong> (Erwachsene; Brigadoi &amp; Cooper 2015) erfassen ausschließlich die Kopfhautdurchblutung, sodass dieses systemische Rauschen aus dem kortikalen Signal herausgerechnet werden kann <span class="tag tag-fakt">FAKT</span>.</p>
+
+      <blockquote class="code-beleg">
+        <strong>Code-Beleg (§ Validierung).</strong> Simuliert man zwei Personen mit unabhängigem neuronalem Signal, aber geteilter systemischer 0,1-Hz-Oszillation (Mayer-Welle), liefert die unbereinigte Kohärenz <strong>0,97</strong> („Scheinsynchronität") — nach SCR-Bereinigung fällt sie auf <strong>0,09</strong>. Die SCR-Forderung ist damit quantitativ bestätigt.
+      </blockquote>
+
+      <div class="barchart" role="img" aria-label="Mayer-Wellen-Scheinkohärenz: roh bei 0,1 Hertz 0,97; Kontrolle bei 0,4 Hertz 0,01; nach Short-Channel-Regression-Bereinigung 0,09.">
+        <div class="row"><span class="label">Roh @0,1 Hz</span><span class="track"><span class="fill raw" style="width:97%"></span></span><span class="value">0,97</span></div>
+        <div class="row"><span class="label">Kontrolle @0,4 Hz</span><span class="track"><span class="fill control" style="width:1%"></span></span><span class="value">0,01</span></div>
+        <div class="row"><span class="label">Nach SCR</span><span class="track"><span class="fill corrected" style="width:9%"></span></span><span class="value">0,09</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 5 ================= -->
+  <section id="sec-5" aria-labelledby="sec-5-title">
+    <div class="prose-col">
+      <span class="section-kicker">5</span>
+      <h2 class="section-title" id="sec-5-title">Kollektive Kopplungsebene: Determinierung durch den Aufgabentyp</h2>
+      <p>Die methodisch bereinigte Evidenz erzwingt eine Differenzierung der IBS <strong>nach Aufgabentyp</strong>.</p>
+
+      <div class="grid-cards kern-card-grid" style="margin-top:1.6rem;">
+        <div class="card">
+          <h3 class="sub-title" style="margin-top:0;">Implizit-rhythmische Koordination</h3>
+          <p style="font-size:0.95rem;">Bei Aufgaben, die physisch-zeitliche Abstimmung erfordern (Chorgesang, Musizieren, Mutter-Kind-Dyaden), korreliert eine hohe IBS in sensomotorischen und temporoparietalen Arealen <strong>direkt und positiv</strong> mit überlegener Teamperformanz und Bindung <span class="tag tag-fakt">FAKT</span>.</p>
+          <p class="dim" style="font-size:0.86rem;">Der kausale Charakter wird u. a. durch Duett-Studien mit lautlosen Pausen gestützt, in denen die Synchronität endogen bestehen bleibt.</p>
+        </div>
+        <div class="card">
+          <h3 class="sub-title" style="margin-top:0;">Explizite, strategische Entscheidungsfindung</h3>
+          <p style="font-size:0.95rem;">Bei Aufgaben mit komplexer Arbeitsteilung oder Vorhersagen ist die Wirkungsrichtung der IBS <strong>nicht linear positiv, sondern kontextuell bedingt</strong> — die Studienlage zeigt hier teils Anstiege, teils Nullbefunde <span class="tag-group"><span class="tag tag-fakt">FAKT</span><span class="tag-sep">/</span><span class="tag tag-umstritten">UMSTRITTEN</span></span>.</p>
+          <p class="dim" style="font-size:0.86rem;">Rohe Synchronität kann in solchen Momenten geteilte Last/Frustration statt erfolgreicher Koordination anzeigen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6 ================= -->
+  <section id="sec-6" aria-labelledby="sec-6-title">
+    <div class="prose-col">
+      <span class="section-kicker">6</span>
+      <h2 class="section-title" id="sec-6-title">Der Paradigmenwechsel: Team Neural Efficiency (TNE)</h2>
+      <p>Die systematische Auswertung von High-Performance-Szenarien führt zum Konzept der <strong>Team Neural Efficiency</strong> (gestützt auf die Interbrain-Meta-Analyse 2024). Die Annahme, maximale interpersonale Kopplung sei stets das Optimum, ist in professioneller Expertise unzutreffend.</p>
+      <p>Die <strong>Mutual Prediction Theory</strong> liefert den Mechanismus <span class="tag tag-modell">MODELL</span>: Bei untrainierten Novizen ist Koordination extrem kognitiv aufwendig — jede Aktion des Partners muss beobachtet, bewertet und ihre Intention abgeleitet werden (Theory of Mind), was gewaltige Ressourcen fordert und sich in <strong>hoher</strong> präfrontaler Synchronität niederschlägt. Hochleistungsteams hingegen haben durch Training tiefe <strong>geteilte mentale Modelle</strong> (Shared Mental Models) kultiviert; sie wissen implizit, wie der Partner reagiert, wodurch die bewusste interpersonale Vorhersage entfällt und der präfrontale Kortex entlastet wird.</p>
+
+      <h3 class="sub-title">Präzise Einordnung: Befund vs. Deutung</h3>
+      <div class="grid-cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:1rem;">
+        <div class="card">
+          <p class="ledger-row" style="margin-bottom:.4rem;"><span class="who">Befund</span><span class="tag tag-fakt">FAKT</span></p>
+          <p style="font-size:0.94rem; margin:0;">Trainierte Teams zeigen in komplexen Aufgaben häufig eine <strong>niedrigere präfrontale IBS</strong> — meta-analytisch gestützt.</p>
+        </div>
+        <div class="card">
+          <p class="ledger-row" style="margin-bottom:.4rem;"><span class="who">Deutung</span><span class="tag tag-modell">MODELL</span></p>
+          <p style="font-size:0.94rem; margin:0;">Dies sei kein Kooperationsmangel, sondern ein <strong>starker Indikator für hohe organisatorische Effizienz</strong> — läuft über die Mutual Prediction Theory, kein „Beweis" (die IBS-Richtung ist, wie §5 zeigt, aufgabenabhängig).</p>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem;">Eine resiliente institutionelle Architektur erzwingt daher keine permanente kognitive Synchronisation, sondern kultiviert psychologische Sicherheit, um die <strong>„Kosten der Koordination"</strong> zu minimieren.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7 ================= -->
+  <section id="sec-7" aria-labelledby="sec-7-title">
+    <div class="prose-col">
+      <span class="section-kicker">7</span>
+      <h2 class="section-title" id="sec-7-title">Wissenschaftliches Fazit</h2>
+      <p>Die Resilienz organisationaler Systeme entspringt nicht einer erzwungenen kollektiven Taktung der Gehirne, sondern wurzelt in der <strong>individuellen vagalen Autonomie</strong> (HRV, als Signalgeber mit begrenzter Varianzaufklärung) und mündet in einer <strong>Architektur geteilter mentaler Modelle</strong>, die Hochleistungsteams erlaubt, die Last bewusster Synchronisation abzuwerfen und exekutive Freiheit für das Unvorhersehbare zu bewahren.</p>
+      <p>Die stärkste inhaltliche Passage — die kompromisslose Artefaktbereinigung (SCR) — ist code-bestätigt; die theoretische Linse (Polyvagal) ist als umstritten gekennzeichnet, die tragende TNE-Deutung als Modell.</p>
+    </div>
+  </section>
+
+  <!-- ================= SYNTHESE / TRIANGULATION ================= -->
+  <section id="synthese" aria-labelledby="synthese-title">
+    <div class="wide-col">
+      <span class="section-kicker">360°-Synthese</span>
+      <h2 class="section-title" id="synthese-title">Drei Blickwinkel auf dieselbe Evidenz</h2>
+      <p class="lede" style="max-width:70ch;">Keine der drei Ebenen trägt die Analyse allein — erst im Zusammenspiel ergibt sich ein belastbares Bild von Team-Resilienz.</p>
+
+      <div class="tri-grid">
+        <div class="tri-card glass">
+          <span class="tri-num">1 · Empirisch</span>
+          <h3>Physiologie &amp; Messmethodik</h3>
+          <ul>
+            <li>HRV ist ein valider, aber kein präziser Signalgeber (R² &lt; 10 %) <span class="tag tag-fakt">FAKT</span></li>
+            <li>fNIRS-Rohsignale sind ohne SCR systematisch mit Artefakten kontaminiert <span class="tag tag-fakt">FAKT</span></li>
+            <li>Die Aufgabentyp-Differenzierung der IBS ist die belastbarste kollektive Evidenz <span class="tag tag-fakt">FAKT</span></li>
+          </ul>
+        </div>
+        <div class="tri-card glass">
+          <span class="tri-num">2 · Systemisch</span>
+          <h3>Organisationsarchitektur</h3>
+          <ul>
+            <li>Team Neural Efficiency: Effizienz statt maximaler Kopplung <span class="tag tag-modell">MODELL</span></li>
+            <li>Geteilte mentale Modelle entlasten den präfrontalen Kortex <span class="tag tag-modell">MODELL</span></li>
+            <li>Psychologische Sicherheit als kausal belegter Hebel zur Minimierung der „Kosten der Koordination" <span class="tag tag-fakt">FAKT</span></li>
+          </ul>
+          <button type="button" class="fold-card" id="osto-toggle" aria-expanded="false" aria-controls="osto-panel" style="margin-top:1rem; padding:.8rem 1rem;">
+            <span><h3 style="font-size:0.95rem; margin:0;">Offenes System — OSTO-Linse</h3><p style="font-size:0.82rem;">Team als Aufgabe · Struktur · Kultur · Menschen · Technologie im Umweltkontext</p></span>
+            <span class="arrow" aria-hidden="true">+</span>
+          </button>
+          <div id="osto-panel" hidden>
+            <div class="osto-wrap">
+              <svg viewBox="0 0 340 340" role="img" aria-labelledby="osto-svg-title">
+                <title id="osto-svg-title">Offenes sozio-technisches System: Ein Team-Kern ist umgeben von den Elementen Aufgabe, Struktur, Kultur, Menschen und Technologie, eingebettet in einen äußeren Umweltring mit Rückkopplung.</title>
+                <circle cx="170" cy="170" r="150" fill="none" stroke="var(--line-strong)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <text x="170" y="30" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="var(--parchment-dim)">Umwelt / Kontext</text>
+                <circle cx="170" cy="170" r="52" fill="rgba(217,163,92,0.10)" stroke="var(--gold)" stroke-width="1.5"/>
+                <text x="170" y="166" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="15" fill="var(--parchment)">Team</text>
+                <text x="170" y="184" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--parchment-dim)">Output</text>
+                <g font-family="Atkinson Hyperlegible" font-size="11.5" fill="var(--parchment-dim)">
+                  <g><line x1="170" y1="118" x2="170" y2="80" stroke="var(--line-strong)"/><circle cx="170" cy="70" r="22" fill="var(--nebula-light)" stroke="var(--modell)" stroke-width="1.2"/><text x="170" y="74" text-anchor="middle">Aufgabe</text></g>
+                  <g><line x1="211" y1="144" x2="240" y2="118" stroke="var(--line-strong)"/><circle cx="255" cy="105" r="22" fill="var(--nebula-light)" stroke="var(--modell)" stroke-width="1.2"/><text x="255" y="109" text-anchor="middle">Struktur</text></g>
+                  <g><line x1="211" y1="196" x2="240" y2="222" stroke="var(--line-strong)"/><circle cx="255" cy="235" r="22" fill="var(--nebula-light)" stroke="var(--modell)" stroke-width="1.2"/><text x="255" y="239" text-anchor="middle">Kultur</text></g>
+                  <g><line x1="170" y1="222" x2="170" y2="260" stroke="var(--line-strong)"/><circle cx="170" cy="270" r="22" fill="var(--nebula-light)" stroke="var(--modell)" stroke-width="1.2"/><text x="170" y="274" text-anchor="middle">Menschen</text></g>
+                  <g><line x1="129" y1="196" x2="100" y2="222" stroke="var(--line-strong)"/><circle cx="85" cy="235" r="26" fill="var(--nebula-light)" stroke="var(--modell)" stroke-width="1.2"/><text x="85" y="239" text-anchor="middle">Technologie</text></g>
+                </g>
+              </svg>
+            </div>
+            <p class="dim" style="font-size:0.86rem;">Heuristische Systemlinse <span class="tag tag-modell">MODELL</span>: Ein Team ist ein offenes sozio-technisches System — HRV/IBS bilden die physiologische Substratebene innerhalb von Struktur, Kultur, Menschen und Technologie, eingebettet in den organisationalen Umweltkontext.</p>
+          </div>
+        </div>
+        <div class="tri-card glass">
+          <span class="tri-num">3 · Philosophisch-menschlich</span>
+          <h3>Autonomie &amp; Verbundenheit</h3>
+          <ul>
+            <li>Physiologische Souveränität des Individuums bleibt Vorrang vor erzwungener Gleichschaltung <span class="tag tag-modell">MODELL</span></li>
+            <li>Sicherheit ist Vorbedingung für Verbindung, nicht deren Ersatz <span class="tag tag-modell">MODELL</span></li>
+            <li>Resilienz misst sich nicht daran, wie sehr Gehirne synchron takten, sondern daran, wie leicht ein Team wieder in Vertrauen zurückfindet</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tri-synth">
+        <p style="margin:0;"><strong>Synthese.</strong> Resilienz ist weder ein rein physiologischer noch ein rein organisationaler Zustand: Sie entsteht dort, wo individuelle vagale Autonomie, systemische Architektur geteilter Modelle und ein menschlicher Möglichkeitsraum für Vertrauen zusammenwirken — ohne dass eine Ebene die anderen ersetzt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ANHANG ================= -->
+  <section id="anhang" aria-labelledby="anhang-title">
+    <div class="prose-col">
+      <span class="section-kicker">Anhang</span>
+      <h2 class="section-title" id="anhang-title">Korrektur-Historie &amp; Quellen</h2>
+      <div class="grid-cards" style="gap:1rem;">
+        <button type="button" class="fold-card" data-open-dialog="dialog-korrektur">
+          <span><h3>Korrektur-Historie</h3><p>7 dokumentierte Kalibrierungen gegenüber der Vorfassung</p></span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </button>
+        <button type="button" class="fold-card" data-open-dialog="dialog-referenzen">
+          <span><h3>Referenzen &amp; Code-Validierung</h3><p>10 Quellen mit Evidenzklassen, plus numerische Code-Belege</p></span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<button id="exoskelett-fab" type="button" aria-haspopup="dialog" data-open-dialog="dialog-exoskelett">
+  <span class="dot" aria-hidden="true"></span> Epistemisches Exoskelett
+</button>
+
+<!-- ================= DIALOG: KORREKTUR-HISTORIE ================= -->
+<dialog id="dialog-korrektur" aria-labelledby="dialog-korrektur-title">
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="dialog-korrektur-title">Korrektur-Historie</h2>
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Dialog schließen">✕</button>
+    </div>
+    <p class="dim" style="font-size:0.92rem;">Gegenüber der Vorfassung dieses Sprints — Teil der forensischen Validierungsdisziplin der Serie.</p>
+    <div class="table-wrap" style="border:none;">
+      <table>
+        <thead><tr><th scope="col">#</th><th scope="col">Vorfassung</th><th scope="col">Bereinigung</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td data-label="#">1</td><td data-label="Vorfassung">Polyvagal-Theorie als Kausalfundament</td><td data-label="Bereinigung">Als heuristische Linse <span class="tag-group"><span class="tag tag-umstritten">UMSTRITTEN</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span> markiert; Grossman et al. 2026 benannt</td><td data-label="Status">kalibriert</td></tr>
+          <tr><td data-label="#">2</td><td data-label="Vorfassung">TNE-Kernbeleg = Einzelhirn-UAV-Studie + ResearchGate-Figuren</td><td data-label="Bereinigung">Entfernt; Stützung auf Interbrain-Meta-Analyse 2024 + MPT-Primärliteratur</td><td data-label="Status">repariert</td></tr>
+          <tr><td data-label="#">3</td><td data-label="Vorfassung">HRV als „hochpräziser Marker"</td><td data-label="Bereinigung">„Valider Signalgeber, kein Präzisionsmarker"; R² &lt; 10 %; RSA-Konfundierung ergänzt</td><td data-label="Status">entschärft</td></tr>
+          <tr><td data-label="#">4</td><td data-label="Vorfassung">Serien-Widerspruch: „Sicherheit nicht verordnbar" vs. Sprint 1</td><td data-label="Bereinigung">Both/And: Sicherheit = Hebel, HRV = Moderator des „Andockens"</td><td data-label="Status">aufgelöst</td></tr>
+          <tr><td data-label="#">5</td><td data-label="Vorfassung">Explizite Aufgaben (RPS) einseitig als Nullbefund</td><td data-label="Bereinigung">„Teils Anstiege, teils Nullbefunde" <span class="tag-group"><span class="tag tag-fakt">FAKT</span><span class="tag-sep">/</span><span class="tag tag-umstritten">UMSTRITTEN</span></span></td><td data-label="Status">ausbalanciert</td></tr>
+          <tr><td data-label="#">6</td><td data-label="Vorfassung">„Ultimativer neurobiologischer Beweis [Fakt]"</td><td data-label="Bereinigung">Befund <span class="tag tag-fakt">FAKT</span> vs. Deutung <span class="tag tag-modell">MODELL</span>; „Indikator" statt „Beweis"</td><td data-label="Status">entschärft</td></tr>
+          <tr><td data-label="#">7</td><td data-label="Vorfassung">Rhythmische IBS „direkt und linear"</td><td data-label="Bereinigung">„Direkt und positiv" (Richtung, nicht strikte Linearität)</td><td data-label="Status">präzisiert</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</dialog>
+
+<!-- ================= DIALOG: REFERENZEN ================= -->
+<dialog id="dialog-referenzen" aria-labelledby="dialog-referenzen-title">
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="dialog-referenzen-title">Referenzen &amp; Evidenzklassen</h2>
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Dialog schließen">✕</button>
+    </div>
+    <div class="ref-item"><span class="ref-num">1</span><p><span class="ref-src">Grossman, P. et al. (2026).</span> <em>Why the polyvagal theory is untenable. An international expert evaluation.</em> Clinical Neuropsychiatry, 22(3). — Kernprämissen der Polyvagal-Theorie bestritten. <span class="tag tag-umstritten">UMSTRITTEN</span></p></div>
+    <div class="ref-item"><span class="ref-num">2</span><p><span class="ref-src">Grossman, P., &amp; Taylor, E. W. (2007).</span> <em>Toward understanding respiratory sinus arrhythmia.</em> Biological Psychology, 74(2), 263–285. — RSA atmungskonfundiert, indirekter Vagus-Marker. <span class="tag tag-fakt">FAKT-Kritik</span></p></div>
+    <div class="ref-item"><span class="ref-num">3</span><p><span class="ref-src">Thayer, J. F., &amp; Lane, R. D. (2000).</span> <em>A model of neurovisceral integration in emotion regulation and dysregulation.</em> J. Affective Disorders, 61(3), 201–216. — Neurovisceral Integration Model. <span class="tag tag-modell">MODELL, Rahmen</span></p></div>
+    <div class="ref-item"><span class="ref-num">4</span><p><span class="ref-src">Porges, S. W.</span> — Polyvagal Theory / Neuroception. <span class="tag-group"><span class="tag tag-umstritten">UMSTRITTEN</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span></p></div>
+    <div class="ref-item"><span class="ref-num">5</span><p><span class="ref-src">Using interbrain synchrony to study teamwork:</span> systematic review &amp; meta-analysis (Neurosci. Biobehav. Rev. 2024). — Trainierte Dyaden: niedrigere präfrontale IBS bei höheren Teamwork-Scores; Mutual Prediction Theory. <span class="tag-group"><span class="tag tag-fakt">FAKT</span><span class="tag-sep">/</span><span class="tag tag-modell">MODELL</span></span></p></div>
+    <div class="ref-item"><span class="ref-num">6</span><p><span class="ref-src">Mutual Prediction Theory</span> (Shamay-Tsoory-Gruppe; Mayo &amp; Shamay-Tsoory 2024). — Mechanismus der TNE-Deutung. <span class="tag tag-modell">MODELL</span></p></div>
+    <div class="ref-item"><span class="ref-num">7</span><p><span class="ref-src">Brigadoi, S., &amp; Cooper, R. J. (2015).</span> <em>How short is short? Optimum source–detector distance for short-separation channels in fNIRS.</em> — ~8,4 mm (Erwachsene). <span class="tag tag-fakt">FAKT</span></p></div>
+    <div class="ref-item"><span class="ref-num">8</span><p><span class="ref-src">fNIRS-Systemik &amp; Short-Channel-Regression</span> (task-evozierte systemische Artefakte; heterogene Skalp-Hämodynamik; SPA-fNIRS). <span class="tag tag-fakt">FAKT</span></p></div>
+    <div class="ref-item"><span class="ref-num">9</span><p><span class="ref-src">Endogene Interbrain-Synchronität</span> in Duett-Studien (MPI) — Stützung des kausalen Charakters bei rhythmischer Koordination. <span class="tag tag-fakt">FAKT</span></p></div>
+    <div class="ref-item"><span class="ref-num">10</span><p><span class="ref-src">sprint-1-/2-hcc-3-0-bereinigt.md</span>; Schaltzentrale der Metaanalyse 2026 — Serienknoten. <span class="tag tag-modell">MODELL</span></p></div>
+
+    <h3 class="sub-title" style="margin-top:1.8rem;">Code-Validierung</h3>
+    <p class="dim" style="font-size:0.9rem;">Mayer-Wellen-Scheinkohärenz: roh @0,1 Hz = 0,97; Kontrolle @0,4 Hz = 0,01; nach SCR = 0,09 (bei unabhängigen neuronalen Signalen). HRV↔Kognition: R² = 1,0 / 4,0 / 9,0 % bei r = 0,10 / 0,20 / 0,30 (→ „kein Präzisionsmarker").</p>
+  </div>
+</dialog>
+
+<!-- ================= DIALOG: EPISTEMISCHES EXOSKELETT ================= -->
+<dialog id="dialog-exoskelett" aria-labelledby="dialog-exoskelett-title">
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="dialog-exoskelett-title">Epistemisches Exoskelett</h2>
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Dialog schließen">✕</button>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Bereiche des Exoskeletts">
+      <button class="tab-btn" role="tab" id="tab-ki" aria-controls="panel-ki" aria-selected="true">KI-Beitrag &amp; Verifikation</button>
+      <button class="tab-btn" role="tab" id="tab-falsifikation" aria-controls="panel-falsifikation" aria-selected="false" tabindex="-1">Falsifikationspanel</button>
+      <button class="tab-btn" role="tab" id="tab-offen" aria-controls="panel-offen" aria-selected="false" tabindex="-1">Offene Fragen</button>
+      <button class="tab-btn" role="tab" id="tab-weiter" aria-controls="panel-weiter" aria-selected="false" tabindex="-1">Weiterentwicklung</button>
+    </div>
+
+    <div id="panel-ki" class="tabpanel is-active" role="tabpanel" aria-labelledby="tab-ki" tabindex="0">
+      <h3>AI Contribution &amp; Human Verification Ledger</h3>
+      <div class="ledger-row"><span class="who">KI-gestützt</span><span>Recherche-Aggregation und Strukturierung der Quellenlage; Code-Generierung und -Ausführung der Mayer-Wellen-Kohärenzsimulation (§4); sprachliche Kalibrierung der Unsicherheits-Formulierungen zwischen Vorfassung und dieser Fassung.</span></div>
+      <div class="ledger-row"><span class="who">Human Verified</span><span>Inhaltliche Validierung aller sechs Kernaussagen; Prüfung der Quellenkette (Grossman 2026, Brigadoi &amp; Cooper 2015, Interbrain-Meta-Analyse 2024); Konsistenzabgleich mit den bereinigten Sprint-1/2-Fassungen; finale Freigabe der Evidenzlabel.</span></div>
+      <div class="ledger-row"><span class="who">Verantwortung</span><span>Liegt vollständig beim menschlichen Autor der Schaltzentrale der Metaanalyse 2026 — KI-Beteiligung ersetzt keine fachliche Prüfpflicht.</span></div>
+    </div>
+
+    <div id="panel-falsifikation" class="tabpanel" role="tabpanel" aria-labelledby="tab-falsifikation" tabindex="0" hidden>
+      <h3>Falsifikationspanel</h3>
+      <p>Bedingungen, unter denen zentrale Thesen dieses Sprints in sich zusammenbrechen würden:</p>
+      <ol>
+        <li>Replikationsstudien mit strikter SCR-Korrektur reproduzieren den Befund „trainierte Teams → niedrigere präfrontale IBS" (§6) nicht — dann bricht die TNE-Deutung zusammen.</li>
+        <li>Longitudinale Studien zeigen, dass die RMSSD/HF-HRV-Baseline <em>nicht</em> mit dem „Andocken" organisationaler Sicherheitssignale korreliert (§3) — dann verliert die Moderator-These ihre empirische Stütze.</li>
+        <li>Künftige Meta-Analysen lösen die Aufgabentyp-Differenzierung der IBS (§5) auf und finden einen einheitlichen, durchgängig linear-positiven Effekt über alle Aufgabentypen — dann wäre die zentrale Differenzierungsthese widerlegt.</li>
+      </ol>
+    </div>
+
+    <div id="panel-offen" class="tabpanel" role="tabpanel" aria-labelledby="tab-offen" tabindex="0" hidden>
+      <h3>Open Issues &amp; Assumptions</h3>
+      <ul>
+        <li>Der Kausalmechanismus, über den die HRV-Baseline das „Andocken" organisationaler Sicherheitssignale vermittelt, ist bislang nur korrelativ beschrieben <span class="tag tag-modell">MODELL</span>.</li>
+        <li>Nicht alle zitierten HRV-Studien standardisieren die Atemfrequenz — ein relevanter Störfaktor für RMSSD/HF-HRV bleibt uneinheitlich kontrolliert.</li>
+        <li>Das Neurozeptions-Konzept der Polyvagal-Theorie ist in seiner aktuellen Form kaum unabhängig falsifizierbar.</li>
+        <li>Die Generalisierbarkeit der TNE-Befunde über Branchen und Kulturen hinweg ist offen — die Studienlage stammt überwiegend aus Laborkontexten.</li>
+      </ul>
+    </div>
+
+    <div id="panel-weiter" class="tabpanel" role="tabpanel" aria-labelledby="tab-weiter" tabindex="0" hidden>
+      <h3>Weiterentwicklung</h3>
+      <ul>
+        <li>Operationalisierung der TNE-Kennzahlen für praxistaugliche Team-Diagnostik-Werkzeuge.</li>
+        <li>Etablierung RSA-korrigierter HRV-Protokolle als methodischer Mindeststandard für Folgesprints.</li>
+        <li>Quer-Validierung mit Sprint 1/2 zur weiteren Konsistenzprüfung der Sicherheits-Hebel-These.</li>
+        <li>Offene Forschungsfrage für künftige Sprints: longitudinale Kohortenstudie zur Kausalrichtung zwischen HRV-Baseline und dem „Andocken" von Sicherheitssignalen.</li>
+      </ul>
+    </div>
+  </div>
+</dialog>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-brand">Sternenstaub · Schaltzentrale der Metaanalyse 2026</p>
+    <p>HCC 3.0 · Sprint 3 — Teil der fortlaufenden Serie evidenzgeprüfter Analysen. Weitere Sprints und das übergeordnete Portal unter <a href="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" target="_blank" rel="noopener noreferrer">stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026</a>.</p>
+    <p class="dim" style="font-size:0.82rem; margin-top:1rem;">Evidenzstand: September 2026. Methodisch stärkster Baustein der Serie: Die SCR-/Artefaktdisziplin ist code-bestätigt, die aufgabentypische IBS-Differenzierung literaturkonform. Kalibriert wurden das umstrittene Polyvagal-Fundament, die TNE-Belegketten, die HRV-Präzisionssprache und der „Beweis"-Superlativ.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================= Particle network canvas ================= */
+  var canvas = document.getElementById('particle-canvas');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H, particles = [];
+  var pointer = { x: -9999, y: -9999, active: false };
+
+  function resize(){
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var count = Math.max(38, Math.min(120, Math.floor((W*H)/16000)));
+    particles = [];
+    for(var i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25,
+        r: 1 + Math.random()*1.6
+      });
+    }
+  }
+
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    var magnetR = 190, tooClose = 46, connectR = 118;
+
+    for(var i=0;i<particles.length;i++){
+      var p = particles[i];
+
+      if(pointer.active){
+        var dx = pointer.x - p.x, dy = pointer.y - p.y;
+        var dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
+        if(dist < magnetR){
+          var force = (1 - dist/magnetR);
+          if(dist < tooClose){
+            var rep = (1 - dist/tooClose) * 0.9;
+            p.vx -= (dx/dist) * rep;
+            p.vy -= (dy/dist) * rep;
+          } else {
+            p.vx += (dx/dist) * force * 0.55;
+            p.vy += (dy/dist) * force * 0.55;
+          }
+        }
+      }
+
+      p.vx *= 0.94; p.vy *= 0.94;
+      p.x += p.vx; p.y += p.vy;
+
+      if(p.x < -20) p.x = W+20; if(p.x > W+20) p.x = -20;
+      if(p.y < -20) p.y = H+20; if(p.y > H+20) p.y = -20;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(244,234,217,0.55)';
+      ctx.fill();
+    }
+
+    ctx.lineWidth = 0.6;
+    for(var a=0; a<particles.length; a++){
+      for(var b=a+1; b<particles.length; b++){
+        var pa = particles[a], pb = particles[b];
+        var ddx = pa.x-pb.x, ddy = pa.y-pb.y;
+        var d = Math.sqrt(ddx*ddx+ddy*ddy);
+        if(d < connectR){
+          ctx.strokeStyle = 'rgba(217,163,92,' + (0.16*(1-d/connectR)) + ')';
+          ctx.beginPath();
+          ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    if(!reduceMotion) requestAnimationFrame(step);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  if(!reduceMotion){
+    window.addEventListener('pointermove', function(e){
+      pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+    }, {passive:true});
+    window.addEventListener('pointerleave', function(){ pointer.active = false; });
+    document.addEventListener('visibilitychange', function(){
+      if(!document.hidden) requestAnimationFrame(step);
+    });
+    requestAnimationFrame(step);
+  } else {
+    step();
+  }
+
+  /* ================= Evidence filter ================= */
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll('.nav-filter [data-filter]'));
+  var allTags = Array.prototype.slice.call(document.querySelectorAll('.tag'));
+  var resetBtn = document.getElementById('filter-reset');
+  var announce = document.getElementById('filter-announce');
+  var active = new Set();
+
+  function applyFilter(){
+    var body = document.body;
+    if(active.size === 0){
+      body.classList.remove('filters-active');
+      allTags.forEach(function(t){ t.classList.remove('is-dimmed'); });
+      resetBtn.classList.remove('is-visible');
+      announce.textContent = 'Kein Filter aktiv.';
+      return;
+    }
+    body.classList.add('filters-active');
+    resetBtn.classList.add('is-visible');
+    allTags.forEach(function(t){
+      var match = false;
+      active.forEach(function(f){ if(t.classList.contains('tag-'+f)) match = true; });
+      t.classList.toggle('is-dimmed', !match);
+    });
+    announce.textContent = 'Filter aktiv: ' + Array.from(active).join(', ').toUpperCase();
+  }
+
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.getAttribute('data-filter');
+      var pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!pressed));
+      if(pressed) active.delete(f); else active.add(f);
+      applyFilter();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    active.clear();
+    filterBtns.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+    applyFilter();
+  });
+
+  /* ================= OSTO fold panel ================= */
+  var ostoToggle = document.getElementById('osto-toggle');
+  var ostoPanel = document.getElementById('osto-panel');
+  ostoToggle.addEventListener('click', function(){
+    var expanded = ostoToggle.getAttribute('aria-expanded') === 'true';
+    ostoToggle.setAttribute('aria-expanded', String(!expanded));
+    ostoPanel.hidden = expanded;
+    ostoToggle.querySelector('.arrow').textContent = expanded ? '+' : '–';
+  });
+
+  /* ================= Dialogs ================= */
+  var openers = Array.prototype.slice.call(document.querySelectorAll('[data-open-dialog]'));
+  openers.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var dlg = document.getElementById(btn.getAttribute('data-open-dialog'));
+      if(dlg && typeof dlg.showModal === 'function') dlg.showModal();
+    });
+  });
+
+  Array.prototype.slice.call(document.querySelectorAll('dialog')).forEach(function(dlg){
+    dlg.querySelectorAll('[data-close-dialog]').forEach(function(btn){
+      btn.addEventListener('click', function(){ dlg.close(); });
+    });
+    dlg.addEventListener('click', function(e){
+      if(e.target === dlg) dlg.close();
+    });
+  });
+
+  /* ================= Tabs (Exoskelett) ================= */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#dialog-exoskelett .tab-btn'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('#dialog-exoskelett .tabpanel'));
+
+  function selectTab(tab){
+    tabs.forEach(function(t){
+      var isSel = t === tab;
+      t.setAttribute('aria-selected', String(isSel));
+      t.tabIndex = isSel ? 0 : -1;
+    });
+    panels.forEach(function(p){
+      var match = p.id === tab.getAttribute('aria-controls');
+      p.hidden = !match;
+      p.classList.toggle('is-active', match);
+    });
+  }
+
+  tabs.forEach(function(tab, idx){
+    tab.addEventListener('click', function(){ selectTab(tab); });
+    tab.addEventListener('keydown', function(e){
+      var next = null;
+      if(e.key === 'ArrowRight') next = tabs[(idx+1) % tabs.length];
+      if(e.key === 'ArrowLeft') next = tabs[(idx-1+tabs.length) % tabs.length];
+      if(e.key === 'Home') next = tabs[0];
+      if(e.key === 'End') next = tabs[tabs.length-1];
+      if(next){ e.preventDefault(); next.focus(); selectTab(next); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

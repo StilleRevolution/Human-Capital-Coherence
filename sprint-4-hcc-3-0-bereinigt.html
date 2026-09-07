@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC 3.0 · Sprint 4 — Psychoakustische Interventionen im BGM</title>
+<meta name="description" content="Forensisch bereinigte Analyse psychoakustischer BGM-Interventionen: Dekonstruktion der 432-Hz- und Rhythmus-Mythen, der Maskierungsmechanismus (STI) und ein falsifizierbares A/B-Test-Design zur Reduktion des kognitiven Präsentismus.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HCC 3.0 · Sprint 4 — Psychoakustische Interventionen im BGM">
+<meta property="og:description" content="Akustische Maskierung statt Frequenzmythos: ein falsifizierbares A/B-Test-Design gegen wirkungslose BGM-Placebos im Großraumbüro.">
+<meta property="og:site_name" content="Schaltzentrale der Metaanalyse 2026 · Projekt Sternenstaub">
+<meta property="og:url" content="https://stillerevolution.github.io/">
+<meta name="theme-color" content="#060714">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#060714',
+          nebula: '#10152b',
+          gold: '#d9a35c',
+          parchment: '#f4ead9',
+          amberglow: '#f2b872',
+          fakt: '#8fe3ac',
+          modell: '#8fc1f0',
+          umstritten: '#f0a882',
+          muted: '#9aa3c0'
+        },
+        fontFamily: {
+          fraunces: ['Fraunces', 'serif'],
+          atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+<style>
+  :root{
+    --void:#060714;
+    --nebula:#10152b;
+    --gold:#d9a35c;
+    --parchment:#f4ead9;
+    --amberglow:#f2b872;
+    --fakt:#8fe3ac;
+    --modell:#8fc1f0;
+    --umstritten:#f0a882;
+    --muted:#9aa3c0;
+  }
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:
+      radial-gradient(ellipse 80% 60% at 20% -10%, rgba(217,163,92,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 0%, rgba(143,193,240,0.06), transparent 55%),
+      linear-gradient(180deg, var(--void) 0%, var(--nebula) 45%, var(--void) 100%);
+    color: var(--parchment);
+    font-family:'Atkinson Hyperlegible', sans-serif;
+  }
+  h1,h2,h3,h4,.font-display{font-family:'Fraunces', serif;}
+  #particle-canvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+  .content-layer{position:relative; z-index:1;}
+  .glass{
+    background:rgba(16,21,43,0.55);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(244,234,217,0.10);
+  }
+  .glass-strong{
+    background:rgba(6,7,20,0.72);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(244,234,217,0.12);
+  }
+  .prose-body p, .prose-body li{line-height:1.7; max-width:70ch;}
+  .prose-body p + p{margin-top:1em;}
+  a.inline-link{color:var(--gold); text-underline-offset:3px; text-decoration-line:underline; text-decoration-color:rgba(217,163,92,0.45); transition:text-decoration-color .2s ease, color .2s ease;}
+  a.inline-link:hover{text-decoration-color:var(--gold); color:var(--amberglow);}
+  a.inline-link:focus-visible{outline:2px solid var(--amberglow); outline-offset:3px; border-radius:2px;}
+
+  :focus-visible{outline:2px solid var(--amberglow); outline-offset:2px;}
+
+  .skip-link{position:absolute; left:1rem; top:-4rem; background:var(--gold); color:var(--void); padding:.6rem 1rem; border-radius:.5rem; font-weight:700; z-index:50; transition:top .2s ease;}
+  .skip-link:focus{top:1rem;}
+
+  /* Evidence badges */
+  .badge{display:inline-flex; align-items:center; gap:.4em; font-family:'JetBrains Mono', monospace; font-size:.72rem; font-weight:600; letter-spacing:.01em; padding:.25em .65em; border-radius:999px; color:var(--void); white-space:nowrap; transition:opacity .35s ease, filter .35s ease;}
+  .badge-fakt{background:var(--fakt);}
+  .badge-modell{background:var(--modell);}
+  .badge-umstritten{background:var(--umstritten);}
+  .badge-dot{width:.5em; height:.5em; border-radius:50%; background:currentColor; opacity:.55;}
+
+  .evidence-item.dimmed{opacity:.28; filter:saturate(.5);}
+
+  .risk-niedrig{color:var(--fakt);}
+  .risk-mittel{color:var(--modell);}
+  .risk-hoch{color:var(--umstritten);}
+
+  /* Cards */
+  .card{border-radius:1rem; padding:1.5rem; transition:border-color .25s ease, transform .25s ease;}
+  .card:hover{border-color:rgba(217,163,92,0.35);}
+  .card-caution{border-left:3px solid var(--umstritten);}
+  .card-fact{border-left:3px solid var(--fakt);}
+
+  nav a.navlink{position:relative; color:var(--muted); transition:color .2s ease;}
+  nav a.navlink:hover, nav a.navlink.active{color:var(--parchment);}
+  nav a.navlink.active::after{content:''; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:var(--gold);}
+
+  table.data-table{width:100%; border-collapse:collapse; font-size:.92rem;}
+  table.data-table th{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:.72rem; letter-spacing:.02em; color:var(--muted); text-align:left; padding:.6rem .75rem; border-bottom:1px solid rgba(244,234,217,0.18);}
+  table.data-table td{padding:.7rem .75rem; border-bottom:1px solid rgba(244,234,217,0.08); vertical-align:top;}
+  table.data-table tr:last-child td{border-bottom:none;}
+
+  details.correction summary{cursor:pointer; list-style:none;}
+  details.correction summary::-webkit-details-marker{display:none;}
+  details.correction summary .chevron{transition:transform .25s ease;}
+  details.correction[open] summary .chevron{transform:rotate(180deg);}
+
+  /* Modal */
+  dialog#exoskelett{
+    background:transparent;
+    border:none;
+    padding:0;
+    max-width:min(760px, 92vw);
+    width:100%;
+    max-height:88vh;
+    color:var(--parchment);
+  }
+  dialog#exoskelett::backdrop{background:rgba(6,7,20,0.78); backdrop-filter:blur(3px);}
+  dialog#exoskelett[open]{animation:modalIn .28s cubic-bezier(.2,.8,.2,1);}
+  @keyframes modalIn{from{opacity:0; transform:translateY(12px) scale(.98);} to{opacity:1; transform:translateY(0) scale(1);}}
+
+  .tab-btn[aria-selected="true"]{color:var(--gold); border-color:var(--gold);}
+  .tab-btn{border-bottom:2px solid transparent; color:var(--muted);}
+
+  .legend-btn[aria-pressed="true"]{outline:2px solid var(--amberglow); outline-offset:2px;}
+
+  ::selection{background:var(--gold); color:var(--void);}
+
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--void);}
+  ::-webkit-scrollbar-thumb{background:rgba(217,163,92,0.35); border-radius:6px;}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(217,163,92,0.6);}
+</style>
+</head>
+<body class="antialiased">
+<a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<header class="content-layer sticky top-0 z-40 glass-strong">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-3 flex items-center justify-between gap-4">
+    <a href="#start" class="font-display text-parchment text-base sm:text-lg tracking-tight leading-tight shrink-0">
+      HCC&nbsp;3.0 <span class="text-gold">·</span> Sprint&nbsp;4
+    </a>
+    <nav aria-label="Seitennavigation" class="hidden lg:flex items-center gap-6 text-sm font-atkinson">
+      <a href="#kurzfassung" class="navlink" data-nav>Kurzfassung</a>
+      <a href="#mechanismus" class="navlink" data-nav>Mechanismus</a>
+      <a href="#abtest" class="navlink" data-nav>A/B-Test</a>
+      <a href="#triangulation" class="navlink" data-nav>Triangulation</a>
+      <a href="#historie" class="navlink" data-nav>Korrekturen</a>
+      <a href="#referenzen" class="navlink" data-nav>Referenzen</a>
+    </nav>
+    <button type="button" id="open-exoskelett" class="shrink-0 inline-flex items-center gap-2 rounded-full border border-gold/50 px-3.5 py-1.5 text-xs sm:text-sm font-mono text-gold hover:bg-gold hover:text-void transition-colors">
+      <span aria-hidden="true">⌬</span> Exoskelett
+    </button>
+  </div>
+</header>
+
+<main id="main-content" class="content-layer max-w-6xl mx-auto px-5 sm:px-8">
+
+  <!-- HERO / KURZFASSUNG -->
+  <section id="start" class="pt-14 sm:pt-20 pb-10">
+    <p class="font-mono text-xs sm:text-sm text-muted tracking-wide">Schaltzentrale der Metaanalyse 2026 · Projekt Sternenstaub · Adressaten: C-Level, Fachgremien, Gesetzgebung</p>
+    <h1 class="font-display text-4xl sm:text-6xl leading-[1.05] mt-4 text-parchment">
+      Psychoakustische Interventionen im BGM
+    </h1>
+    <p class="font-display italic text-xl sm:text-2xl text-gold mt-3">Systematische Evaluation und A/B-Test-Architektur</p>
+    <p class="mt-6 max-w-2xl text-muted">Bereinigte, evidenzgeprüfte Fassung — konsistent mit den forensischen Korrekturen aus <code class="font-mono text-parchment/90">sprint-4-hcc-3-0-validierung.md</code> und den Sprints 1–3 der HCC-3.0-Serie.</p>
+
+    <div class="mt-10 card glass p-6 sm:p-8">
+      <h2 class="font-display text-2xl text-parchment">Kurzfassung für Entscheider</h2>
+      <p class="prose-body mt-3 text-parchment/90">Nicht mystische Frequenzen oder Rhythmus-Entrainment senken den kognitiven Präsentismus, sondern <strong class="text-gold">akustische Maskierung</strong> intelligibler Hintergrundsprache. Ein triangulierter, falsifizierbarer A/B-Test kann wirkungslose BGM-Placebos aus dem Budget entfernen.</p>
+    </div>
+
+    <div id="kurzfassung" class="mt-8 scroll-mt-24">
+      <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+        <h3 class="font-display text-xl text-parchment">Kernaussagen &amp; Falsifikationsrisiko</h3>
+        <div class="flex items-center gap-2 flex-wrap" role="group" aria-label="Nach Evidenzklasse filtern">
+          <span class="font-mono text-[.7rem] text-muted mr-1">Filter:</span>
+          <button type="button" class="legend-btn badge badge-fakt" data-filter="fakt" aria-pressed="false">Fakt</button>
+          <button type="button" class="legend-btn badge badge-modell" data-filter="modell" aria-pressed="false">Modell</button>
+          <button type="button" class="legend-btn badge badge-umstritten" data-filter="umstritten" aria-pressed="false">Umstritten</button>
+        </div>
+      </div>
+
+      <div class="grid gap-3">
+        <article class="evidence-item card glass card-fact" data-evidence="fakt">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">01</span>Kausalmechanismus = akustische Maskierung (STI-Senkung)</p>
+            <div class="flex items-center gap-2 shrink-0"><span class="badge badge-fakt">Fakt</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-niedrig font-mono">niedrig</span> — gut belegt (Keus van de Poll; Haapakangas)</p>
+        </article>
+
+        <article class="evidence-item card glass card-fact" data-evidence="fakt">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">02</span>Rhythmische Musik stört im Büro (Changing-State) → stetiger Masker ist überlegen</p>
+            <div class="flex items-center gap-2 shrink-0"><span class="badge badge-fakt">Fakt</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-niedrig font-mono">niedrig</span> — literaturkonform</p>
+        </article>
+
+        <article class="evidence-item card glass card-fact" data-evidence="fakt umstritten">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">03</span>432&nbsp;Hz: ästhetisches Tuning, kein kausaler Heilhebel</p>
+            <div class="flex items-center gap-2 shrink-0 flex-wrap"><span class="badge badge-fakt">Fakt (Debunk)</span><span class="badge badge-umstritten">Umstritten (Ästhetik)</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-niedrig font-mono">niedrig</span> — Effekt klein, nicht 432-spezifisch</p>
+        </article>
+
+        <article class="evidence-item card glass card-fact" data-evidence="fakt">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">04</span>RSA/Atmung ist zwingende HRV-Kovariate (mechanisch 2,6×)</p>
+            <div class="flex items-center gap-2 shrink-0"><span class="badge badge-fakt">Fakt / berechnet</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-niedrig font-mono">niedrig</span> — code-bestätigt</p>
+        </article>
+
+        <article class="evidence-item card glass" data-evidence="modell">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">05</span>A/B-Design (Within, LMM, Triangulation, Power)</p>
+            <div class="flex items-center gap-2 shrink-0"><span class="badge badge-modell">Modell</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-mittel font-mono">mittel</span> — Power ist am Interaktionsterm auszurichten</p>
+        </article>
+
+        <article class="evidence-item card glass card-caution" data-evidence="umstritten">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <p class="text-parchment font-medium max-w-2xl"><span class="font-mono text-muted mr-2">06</span>Delta-Wellen-Entrainment / „subliminale Sicherheit"</p>
+            <div class="flex items-center gap-2 shrink-0"><span class="badge badge-umstritten">Umstritten</span></div>
+          </div>
+          <p class="text-sm text-muted mt-2">Falsifikationsrisiko: <span class="risk-hoch font-mono">hoch</span> — geringe Evidenzzertainty; separat testen, nicht bündeln</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPISTEMISCHER RAHMEN -->
+  <section id="rahmen" class="py-12 scroll-mt-24">
+    <div class="grid md:grid-cols-[1.1fr_1fr] gap-8 items-start">
+      <div class="prose-body">
+        <h2 class="font-display text-3xl text-parchment mb-4">1 · Der epistemische Rahmen</h2>
+        <p class="text-parchment/90">Die Gestaltung von Wissensarbeitsumgebungen erfordert messbare Instrumente zur Reduktion von System-Entropie. Ein dominanter, historisch unterschätzter Stressor ist die akustische Umgebung: Ungefilterter Bürolärm und intelligible Hintergrundsprache überlasten den präfrontalen Kortex chronisch.</p>
+        <p class="text-parchment/90">Der BGM-Markt ist jedoch stark von pseudowissenschaftlichen Narrativen geprägt. Dieses Dokument unterzieht psychoakustische Trigger einer kompromisslosen Kausalitätsprüfung und konstruiert ein falsifizierbares A/B-Test-Design zur Reduktion des administrativen Präsentismus.</p>
+      </div>
+      <aside class="card glass p-6" aria-label="Evidenzsystematik">
+        <h3 class="font-mono text-xs text-muted uppercase tracking-wider mb-4">Evidenzlabels dieser Serie</h3>
+        <dl class="space-y-4 text-sm">
+          <div class="flex gap-3 items-start">
+            <span class="badge badge-fakt shrink-0">Fakt</span>
+            <dd class="text-parchment/85">Verifizierte Primärdaten oder referierte Meta-Analysen.</dd>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="badge badge-modell shrink-0">Modell</span>
+            <dd class="text-parchment/85">Berechnete/modellierte Größe, Designannahme oder Deutung, abhängig von offengelegten Prämissen.</dd>
+          </div>
+          <div class="flex gap-3 items-start">
+            <span class="badge badge-umstritten shrink-0">Umstritten</span>
+            <dd class="text-parchment/85">Geringe Evidenzzertainty, methodisch offen oder mit disputierter Kausalinterpretation.</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RAUSCHBEREINIGUNG -->
+  <section id="rauschbereinigung" class="py-12 scroll-mt-24">
+    <h2 class="font-display text-3xl text-parchment mb-2">2 · Rauschbereinigung</h2>
+    <p class="text-muted max-w-2xl mb-8">Dekonstruktion der Frequenz- und Rhythmus-Mythen. Um wirksame BGM-Tools zu entwickeln, sind Kunst/Ästhetik und Arbeitspsychologie strikt zu trennen.</p>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <article class="evidence-item card glass p-6" data-evidence="fakt umstritten">
+        <div class="flex items-center gap-2 flex-wrap mb-3">
+          <h3 class="font-display text-xl text-parchment mr-1">2.1 Die 432-Hz-Frequenz</h3>
+          <span class="badge badge-umstritten">Umstritten</span>
+          <span class="badge badge-modell">Modell</span>
+        </div>
+        <div class="prose-body text-sm text-parchment/90 space-y-3">
+          <p>Projekt Sternenstaub nutzt die 432-Hz-Stimmung anstelle der industriellen 440-Hz-Norm. Als subjektiv-ästhetische Wahrnehmung wird sie oft als „wärmer und runder" beschrieben — eine legitime gestalterische Präferenz für geführte Entspannung, Klangkunst und Ruheräume.</p>
+          <div class="rounded-lg border-l-2 border-fakt/70 bg-void/40 p-3">
+            <p><span class="badge badge-fakt align-middle mr-2">Fakt</span><strong class="text-parchment">Klarstellung (Debunk):</strong> 432&nbsp;Hz ist keine medizinische Wunderwaffe. Isolierte HRV-Studien zeigen, dass die Effekte von 432&nbsp;Hz oft nicht signifikant von 440&nbsp;Hz abweichen (HR-Differenz typischerweise &lt;2&nbsp;BPM, HRV-Effekte nicht 432-spezifisch). Im BGM-Kontext dient 432&nbsp;Hz daher ausschließlich als ästhetisches Fundament, nicht als kausaler Hebel.</p>
+          </div>
+          <p class="text-muted text-xs">Hinweis: Kymatik-Behauptungen, 432&nbsp;Hz erzeuge „physikalisch harmonischere Muster in Flüssigkeiten", sind wissenschaftlich unbelegt und werden nicht als Wirknachweis geführt — Musterkomplexität hängt von Frequenz, Geometrie und Medium ab; „harmonischer" ist keine physikalische Eigenschaft, die 432 gegenüber 440&nbsp;Hz auszeichnet.</p>
+        </div>
+      </article>
+
+      <article class="evidence-item card glass p-6" data-evidence="fakt">
+        <div class="flex items-center gap-2 flex-wrap mb-3">
+          <h3 class="font-display text-xl text-parchment mr-1">2.2 Das Rhythmus-Paradoxon (BPM)</h3>
+          <span class="badge badge-fakt">Fakt</span>
+        </div>
+        <div class="prose-body text-sm text-parchment/90 space-y-3">
+          <p>Tiefe Beats (70–75&nbsp;BPM) korrelieren mit dem Ruhepuls und sind für die aktive Regeneration (Ruheräume, Kitas) ein Werkzeug zur neurobiologischen Co-Regulation.</p>
+          <p>In einer kognitiven Hochleistungsumgebung (Großraumbüro) bewirkt rhythmische Instrumentalmusik jedoch das Gegenteil: Ihre spektrotemporale Modulation zwingt das Gehirn zu unbewusster Analyse und stört das verbale Arbeitsgedächtnis (<strong class="text-gold">Changing-State-Hypothese</strong>).</p>
+          <p class="font-medium text-parchment">Konsequenz: Im Büro kein Rhythmus, sondern ein stetiger Masker.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- KAUSALMECHANISMUS -->
+  <section id="mechanismus" class="py-12 scroll-mt-24">
+    <h2 class="font-display text-3xl text-parchment mb-2">3 · Der Kausalmechanismus: akustische Maskierung</h2>
+    <p class="evidence-item text-muted max-w-2xl mb-8" data-evidence="fakt"><span class="badge badge-fakt align-middle mr-2">Fakt</span>Wenn Rhythmus im Büro stört und Frequenzen allein nicht heilen — wie senkt Psychoakustik dann die kognitive Last? Über akustische Maskierung.</p>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <div class="prose-body text-sm text-parchment/90 space-y-4">
+        <p>Das Kernproblem im Großraumbüro ist nicht zu geringe vagale Aktivierung, sondern die ständige Belastung des präfrontalen Kortex durch <strong class="text-gold">intelligible Hintergrundsprache</strong>, vermittelt über zwei Mechanismen:</p>
+        <ul class="space-y-3 list-none pl-0">
+          <li class="card glass p-4"><strong class="text-parchment block mb-1">Attentional Capture</strong>Plötzliche Schallereignisse ziehen unwillkürlich Aufmerksamkeit ab.</li>
+          <li class="card glass p-4"><strong class="text-parchment block mb-1">Interference-by-Process</strong>Das Gehirn analysiert fremde Gespräche automatisch; da Büroarbeit auf dasselbe verbale Arbeitsgedächtnis zugreift, entsteht eine Ressourcenkollision.</li>
+        </ul>
+        <p>Die Stärke der Interferenz wird über den <strong class="text-gold">Speech Transmission Index (STI)</strong> quantifiziert; ein hoher STI (nahe 1,0) bedeutet perfekte Verständlichkeit und die stärksten Leistungseinbrüche.</p>
+        <div class="rounded-lg border-l-2 border-modell/70 bg-void/40 p-4">
+          <p><span class="badge badge-modell align-middle mr-2">Fakt / Modell</span>Ein stetiger, non-fluktuierender Masker (Breitbandrauschen, fließende Pads, Wasserklänge) überlagert das Störsignal der Umgebungssprache und senkt den STI. Diese Maskierung blockiert die semantische Interferenz; der präfrontale Kortex wird vor Überlast geschützt.</p>
+          <p class="mt-2">Die Stabilisierung der HRV und die reduzierte Cortisol-Ausschüttung sind <strong class="text-parchment">sekundäre, nachgelagerte Folgen</strong> dieser kognitiven Entlastung — nicht ein direktes „Sicherheitssignal" an das autonome Nervensystem. Der Wirkpfad ist kognitiv-ergonomisch, nicht physiologisch-mystisch.</p>
+        </div>
+      </div>
+
+      <figure class="card glass p-5 sm:p-6">
+        <figcaption class="font-mono text-xs text-muted uppercase tracking-wider mb-3">Schematische Darstellung · Leistungseinbruch über STI (nach Haapakangas et al. 2020)</figcaption>
+        <svg viewBox="0 0 560 300" role="img" aria-labelledby="sti-chart-title sti-chart-desc" class="w-full h-auto">
+          <title id="sti-chart-title">Illustrativer Zusammenhang zwischen Speech Transmission Index und Leistungseinbruch</title>
+          <desc id="sti-chart-desc">Der Leistungseinbruch beginnt schematisch ab einem STI von etwa 0,21 und erreicht ein Maximum um 0,44, danach flacht die Kurve ab.</desc>
+          <line x1="50" y1="20" x2="50" y2="250" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+          <line x1="50" y1="250" x2="530" y2="250" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+          <line x1="150.8" y1="20" x2="150.8" y2="250" stroke="rgba(240,168,130,0.45)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="261.2" y1="20" x2="261.2" y2="250" stroke="rgba(240,168,130,0.45)" stroke-width="1" stroke-dasharray="4 4"/>
+          <path d="M 50 240 C 110 238, 140 235, 150.8 218 C 175 178, 220 108, 261.2 78 C 340 62, 440 55, 530 50" fill="none" stroke="#d9a35c" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="150.8" cy="218" r="5.5" fill="#f2b872" tabindex="0" aria-label="STI ≈ 0,21 — Beginn des Leistungsabfalls"><title>STI ≈ 0,21 — Beginn des Leistungsabfalls</title></circle>
+          <circle cx="261.2" cy="78" r="5.5" fill="#f2b872" tabindex="0" aria-label="STI ≈ 0,44 — nahe Maximum des Leistungsabfalls"><title>STI ≈ 0,44 — nahe Maximum des Leistungsabfalls</title></circle>
+          <text x="150.8" y="270" text-anchor="middle" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="12">0,21</text>
+          <text x="261.2" y="270" text-anchor="middle" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="12">0,44</text>
+          <text x="530" y="270" text-anchor="end" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="12">1,0 (STI)</text>
+          <text x="50" y="270" text-anchor="start" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="12">0</text>
+          <text x="44" y="26" text-anchor="end" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="11">hoch</text>
+          <text x="44" y="252" text-anchor="end" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="11">0</text>
+        </svg>
+        <p class="text-xs text-muted mt-3">Schematische Illustration der berichteten Schwellen (nicht die Rohdaten der Studie). Leistungsabfall beginnt ab STI ≈ 0,21, Maximum ≈ 0,44.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- BEATS UMSTRITTEN -->
+  <section id="beats" class="py-12 scroll-mt-24">
+    <article class="evidence-item card glass card-caution p-6 sm:p-8" data-evidence="umstritten">
+      <div class="flex items-center gap-3 flex-wrap mb-4">
+        <h2 class="font-display text-2xl text-parchment">4 · Optionales Zusatzelement: Auditive Beats</h2>
+        <span class="badge badge-umstritten">Umstritten</span>
+      </div>
+      <p class="text-sm text-muted mb-4 font-medium">Separat testen, nicht bündeln.</p>
+      <div class="prose-body text-sm text-parchment/90 space-y-3">
+        <p>Eine mögliche Erweiterung ist das Einbetten niederfrequenter auditiver Beats (Theta/Delta, ~4–7&nbsp;Hz) zur zusätzlichen Beruhigung. Ehrliche Einordnung der Evidenz:</p>
+        <ul class="list-disc pl-5 space-y-2 marker:text-umstritten">
+          <li>Es existiert „low-certainty"-RCT-Evidenz, dass Theta-Beats Angst/Schmerz senken und HRV leicht erhöhen können — meist via Kopfhörer (binaural, dichotische Darbietung) oder in Musik eingebettet (Meta-Analysen 2024–2026).</li>
+          <li>Die EEG-Ebene bestätigt die „Entrainment → Zustand"-Kette nicht zuverlässig; ein in einen Breitband-Masker eingebetteter, über Lautsprecher gespielter 4,5-Hz-Ton ist <strong>kein</strong> binauraler Beat; Formulierungen wie „unterschwellige Sicherheit" überschießen die Evidenz.</li>
+          <li><strong class="text-parchment">Design-kritisch:</strong> Wird ein Beat-Element in den Interventions-Masker eingebettet, lässt sich ein positiver Effekt nicht mehr sauber zwischen Maskierung und Beat-Wirkung trennen — der A/B-Test verliert seine Kausal-Isolation.</li>
+        </ul>
+        <p class="rounded-lg bg-void/40 p-3 border-l-2 border-umstritten/70"><strong class="text-parchment">Empfehlung:</strong> Das Beat-Element nicht in den primären Masker bündeln, sondern — falls gewünscht — als eigenständigen, explizit als umstritten gekennzeichneten Studienarm mit eigener Kontrolle testen. Für den Primärnachweis (Maskierung → kognitiver Schutz) bleibt der Masker rein spektral/stetig.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- A/B-TEST -->
+  <section id="abtest" class="py-12 scroll-mt-24">
+    <h2 class="font-display text-3xl text-parchment mb-2">5 · Architektur des A/B-Tests für das BGM</h2>
+    <p class="evidence-item text-muted max-w-2xl mb-8" data-evidence="modell"><span class="badge badge-modell align-middle mr-2">Modell</span>Für den Nachweis gegenüber Krankenkassen (z.&nbsp;B. DiGA-Pfad) und Vorständen: ein streng kontrolliertes Within-Subject-Cross-over-Design im Labor-/Feldumfeld.</p>
+
+    <h3 class="font-display text-xl text-parchment mb-4">Unabhängige Variablen (akustische Bedingungen)</h3>
+    <div class="grid md:grid-cols-3 gap-4 mb-8">
+      <div class="card glass p-5">
+        <p class="font-mono text-xs text-gold mb-2">01 · Intervention</p>
+        <p class="text-sm text-parchment/90">Stetiges Breitband-Audio (Drones/Pads, ästhetisch auf 432&nbsp;Hz gestimmt), ohne Rhythmus (BPM&nbsp;=&nbsp;0), optimiert zur Frequenzmaskierung menschlicher Sprache. Ziel: maximale Maskierung bei minimaler Eigenablenkung.</p>
+      </div>
+      <div class="card glass p-5">
+        <p class="font-mono text-xs text-modell mb-2">02 · Aktive Kontrolle (Placebo)</p>
+        <p class="text-sm text-parchment/90">Kontinuierlicher Masker, der sich nur im Spektrum unterscheidet (z.&nbsp;B. Standard-440-Hz-Rauschen), um die spezifische spektrale Komponente zu isolieren.</p>
+      </div>
+      <div class="card glass p-5">
+        <p class="font-mono text-xs text-muted mb-2">03 · Baseline (Negativkontrolle)</p>
+        <p class="text-sm text-parchment/90">Standardisierter Bürolärm ohne Masker.</p>
+      </div>
+    </div>
+    <p class="text-sm text-muted mb-10 max-w-2xl">Contrast-Logik: (Intervention vs. Baseline) = Maskierungseffekt · (Intervention vs. aktive Kontrolle) = spezifische spektrale Komponente.</p>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-start mb-10">
+      <div>
+        <h3 class="font-display text-xl text-parchment mb-4">Abhängige Variablen (Triangulation)</h3>
+        <div class="overflow-x-auto card glass p-1">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Ebene</th><th scope="col">Messgröße</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-fakt">Fakt</span></td>
+                <td>Kognitiv — Fehlerquote/Latenz bei N-Back- und Proofreading-Aufgaben (semantische Interferenz)</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-fakt">Fakt</span></td>
+                <td>Physiologisch — HRV (RMSSD); Atemfrequenz (RSA) als zwingende Kovariate</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-fakt">Fakt</span></td>
+                <td>Endokrin — Speichel-Cortisol (HPA-Achse), Delta-Werte prä/post</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-modell">Modell</span></td>
+                <td>Psychometrisch — STAI-State</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <figure class="card glass p-5 sm:p-6">
+        <figcaption class="font-mono text-xs text-muted uppercase tracking-wider mb-3">Statistik &amp; Power · benötigte Stichprobengröße (N)</figcaption>
+        <svg viewBox="0 0 400 260" role="img" aria-labelledby="power-chart-title power-chart-desc" class="w-full h-auto">
+          <title id="power-chart-title">Vergleich der benötigten Stichprobengrößen</title>
+          <desc id="power-chart-desc">Der Haupteffekt benötigt etwa 51 Personen, eine naive Planung 65, der kovariaten-adjustierte Interaktionseffekt jedoch mindestens 196 Personen.</desc>
+          <line x1="45" y1="20" x2="45" y2="210" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+          <line x1="45" y1="210" x2="380" y2="210" stroke="rgba(244,234,217,0.25)" stroke-width="1"/>
+          <rect x="70" y="163.6" width="60" height="46.4" rx="4" fill="#8fc1f0"><title>Haupteffekt (d=0,4): N ≈ 51</title></rect>
+          <text x="100" y="228" text-anchor="middle" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="11">N≈51</text>
+          <text x="100" y="242" text-anchor="middle" fill="#9aa3c0" font-family="Atkinson Hyperlegible, sans-serif" font-size="10">Haupteffekt</text>
+
+          <rect x="175" y="151" width="60" height="59" rx="4" fill="#f0a882"><title>Naive Planung: N ≈ 65 — unterpowert</title></rect>
+          <text x="205" y="228" text-anchor="middle" fill="#9aa3c0" font-family="JetBrains Mono, monospace" font-size="11">N≈65</text>
+          <text x="205" y="242" text-anchor="middle" fill="#9aa3c0" font-family="Atkinson Hyperlegible, sans-serif" font-size="10">Naive Planung</text>
+
+          <rect x="280" y="33.4" width="60" height="176.6" rx="4" fill="#d9a35c"><title>Interaktion nach RSA-Bereinigung: N ≈ 196+</title></rect>
+          <text x="310" y="228" text-anchor="middle" fill="#f4ead9" font-family="JetBrains Mono, monospace" font-size="11">N≈196+</text>
+          <text x="310" y="242" text-anchor="middle" fill="#9aa3c0" font-family="Atkinson Hyperlegible, sans-serif" font-size="10">Interaktion (RSA-adj.)</text>
+        </svg>
+        <p class="text-xs text-muted mt-3">Die Fallzahl ist am kovariaten-adjustierten Interaktionsterm (RMSSD × Bedingung nach RSA-Bereinigung) auszurichten. Eine am Haupteffekt bemessene Stichprobe wäre für den entscheidenden Endpunkt unterpowert.</p>
+      </figure>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="evidence-item card glass p-6" data-evidence="modell">
+        <h3 class="font-display text-lg text-parchment mb-2">Statistik &amp; Power <span class="badge badge-modell align-middle ml-1">Modell</span></h3>
+        <p class="text-sm text-parchment/90">Auswertung via Linear Mixed-Effects Model; Atemfrequenz als zeitvariierende Kovariate. Die Fallzahl folgt dem Interaktionsterm, nicht dem Haupteffekt — dieser benötigt ein Vielfaches der Haupteffekt-Stichprobe.</p>
+      </div>
+      <div class="evidence-item card glass p-6" data-evidence="fakt">
+        <h3 class="font-display text-lg text-parchment mb-2">Falsifikationskriterien <span class="badge badge-fakt align-middle ml-1">Fakt</span></h3>
+        <p class="text-sm text-parchment/90">Erfolg nur, wenn (1) die Fehlerquote unter Intervention signifikant sinkt, (2) der RMSSD-Interaktionseffekt nach RSA-Bereinigung signifikant bleibt, und (3) die Cortisol-Delta flacher verläuft. Bleibt eine Achse aus, ist die Maßnahme falsifiziert.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAZIT -->
+  <section id="fazit" class="py-12 scroll-mt-24">
+    <div class="card glass-strong p-6 sm:p-10">
+      <h2 class="font-display text-3xl text-parchment mb-4">6 · Wissenschaftliches Fazit</h2>
+      <div class="prose-body text-parchment/90 space-y-3">
+        <p>Projekt Sternenstaub operiert im BGM als kognitiv-ergonomische Intervention, nicht als esoterisches Heilversprechen: Durch Maskierung von Störschall (STI-Senkung) wird der präfrontale Kortex vor Erschöpfung geschützt; HRV-Stabilisierung und geringere Cortisol-Last sind sekundäre Folgen.</p>
+        <p class="rounded-lg bg-void/40 p-4 border-l-2 border-gold/70"><strong class="text-gold">Reichweiten-Ehrlichkeit:</strong> Der A/B-Test misst individuelle kognitive und physiologische Effekte; er liefert den lokalen Wirknachweis, validiert aber nicht direkt die makroökonomische Attribution (454&nbsp;Mrd.&nbsp;€ Präsentismus aus Sprint&nbsp;1) — er stützt sie plausibel über die Aggregation individueller Effekte.</p>
+        <p>Die Stärke des Frameworks liegt in seiner Falsifizierbarkeit: Es eliminiert wirkungslose Placebos aus dem BGM-Budget und lenkt Investitionen dorthin, wo sie die entropische Reibung messbar senken.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIANGULATION -->
+  <section id="triangulation" class="py-12 scroll-mt-24">
+    <h2 class="font-display text-3xl text-parchment mb-2">Triangulation — 360°-Sicht</h2>
+    <p class="text-muted max-w-2xl mb-6">Drei Perspektiven auf denselben Befund. Die Synthese trägt die Entscheidung, nicht eine einzelne Achse.</p>
+
+    <div class="card glass p-1 sm:p-2" data-tabs="triangulation">
+      <div role="tablist" aria-label="Perspektiven" class="flex flex-wrap gap-1 border-b border-parchment/10 px-3 pt-2">
+        <button role="tab" id="tri-tab-empirisch" aria-controls="tri-panel-empirisch" aria-selected="true" class="tab-btn font-mono text-sm px-3 py-2">Empirisch</button>
+        <button role="tab" id="tri-tab-systemisch" aria-controls="tri-panel-systemisch" aria-selected="false" tabindex="-1" class="tab-btn font-mono text-sm px-3 py-2">Systemisch</button>
+        <button role="tab" id="tri-tab-mensch" aria-controls="tri-panel-mensch" aria-selected="false" tabindex="-1" class="tab-btn font-mono text-sm px-3 py-2">Philosophisch / Menschlich</button>
+      </div>
+
+      <div id="tri-panel-empirisch" role="tabpanel" aria-labelledby="tri-tab-empirisch" class="p-5 sm:p-7 prose-body text-sm text-parchment/90 space-y-3">
+        <p>Auf der Datenebene ist der Befund eng geführt: Maskierung senkt den STI, und ein niedrigerer STI korreliert reproduzierbar mit weniger Fehlern bei Aufgaben, die verbales Arbeitsgedächtnis beanspruchen. Die 432-Hz-Frage ist empirisch faktisch entschieden — der Unterschied zu 440&nbsp;Hz liegt im Rauschen physiologischer Messverfahren.</p>
+        <p>Offen bleibt empirisch vor allem die Beat-Frage: „low-certainty"-Evidenz bedeutet nicht „kein Effekt", sondern „noch nicht sauber isoliert". Genau deshalb verlangt Punkt&nbsp;4 einen eigenen Studienarm, bevor daraus Produktversprechen werden.</p>
+      </div>
+
+      <div id="tri-panel-systemisch" role="tabpanel" aria-labelledby="tri-tab-systemisch" class="p-5 sm:p-7 prose-body text-sm text-parchment/90 space-y-3" hidden>
+        <p>Als System betrachtet, ist die eigentliche Schwachstelle nicht das Phänomen, sondern die Studienarchitektur, die es sichtbar machen soll. Eine am Haupteffekt bemessene Stichprobe (N≈65) sieht auf dem Papier solide aus und wäre trotzdem blind für den Effekt, der tatsächlich zählt — den RSA-bereinigten Interaktionsterm, der N≈196+ verlangt.</p>
+        <p>Das ist ein strukturelles, kein zufälliges Risiko: Wer Power am falschen Term ausrichtet, produziert ein sauber aussehendes, aber irreführendes „kein Effekt". Die Contrast-Logik (Intervention vs. Baseline vs. aktive Kontrolle) und die drei parallelen Falsifikationskriterien sind die systemische Antwort darauf — sie verhindern, dass eine einzelne, günstig ausfallende Achse als Gesamtbeweis verkauft wird.</p>
+      </div>
+
+      <div id="tri-panel-mensch" role="tabpanel" aria-labelledby="tri-tab-mensch" class="p-5 sm:p-7 prose-body text-sm text-parchment/90 space-y-3" hidden>
+        <p>Menschlich betrachtet, ist der eigentliche Wert dieser Bereinigung eine Frage der Aufrichtigkeit gegenüber den Beschäftigten, deren Nervensystem hier zum Gegenstand einer Maßnahme wird. Ein Versprechen wie „432&nbsp;Hz reguliert Ihr autonomes Nervensystem" behandelt Mitarbeitende als Empfänger eines Wirkmechanismus, den sie nicht prüfen können — es ist ein Autoritätsanspruch, kein Angebot.</p>
+        <p>Die kognitiv-ergonomische Erklärung („der Masker verdeckt Sprache, damit Ihr Gehirn sie nicht mehr analysieren muss") ist dagegen etwas, das eine betroffene Person nachvollziehen und selbst einschätzen kann. Ehrliche Reichweiten-Begrenzung — „wir haben Individualeffekte gemessen, keine Firmenbilanz" — ist keine Schwäche des Dokuments, sondern die Voraussetzung dafür, dass Investitionsentscheidungen auf Vertrauen statt auf Marketing beruhen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KORREKTUR-HISTORIE -->
+  <section id="historie" class="py-12 scroll-mt-24">
+    <details class="correction card glass p-6 sm:p-8">
+      <summary class="flex items-center justify-between gap-4">
+        <h2 class="font-display text-2xl text-parchment">Korrektur-Historie <span class="text-muted text-base font-atkinson font-normal">gegenüber der Vorfassung</span></h2>
+        <span class="chevron text-gold text-xl" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="overflow-x-auto mt-5">
+        <table class="data-table">
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Vorfassung</th><th scope="col">Bereinigung</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="font-mono text-muted">1</td><td>Intervention = rhythmische Musik (70–75&nbsp;BPM)</td><td>Stetiger Breitband-Masker (BPM&nbsp;=&nbsp;0); Changing-State begründet</td><td><span class="badge badge-fakt">korrigiert</span></td></tr>
+            <tr><td class="font-mono text-muted">2</td><td>Placebo = Pink-Noise-Pulse „ohne Maskierung"</td><td>Kontinuierlicher Masker, nur spektral verschieden; Contrast-Logik</td><td><span class="badge badge-modell">präzisiert</span></td></tr>
+            <tr><td class="font-mono text-muted">3</td><td>„HRV null" bei 432&nbsp;Hz</td><td>„Oft nicht signifikant von 440&nbsp;Hz abweichend" (nicht 432-spezifisch)</td><td><span class="badge badge-modell">kalibriert</span></td></tr>
+            <tr><td class="font-mono text-muted">4</td><td>432&nbsp;Hz teils als kausaler/physikalischer Wirkfaktor (Kymatik)</td><td>Ästhetisches Tuning, Umstritten; Kymatik-Wirkbehauptung entfernt</td><td><span class="badge badge-umstritten">bereinigt</span></td></tr>
+            <tr><td class="font-mono text-muted">5</td><td>4,5-Hz-Delta-Wellen „für unterschwellige Sicherheit" im Masker</td><td>Als Umstritten ausgelagert (separater Arm), aus Kern-Masker entfernt</td><td><span class="badge badge-umstritten">entkonfundiert</span></td></tr>
+            <tr><td class="font-mono text-muted">6</td><td>„Semiotic Scaffolding" / direktes ANS-Sicherheitssignal</td><td>Wirkpfad als kognitiv-ergonomisch (Maskierung) präzisiert; ANS-Effekt sekundär</td><td><span class="badge badge-modell">präzisiert</span></td></tr>
+            <tr><td class="font-mono text-muted">7</td><td>Power-Analyse weggelassen</td><td>Interaktions-Power (N≈196+) ergänzt; RSA-Kovariate 2,6×</td><td><span class="badge badge-fakt">ergänzt</span></td></tr>
+            <tr><td class="font-mono text-muted">8</td><td>Makro-Amortisation impliziert</td><td>Reichweite begrenzt: Labortest = individuelle Effekte</td><td><span class="badge badge-modell">eingehegt</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <!-- REFERENZEN -->
+  <section id="referenzen" class="py-12 scroll-mt-24">
+    <h2 class="font-display text-3xl text-parchment mb-6">Referenzen &amp; Evidenzklassen</h2>
+
+    <div class="grid gap-8">
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-wider text-fakt mb-3">Verifizierte Primärquellen · Fakt</h3>
+        <ol class="prose-body text-sm text-parchment/85 space-y-3 list-decimal pl-5 marker:text-muted marker:font-mono">
+          <li>Keus van de Poll, M. et al. (2015). <em>Unmasking the effects of masking on performance.</em> J. Acoust. Soc. Am., 138(2), 807–816. — Maskierung reduziert semantische Interferenz; Masker = Rauschen/Wasser/Babble.</li>
+          <li>Haapakangas, A. et al. (2020). <em>The relation between the intelligibility of irrelevant speech and cognitive performance.</em> Indoor Air, 30(6), 1130–1146. — STI-Modell: Leistungsabfall ab STI ≈ 0,21, Maximum ≈ 0,44.</li>
+          <li>Changing-State-Hypothese / Irrelevant Sound Effect — fluktuierende Signale stören serielle Verarbeitung stärker als stetige.</li>
+          <li>432-vs-440-Hz-RCTs (u.&nbsp;a. Calamassi &amp; Pomponi 2019; Halbert et al. 2018; Aravena et al. 2020; Krebs-RCT 2024/25). — HR-Effekt klein; HRV nicht 432-spezifisch.</li>
+          <li>Athletik-RCTs (Sci Rep 2025; Jebabli et al. 2025, PeerJ) — 440&nbsp;Hz ≥ 432&nbsp;Hz für Leistung/Stimmung.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-wider text-umstritten mb-3">Geringe Evidenzzertainty / Kontrovers · Umstritten</h3>
+        <ol class="prose-body text-sm text-parchment/85 space-y-3 list-decimal pl-5 marker:text-muted marker:font-mono" start="6">
+          <li>Binaural-/Monaural-Beats-Meta-Analysen (Theta/Delta; 2024–2026): „low-certainty"-Effekte auf Angst/Schmerz/HRV; EEG-Entrainment-Mechanismus nicht robust bestätigt; Wirkung meist via Kopfhörer oder in Musik eingebettet.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3 class="font-mono text-xs uppercase tracking-wider text-modell mb-3">Modell- / Serienbezug</h3>
+        <ol class="prose-body text-sm text-parchment/85 space-y-3 list-decimal pl-5 marker:text-muted marker:font-mono" start="7">
+          <li><code class="font-mono text-parchment/80">sprint-1/2/3-hcc-3-0-bereinigt.md</code>; <em>Schaltzentrale der Metaanalyse 2026</em> — Serienknoten (η, 916,8&nbsp;Mrd.&nbsp;€, Präsentismus 454&nbsp;Mrd.&nbsp;€).</li>
+        </ol>
+      </div>
+
+      <div class="card glass p-5">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-muted mb-3">Code-Validierung</h3>
+        <p class="text-sm text-parchment/85">RSA-Confound: Normal-Atmung SDNN 18,7&nbsp;ms vs. Slow-Deep 49,2&nbsp;ms → Faktor 2,6 bei identischem Puls. Power: Haupteffekt (d&nbsp;=&nbsp;0,4) N≈51; kovariaten-adjustierte Interaktion N≈196+. 432 vs. 440&nbsp;Hz: HR-Differenz &lt;2&nbsp;BPM, HRV nicht 432-spezifisch.</p>
+      </div>
+    </div>
+
+    <p class="text-xs text-muted mt-10 max-w-2xl">Evidenzstand: September 2026. Diese bereinigte Fassung stellt die Intervention auf einen stetigen (nicht-rhythmischen) Masker um, entkonfundiert das nachträglich eingeführte Delta-Wellen-Element, entfernt die Kymatik-Wirkbehauptung, ergänzt die Interaktions-Power und begrenzt die Makro-Reichweite ehrlich.</p>
+  </section>
+
+</main>
+
+<footer class="content-layer border-t border-parchment/10 mt-8">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <a href="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" target="_blank" rel="noopener noreferrer" class="font-display text-lg text-parchment hover:text-gold transition-colors">Schaltzentrale der Metaanalyse 2026 <span aria-hidden="true">↗</span></a>
+      <p class="text-sm text-muted">Projekt Sternenstaub · HCC 3.0 · Sprint 4 von 4</p>
+    </div>
+    <a href="https://stillerevolution.github.io/" target="_blank" rel="noopener noreferrer" class="inline-link text-sm font-mono">stillerevolution.github.io ↗</a>
+  </div>
+</footer>
+
+<!-- EPISTEMIC EXOSKELETT MODAL -->
+<dialog id="exoskelett" aria-labelledby="exoskelett-title">
+  <div class="glass-strong rounded-2xl overflow-hidden max-h-[88vh] flex flex-col">
+    <div class="flex items-center justify-between px-5 sm:px-7 py-4 border-b border-parchment/10">
+      <h2 id="exoskelett-title" class="font-display text-xl sm:text-2xl text-parchment">Epistemisches Exoskelett</h2>
+      <button type="button" id="close-exoskelett" aria-label="Dialog schließen" class="rounded-full w-9 h-9 flex items-center justify-center text-parchment/70 hover:text-parchment hover:bg-parchment/10 transition-colors">✕</button>
+    </div>
+
+    <div role="tablist" aria-label="Exoskelett-Bereiche" class="flex flex-wrap gap-1 px-5 sm:px-7 pt-3 border-b border-parchment/10 shrink-0">
+      <button role="tab" id="exo-tab-ledger" aria-controls="exo-panel-ledger" aria-selected="true" class="tab-btn font-mono text-xs sm:text-sm px-3 py-2">Verification Ledger</button>
+      <button role="tab" id="exo-tab-falsifikation" aria-controls="exo-panel-falsifikation" aria-selected="false" tabindex="-1" class="tab-btn font-mono text-xs sm:text-sm px-3 py-2">Falsifikationspanel</button>
+      <button role="tab" id="exo-tab-offen" aria-controls="exo-panel-offen" aria-selected="false" tabindex="-1" class="tab-btn font-mono text-xs sm:text-sm px-3 py-2">Offene Fragen</button>
+    </div>
+
+    <div class="overflow-y-auto px-5 sm:px-7 py-5">
+      <div id="exo-panel-ledger" role="tabpanel" aria-labelledby="exo-tab-ledger" class="text-sm space-y-4">
+        <p class="text-parchment/85">Transparenz über KI-gestützte Prozessschritte. Die inhaltliche Validierung und Verantwortung liegt beim menschlichen Autor (Human Verified).</p>
+        <div class="overflow-x-auto">
+          <table class="data-table">
+            <thead><tr><th scope="col">Prozessschritt</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td>Quellenauswahl &amp; Literatursichtung</td><td><span class="badge badge-modell">KI-unterstützt</span></td></tr>
+              <tr><td>Statistische Berechnungen (Power, RSA-Faktor)</td><td><span class="badge badge-modell">KI-unterstützt, code-geprüft</span></td></tr>
+              <tr><td>Textsynthese &amp; Formulierung</td><td><span class="badge badge-modell">KI-unterstützt</span></td></tr>
+              <tr><td>Fachliche Richtigkeit &amp; Freigabe</td><td><span class="badge badge-fakt">Human Verified</span></td></tr>
+              <tr><td>Epistemische Einordnung (Fakt/Modell/Umstritten)</td><td><span class="badge badge-fakt">Human Verified</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="exo-panel-falsifikation" role="tabpanel" aria-labelledby="exo-tab-falsifikation" class="text-sm space-y-3" hidden>
+        <p class="text-parchment/85">Die zentrale These dieses Sprints bricht in sich zusammen, wenn:</p>
+        <ol class="list-decimal pl-5 space-y-2 marker:text-umstritten marker:font-mono">
+          <li>die Fehlerquote bei semantisch-interferierenden Aufgaben unter Intervention <strong class="text-parchment">nicht</strong> signifikant gegenüber Baseline sinkt — die Maskierung hätte dann keinen kognitiven Effekt.</li>
+          <li>der RMSSD-Interaktionseffekt <strong class="text-parchment">nach</strong> RSA-Bereinigung nicht signifikant bleibt — der physiologische Effekt wäre dann ein Atem-Artefakt, kein Maskierungseffekt.</li>
+          <li>die Cortisol-Delta-Werte zwischen Intervention und Baseline <strong class="text-parchment">nicht</strong> flacher verlaufen — die endokrine Achse würde die kognitive und physiologische Achse dann widerlegen statt stützen.</li>
+        </ol>
+      </div>
+
+      <div id="exo-panel-offen" role="tabpanel" aria-labelledby="exo-tab-offen" class="text-sm space-y-3" hidden>
+        <p class="text-parchment/85">Kritische Modellabhängigkeiten und offene Forschungsfragen:</p>
+        <ul class="list-disc pl-5 space-y-2 marker:text-modell">
+          <li>Die Übertragung von individuellen Labor-/Feldeffekten auf die makroökonomische Präsentismus-Attribution aus Sprint&nbsp;1 ist plausibel, aber nicht direkt validiert.</li>
+          <li>Die STI-Schwellenwerte (≈0,21 / ≈0,44) stammen aus der referierten Literatur; ihre Generalisierbarkeit über Sprachen, Raumakustik und Bürotypen hinweg ist nicht dokumentseigen geprüft.</li>
+          <li>Langzeit-Habituation an den Masker (Wirkverlust über Wochen/Monate) ist im vorliegenden Design nicht erfasst und bleibt eine offene Frage für Folgestudien.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Particle network canvas ---------- */
+  var canvas = document.getElementById('particle-canvas');
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var mouse = { x: null, y: null, active: false };
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H;
+
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function initParticles(){
+    var count = Math.min(90, Math.floor((W * H) / 16000));
+    particles = [];
+    for (var i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: 1.1 + Math.random() * 1.4
+      });
+    }
+  }
+
+  var MAGNET_RADIUS = 160;
+  var REPEL_RADIUS = 42;
+
+  function step(){
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+
+      if (mouse.active){
+        var dx = mouse.x - p.x, dy = mouse.y - p.y;
+        var dist = Math.sqrt(dx*dx + dy*dy) || 0.0001;
+        if (dist < REPEL_RADIUS){
+          var force = (REPEL_RADIUS - dist) / REPEL_RADIUS;
+          p.vx -= (dx / dist) * force * 0.9;
+          p.vy -= (dy / dist) * force * 0.9;
+        } else if (dist < MAGNET_RADIUS){
+          var pull = (MAGNET_RADIUS - dist) / MAGNET_RADIUS;
+          p.vx += (dx / dist) * pull * 0.14;
+          p.vy += (dy / dist) * pull * 0.14;
+        }
+      }
+
+      p.vx *= 0.965;
+      p.vy *= 0.965;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -20) p.x = W + 20;
+      if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20;
+      if (p.y > H + 20) p.y = -20;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(217,163,92,0.55)';
+      ctx.fill();
+    }
+
+    for (var a = 0; a < particles.length; a++){
+      for (var b = a + 1; b < particles.length; b++){
+        var pa = particles[a], pb = particles[b];
+        var ddx = pa.x - pb.x, ddy = pa.y - pb.y;
+        var d = Math.sqrt(ddx*ddx + ddy*ddy);
+        if (d < 120){
+          ctx.beginPath();
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
+          ctx.strokeStyle = 'rgba(143,193,240,' + (0.14 * (1 - d/120)) + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+
+  function setMouse(x, y){
+    mouse.x = x; mouse.y = y; mouse.active = true;
+  }
+
+  window.addEventListener('mousemove', function(e){ setMouse(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener('mouseleave', function(){ mouse.active = false; });
+  window.addEventListener('touchmove', function(e){
+    if (e.touches && e.touches[0]) setMouse(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  window.addEventListener('touchend', function(){ mouse.active = false; });
+
+  window.addEventListener('resize', function(){ resize(); initParticles(); });
+
+  resize();
+  initParticles();
+  if (reduceMotion){
+    step();
+  } else {
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- Scrollspy nav ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav]'));
+  var sections = navLinks.map(function(link){
+    return document.querySelector(link.getAttribute('href'));
+  }).filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var link = navLinks.find(function(l){ return l.getAttribute('href') === '#' + entry.target.id; });
+        if (!link) return;
+        if (entry.isIntersecting){
+          navLinks.forEach(function(l){ l.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  /* ---------- Evidence filter ---------- */
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll('.legend-btn[data-filter]'));
+  var evidenceItems = Array.prototype.slice.call(document.querySelectorAll('[data-evidence]'));
+  var activeFilters = new Set();
+
+  function applyFilters(){
+    if (activeFilters.size === 0){
+      evidenceItems.forEach(function(el){ el.classList.remove('dimmed'); });
+      return;
+    }
+    evidenceItems.forEach(function(el){
+      var tags = el.getAttribute('data-evidence').split(' ');
+      var match = tags.some(function(t){ return activeFilters.has(t); });
+      el.classList.toggle('dimmed', !match);
+    });
+  }
+
+  filterButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var key = btn.getAttribute('data-filter');
+      var pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!pressed));
+      if (pressed) activeFilters.delete(key); else activeFilters.add(key);
+      applyFilters();
+    });
+  });
+
+  /* ---------- Generic accessible tabs ---------- */
+  function initTabs(tablist){
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+    function activate(tab, focus){
+      tabs.forEach(function(t){
+        var selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !selected;
+      });
+      if (focus) tab.focus();
+    }
+    tabs.forEach(function(tab, idx){
+      tab.addEventListener('click', function(){ activate(tab, false); });
+      tab.addEventListener('keydown', function(e){
+        var newIdx = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') newIdx = (idx + 1) % tabs.length;
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') newIdx = (idx - 1 + tabs.length) % tabs.length;
+        if (e.key === 'Home') newIdx = 0;
+        if (e.key === 'End') newIdx = tabs.length - 1;
+        if (newIdx !== null){
+          e.preventDefault();
+          activate(tabs[newIdx], true);
+        }
+      });
+    });
+  }
+  document.querySelectorAll('[role="tablist"]').forEach(function(tl){ initTabs(tl); });
+
+  /* ---------- Exoskelett dialog ---------- */
+  var dialog = document.getElementById('exoskelett');
+  var openBtn = document.getElementById('open-exoskelett');
+  var closeBtn = document.getElementById('close-exoskelett');
+  var lastTrigger = null;
+
+  openBtn.addEventListener('click', function(){
+    lastTrigger = openBtn;
+    dialog.showModal();
+  });
+  closeBtn.addEventListener('click', function(){ dialog.close(); });
+  dialog.addEventListener('click', function(e){
+    if (e.target === dialog) dialog.close();
+  });
+  dialog.addEventListener('close', function(){
+    if (lastTrigger) lastTrigger.focus();
+  });
+})();
+</script>
+</body>
+</html>

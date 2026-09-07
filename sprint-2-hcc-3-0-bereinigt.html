@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belastbarkeit exekutiver Funktionen unter kognitiver Last · HCC 3.0 Sprint 2 · Sternenstaub</title>
+<meta name="description" content="Systematische Meta-Analyse der neurovaskulären, endokrinen und neuroergonomischen Signatur exekutiver Funktionen unter kognitiver Last — bereinigte, evidenzgeprüfte Fassung. HCC 3.0, Sprint 2, Schaltzentrale der Metaanalyse 2026.">
+<meta name="author" content="Sternenstaub · stillerevolution.github.io">
+<meta name="color-scheme" content="dark">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Belastbarkeit exekutiver Funktionen unter kognitiver Last — HCC 3.0 Sprint 2">
+<meta property="og:description" content="Neurovaskuläre, endokrine und neuroergonomische Signatur kognitiver Überlast — bereinigte, evidenzgeprüfte Fassung der Schaltzentrale der Metaanalyse 2026.">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Sternenstaub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HCC 3.0 · Sprint 2 — Belastbarkeit exekutiver Funktionen unter kognitiver Last">
+<meta name="twitter:description" content="Bereinigte, evidenzgeprüfte Meta-Analyse: fNIRS-Signatur, endokrine Triage, η-Kausalmodell, Team Neural Efficiency.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23060714'/%3E%3Ccircle cx='16' cy='16' r='5.5' fill='%23d9a35c'/%3E%3Ccircle cx='7' cy='9' r='1.4' fill='%23f4ead9'/%3E%3Ccircle cx='25' cy='23' r='1.1' fill='%23f4ead9'/%3E%3Ccircle cx='24' cy='8' r='0.9' fill='%23f4ead9'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Belastbarkeit exekutiver Funktionen unter kognitiver Last",
+  "alternativeHeadline": "HCC 3.0 · Sprint 2 — Schaltzentrale der Metaanalyse 2026",
+  "description": "Systematische Meta-Analyse der neurovaskulären, endokrinen und neuroergonomischen Signatur exekutiver Funktionen unter kognitiver Last.",
+  "inLanguage": "de",
+  "datePublished": "2026-09",
+  "author": { "@type": "Organization", "name": "Sternenstaub", "url": "https://stillerevolution.github.io/" },
+  "publisher": { "@type": "Organization", "name": "Sternenstaub" }
+}
+</script>
+
+<style>
+  :root{
+    --void: #060714;
+    --void-rgb: 6,7,20;
+    --nebula: #10152b;
+    --nebula-rgb: 16,21,43;
+    --nebula-light: #171d3d;
+    --gold: #d9a35c;
+    --gold-rgb: 217,163,92;
+    --amber-glow: #f4c98a;
+    --parchment: #f4ead9;
+    --parchment-rgb: 244,234,217;
+    --parchment-dim: rgba(244,234,217,0.68);
+    --parchment-faint: rgba(244,234,217,0.72);
+    --fakt: #6ee7b7;
+    --modell: #a5b4fc;
+    --umstritten: #fca5a5;
+    --line: rgba(217,163,92,0.22);
+    --line-soft: rgba(244,234,217,0.12);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Atkinson Hyperlegible', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius: 18px;
+    --container: 780px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; background:var(--void);}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--font-body);
+    font-size:1.06rem;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--gold); color:var(--void); }
+
+  a{ color:var(--gold); text-decoration-color:rgba(217,163,92,0.45); text-underline-offset:3px; }
+  a:hover{ color:var(--amber-glow); }
+
+  :focus-visible{ outline:2px solid var(--amber-glow); outline-offset:3px; border-radius:4px; }
+
+  h1,h2,h3,h4{ font-family:var(--font-display); color:var(--parchment); font-weight:600; letter-spacing:-0.01em; margin:0; }
+
+  .skip-link{
+    position:absolute; left:1rem; top:-4rem; z-index:100;
+    background:var(--gold); color:var(--void); padding:.7rem 1.1rem; border-radius:8px;
+    font-family:var(--font-body); font-weight:700; transition:top .2s ease;
+  }
+  .skip-link:focus{ top:1rem; }
+
+  /* ---------- Particle Canvas ---------- */
+  #bg-canvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{ position:relative; z-index:1; max-width:var(--container); margin:0 auto; padding:0 1.5rem; }
+  .wrap-wide{ position:relative; z-index:1; max-width:980px; margin:0 auto; padding:0 1.5rem; }
+
+  main section{ padding:5rem 0; border-top:1px solid var(--line-soft); }
+  main section:first-of-type{ border-top:none; }
+
+  .kicker{
+    font-family:var(--font-mono); font-size:.78rem; letter-spacing:.05em;
+    color:var(--gold); margin-bottom:.9rem; display:flex; align-items:center; gap:.6rem;
+  }
+  .kicker::before{ content:""; width:22px; height:1px; background:var(--gold); display:inline-block; }
+
+  h2.section-title{ font-size:clamp(1.6rem,3vw,2.3rem); margin-bottom:1.6rem; }
+  p{ margin:0 0 1.15rem; color:var(--parchment); }
+  .lead{ font-size:1.15rem; color:var(--parchment-dim); }
+  .prose p:last-child{ margin-bottom:0; }
+  .prose{ max-width:68ch; }
+
+  /* ---------- Header / Nav ---------- */
+  header.site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(var(--void-rgb),0.72);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 1.5rem; max-width:1100px; margin:0 auto; }
+  .brand{ font-family:var(--font-mono); font-size:.85rem; color:var(--parchment-dim); white-space:nowrap; }
+  .brand strong{ color:var(--gold); font-weight:700; }
+  nav.primary-nav{ display:flex; gap:1.3rem; overflow-x:auto; scrollbar-width:none; }
+  nav.primary-nav::-webkit-scrollbar{ display:none; }
+  nav.primary-nav a{
+    font-size:.86rem; color:var(--parchment-dim); text-decoration:none; white-space:nowrap;
+    padding:.3rem 0; border-bottom:2px solid transparent;
+  }
+  nav.primary-nav a:hover, nav.primary-nav a.active{ color:var(--parchment); border-bottom-color:var(--gold); }
+  .btn-exo{
+    font-family:var(--font-mono); font-size:.8rem; color:var(--void); background:var(--gold);
+    border:none; padding:.55rem 1rem; border-radius:999px; cursor:pointer; white-space:nowrap;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-exo:hover{ background:var(--amber-glow); transform:translateY(-1px); }
+
+  #progress-bar{ position:fixed; top:0; left:0; height:2px; background:var(--gold); z-index:60; width:0%; transition:width .1s linear; }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; padding:7rem 0 5rem; text-align:left; }
+  .hero h1{ font-size:clamp(2.3rem,5vw,4.2rem); line-height:1.08; margin-bottom:1.4rem; }
+  .hero .subtitle{ font-size:clamp(1.05rem,1.6vw,1.3rem); color:var(--parchment-dim); max-width:60ch; margin-bottom:1.8rem; }
+  .hero .meta-line{ font-family:var(--font-mono); font-size:.82rem; color:var(--gold); margin-bottom:2.4rem; }
+  .hero-cta{ display:flex; flex-wrap:wrap; gap:1rem; }
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.5rem; border-radius:12px;
+    font-family:var(--font-body); font-weight:700; font-size:.95rem; text-decoration:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border:1px solid var(--line);
+  }
+  .btn-primary{ background:var(--gold); color:var(--void); border-color:var(--gold); }
+  .btn-primary:hover{ background:var(--amber-glow); box-shadow:0 0 24px rgba(217,163,92,0.35); transform:translateY(-2px); }
+  .btn-ghost{ background:rgba(var(--nebula-rgb),0.5); color:var(--parchment); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  /* ---------- Evidence Badges ---------- */
+  .tag{
+    display:inline-flex; align-items:center; gap:.4rem; font-family:var(--font-mono); font-size:.72rem;
+    padding:.28rem .6rem; border-radius:999px; border:1px solid currentColor; white-space:nowrap; line-height:1;
+  }
+  .tag::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .tag-fakt{ color:var(--fakt); background:rgba(110,231,183,0.08); }
+  .tag-modell{ color:var(--modell); background:rgba(165,180,252,0.08); }
+  .tag-umstritten{ color:var(--umstritten); background:rgba(252,165,165,0.08); }
+
+  .risk{ display:inline-flex; align-items:center; gap:.45rem; font-family:var(--font-mono); font-size:.78rem; color:var(--parchment-dim); }
+  .risk-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .risk-niedrig .risk-dot{ background:var(--fakt); }
+  .risk-mittel .risk-dot{ background:var(--gold); }
+  .risk-hoch .risk-dot{ background:var(--umstritten); }
+
+  /* ---------- Rahmen Legend ---------- */
+  .legend-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1.6rem; }
+  .legend-card{ background:rgba(var(--nebula-rgb),0.6); border:1px solid var(--line-soft); border-radius:14px; padding:1.1rem 1.2rem; }
+  .legend-card p{ margin:.5rem 0 0; font-size:.9rem; color:var(--parchment-dim); }
+
+  /* ---------- Panels ---------- */
+  .panel{
+    background:rgba(var(--nebula-rgb),0.68);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--line-soft);
+    border-radius:var(--radius);
+    padding:2rem clamp(1.2rem,4vw,2.4rem);
+  }
+
+  /* ---------- Tables ---------- */
+  .table-scroll{ overflow-x:auto; border-radius:var(--radius); border:1px solid var(--line-soft); }
+  table{ width:100%; border-collapse:collapse; min-width:640px; background:rgba(var(--nebula-rgb),0.55); }
+  caption{ caption-side:top; text-align:left; font-family:var(--font-mono); font-size:.78rem; color:var(--parchment-faint); padding:.9rem 1.2rem 0; }
+  th, td{ padding:.9rem 1.1rem; text-align:left; border-bottom:1px solid var(--line-soft); vertical-align:top; font-size:.94rem; }
+  thead th{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.03em; color:var(--gold); border-bottom:1px solid var(--line); }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:hover{ background:rgba(217,163,92,0.05); }
+  td.num{ font-family:var(--font-mono); color:var(--parchment-faint); width:2.4rem; }
+
+  .status-chip{ font-family:var(--font-mono); font-size:.72rem; color:var(--gold); border:1px solid var(--line); border-radius:999px; padding:.2rem .6rem; white-space:nowrap; }
+
+  /* ---------- Stat Pills / Callouts ---------- */
+  .stat-row{ display:flex; flex-wrap:wrap; gap:.9rem; margin:1.6rem 0; }
+  .stat-pill{
+    background:rgba(var(--nebula-rgb),0.7); border:1px solid var(--line); border-radius:12px;
+    padding:.9rem 1.2rem; min-width:150px;
+  }
+  .stat-pill .value{ font-family:var(--font-mono); font-size:1.35rem; color:var(--gold); display:block; }
+  .stat-pill .label{ font-size:.78rem; color:var(--parchment-dim); }
+
+  aside.callout{
+    border-left:3px solid var(--gold); background:rgba(217,163,92,0.06);
+    padding:1.1rem 1.4rem; border-radius:0 12px 12px 0; margin:1.6rem 0; font-size:.96rem; color:var(--parchment-dim);
+  }
+
+  /* ---------- Diagrams ---------- */
+  .diagram-box{ background:rgba(var(--nebula-rgb),0.55); border:1px solid var(--line-soft); border-radius:var(--radius); padding:1.4rem 1.2rem 1rem; margin:1.8rem 0; }
+  .diagram-box svg{ width:100%; height:auto; display:block; }
+  .diagram-box svg text{ font-family:var(--font-mono); }
+  .diagram-caption{ font-size:.82rem; color:var(--parchment-faint); margin-top:.7rem; text-align:center; }
+
+  /* ---------- Formula ---------- */
+  .formula-box{
+    font-family:var(--font-mono); text-align:center; font-size:clamp(1rem,2.4vw,1.35rem);
+    color:var(--gold); background:rgba(217,163,92,0.07); border:1px solid var(--line);
+    border-radius:14px; padding:1.4rem 1rem; margin:1.8rem 0;
+  }
+
+  /* ---------- Kausalbrücke Flow ---------- */
+  .flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; margin:2rem 0; }
+  .flow-step{ background:rgba(var(--nebula-rgb),0.7); border:1px solid var(--line-soft); border-radius:14px; padding:1.1rem; position:relative; }
+  .flow-step .num{ font-family:var(--font-mono); color:var(--gold); font-size:.85rem; display:block; margin-bottom:.5rem; }
+  .flow-step h4{ font-size:.98rem; margin-bottom:.4rem; }
+  .flow-step p{ font-size:.85rem; color:var(--parchment-dim); margin:0; }
+  .flow-step:not(:last-child)::after{
+    content:"→"; position:absolute; right:-1.05rem; top:50%; transform:translateY(-50%);
+    color:var(--gold); font-size:1.1rem; z-index:2;
+  }
+  @media (max-width: 860px){
+    .flow{ grid-template-columns:1fr; }
+    .flow-step:not(:last-child)::after{ content:"↓"; right:auto; left:50%; top:auto; bottom:-1.05rem; transform:translateX(-50%); }
+  }
+
+  /* ---------- Sensitivity Bars ---------- */
+  .sens-bar-wrap{ display:flex; align-items:center; gap:.7rem; min-width:180px; }
+  .sens-bar-track{ flex:1; height:8px; background:rgba(244,234,217,0.08); border-radius:999px; overflow:hidden; }
+  .sens-bar-fill{ height:100%; background:linear-gradient(90deg, var(--gold), var(--amber-glow)); border-radius:999px; }
+  .sens-value{ font-family:var(--font-mono); font-size:.85rem; color:var(--gold); width:3.2rem; text-align:right; }
+
+  /* ---------- Contrast Cards (TNE) ---------- */
+  .contrast-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1.6rem; }
+  .contrast-card{ background:rgba(var(--nebula-rgb),0.7); border:1px solid var(--line-soft); border-radius:16px; padding:1.5rem; }
+  .contrast-card h4{ font-size:1.05rem; margin-bottom:.7rem; color:var(--gold); }
+  .contrast-card p{ font-size:.92rem; color:var(--parchment-dim); margin:0; }
+  @media (max-width: 720px){ .contrast-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Triangulation ---------- */
+  .tri-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:1.8rem; }
+  .tri-card{ background:rgba(var(--nebula-rgb),0.68); border:1px solid var(--line-soft); border-radius:18px; padding:1.7rem; }
+  .tri-card .kicker{ margin-bottom:1rem; }
+  .tri-card h3{ font-size:1.2rem; margin-bottom:.8rem; }
+  .tri-card p{ font-size:.92rem; color:var(--parchment-dim); }
+  @media (max-width: 900px){ .tri-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ padding:4rem 0 3rem; border-top:1px solid var(--line-soft); text-align:center; }
+  footer .evidenzstand{ font-size:.88rem; color:var(--parchment-faint); font-style:italic; max-width:68ch; margin:0 auto 2rem; }
+  footer .foot-links{ display:flex; justify-content:center; gap:1.4rem; flex-wrap:wrap; margin-bottom:1.4rem; font-family:var(--font-mono); font-size:.82rem; }
+  footer .fine{ font-size:.78rem; color:var(--parchment-faint); }
+
+  /* ---------- Modal / Dialog ---------- */
+  dialog#exoskelett{
+    background:var(--nebula); color:var(--parchment); border:1px solid var(--line);
+    border-radius:20px; padding:0; max-width:640px; width:92vw; max-height:85vh;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  dialog#exoskelett::backdrop{ background:rgba(3,4,10,0.72); backdrop-filter:blur(3px); }
+  dialog#exoskelett[open]{ animation:modal-in .22s ease-out; }
+  @keyframes modal-in{ from{ opacity:0; transform:translateY(12px) scale(.98);} to{ opacity:1; transform:translateY(0) scale(1);} }
+
+  .modal-head{ display:flex; align-items:center; justify-content:space-between; padding:1.3rem 1.5rem; border-bottom:1px solid var(--line-soft); }
+  .modal-head h2{ font-size:1.25rem; }
+  .modal-close{ background:none; border:1px solid var(--line); color:var(--parchment); width:2.1rem; height:2.1rem; border-radius:50%; cursor:pointer; font-size:1.1rem; line-height:1; }
+  .modal-close:hover{ color:var(--gold); border-color:var(--gold); }
+
+  .tabs{ display:flex; gap:.4rem; padding:1rem 1.5rem 0; border-bottom:1px solid var(--line-soft); flex-wrap:wrap; }
+  .tab-btn{
+    background:none; border:1px solid transparent; color:var(--parchment-dim); font-family:var(--font-mono);
+    font-size:.78rem; padding:.55rem .85rem; border-radius:10px 10px 0 0; cursor:pointer;
+  }
+  .tab-btn[aria-selected="true"]{ color:var(--gold); border-color:var(--line-soft); border-bottom-color:var(--nebula); background:rgba(217,163,92,0.06); }
+  .tab-panel{ padding:1.4rem 1.6rem 1.7rem; overflow-y:auto; max-height:50vh; }
+  .tab-panel[hidden]{ display:none; }
+  .tab-panel h3{ font-size:1rem; color:var(--gold); margin-bottom:.6rem; }
+  .tab-panel p, .tab-panel li{ font-size:.92rem; color:var(--parchment-dim); }
+  .tab-panel ul{ padding-left:1.2rem; margin:0 0 1.1rem; }
+  .tab-panel ul:last-child{ margin-bottom:0; }
+  .tab-panel li{ margin-bottom:.6rem; }
+
+  /* ---------- Back to top ---------- */
+  #back-to-top{
+    position:fixed; bottom:1.6rem; right:1.6rem; z-index:40; width:2.8rem; height:2.8rem; border-radius:50%;
+    background:rgba(var(--nebula-rgb),0.85); border:1px solid var(--line); color:var(--gold);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem;
+    opacity:0; pointer-events:none; transition:opacity .25s ease, transform .2s ease;
+  }
+  #back-to-top.visible{ opacity:1; pointer-events:auto; }
+  #back-to-top:hover{ transform:translateY(-3px); border-color:var(--gold); }
+
+  @media (max-width: 720px){
+    .flow{ gap:1.4rem; }
+    main section{ padding:3.5rem 0; }
+    .hero{ padding:5rem 0 3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    dialog#exoskelett[open]{ animation:none; }
+    *{ transition-duration:0.001ms !important; animation-duration:0.001ms !important; }
+  }
+
+  @media print{
+    #bg-canvas, header.site-header, #progress-bar, #back-to-top, .hero-cta{ display:none !important; }
+    body{ background:#fff; color:#111; }
+    .panel, .diagram-box, .tri-card, .contrast-card, .flow-step, .stat-pill{ background:#fff; border-color:#ccc; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+<div id="progress-bar" role="presentation"></div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <span class="brand"><strong>Sternenstaub</strong> · HCC 3.0 · Sprint 2</span>
+    <nav class="primary-nav" aria-label="Abschnittsnavigation">
+      <a href="#kurzfassung">Kurzfassung</a>
+      <a href="#abschnitt-2">Neurobiologie</a>
+      <a href="#abschnitt-5">Kausalmodell</a>
+      <a href="#abschnitt-6">Teams</a>
+      <a href="#triangulation">Triangulation</a>
+      <a href="#referenzen">Referenzen</a>
+    </nav>
+    <button type="button" class="btn-exo" id="openExoBtn" aria-haspopup="dialog" aria-controls="exoskelett">Exoskelett</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="kicker">HCC 3.0 · Sprint 2 · Schaltzentrale der Metaanalyse 2026</p>
+      <h1 id="hero-title">Belastbarkeit exekutiver Funktionen unter kognitiver Last</h1>
+      <p class="subtitle">Systematische Meta-Analyse der neurovaskulären, endokrinen und neuroergonomischen Signatur — bereinigte, evidenzgeprüfte Fassung.</p>
+      <p class="meta-line">Adressaten: C-Level-Entscheider · Fachgremien · Gesetzgebung — Evidenzstand September 2026</p>
+      <div class="hero-cta">
+        <a href="#kurzfassung" class="btn btn-primary">Zur Kurzfassung</a>
+        <button type="button" class="btn btn-ghost" id="openExoBtnHero" aria-haspopup="dialog" aria-controls="exoskelett">Epistemisches Exoskelett öffnen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPISTEMISCHER RAHMEN -->
+  <section aria-labelledby="rahmen-title">
+    <div class="wrap">
+      <p class="kicker">Epistemischer Rahmen</p>
+      <h2 class="section-title" id="rahmen-title">Wie diese Analyse ihre Aussagen kennzeichnet</h2>
+      <p class="prose">Jede tragende Aussage trägt ein Evidenzlabel nach der Systematik der <em>Schaltzentrale der Metaanalyse 2026</em>. Die drei Klassen verschmelzen bewusst nicht im Satzfluss, sondern bleiben visuell getrennt:</p>
+      <div class="legend-grid">
+        <div class="legend-card">
+          <span class="tag tag-fakt">FAKT</span>
+          <p>Verifizierte Primärdaten oder referierte Meta-Analysen.</p>
+        </div>
+        <div class="legend-card">
+          <span class="tag tag-modell">MODELL</span>
+          <p>Berechnete bzw. modellierte Größe oder postulierter Mechanismus, abhängig von offengelegten Annahmen.</p>
+        </div>
+        <div class="legend-card">
+          <span class="tag tag-umstritten">UMSTRITTEN</span>
+          <p>Annahmen-sensitiv, methodisch offen oder mit disputierter Kausalinterpretation.</p>
+        </div>
+      </div>
+      <p class="prose" style="margin-top:1.6rem; font-size:.92rem; color:var(--parchment-faint);">Diese Fassung integriert die forensischen Korrekturen aus der Validierung und ist mit der bereinigten Sprint-1-Fassung konsistent (Fundamentwert 916,8 Mrd. €). Die Korrektur-Historie am Ende dokumentiert die Änderungen.</p>
+    </div>
+  </section>
+
+  <!-- KURZFASSUNG -->
+  <section id="kurzfassung" aria-labelledby="kurz-title">
+    <div class="wrap-wide">
+      <p class="kicker">Für Entscheider</p>
+      <h2 class="section-title" id="kurz-title">Kurzfassung</h2>
+      <p class="prose lead" style="max-width:68ch;">Die makroökonomische Reibung aus Sprint 1 hat eine biologische Basis: die Belastungsgrenzen des präfrontalen Kortex. Diese Analyse überführt „Stress" in messbare Marker — unter strenger Artefaktbereinigung — und modelliert den Weg von individueller Überlast zu organisatorischem Kapazitätsverlust.</p>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Sieben Kernaussagen mit Evidenzlabel und Falsifikationsrisiko</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Kernaussage</th><th scope="col">Label</th><th scope="col">Falsifikationsrisiko</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num">1</td>
+              <td>fNIRS-Hämodynamik last-abhängig; Plateau bei Überlast (&gt; 75&nbsp;%)</td>
+              <td><span class="tag tag-fakt">FAKT</span></td>
+              <td><span class="risk risk-niedrig"><span class="risk-dot"></span>Niedrig — robust, sofern SCR-bereinigt</span></td>
+            </tr>
+            <tr>
+              <td class="num">2</td>
+              <td>Artefaktbereinigung (Short-Channel Regression) ist obligatorisch</td>
+              <td><span class="tag tag-fakt">FAKT</span></td>
+              <td><span class="risk risk-niedrig"><span class="risk-dot"></span>Niedrig — methodisch korrekt</span></td>
+            </tr>
+            <tr>
+              <td class="num">3</td>
+              <td>Akuter Stress ↓ Arbeitsgedächtnis (klein: g&nbsp;≈&nbsp;−0,15)</td>
+              <td><span class="tag tag-fakt">FAKT</span></td>
+              <td><span class="risk risk-niedrig"><span class="risk-dot"></span>Niedrig — Effekt klein, heterogen</span></td>
+            </tr>
+            <tr>
+              <td class="num">4</td>
+              <td>Triage: Reaktionsinhibition bleibt intakt bzw. steigt</td>
+              <td><span class="tag tag-fakt">FAKT</span></td>
+              <td><span class="risk risk-niedrig"><span class="risk-dot"></span>Niedrig — meta-analytisch gestützt</span></td>
+            </tr>
+            <tr>
+              <td class="num">5</td>
+              <td>Inverted-U / Eustress ca. 40–60&nbsp;%, Kipppunkt variabel</td>
+              <td><span class="tag tag-umstritten">UMSTRITTEN</span> <span class="tag tag-modell">MODELL</span></td>
+              <td><span class="risk risk-mittel"><span class="risk-dot"></span>Mittel — „Gesetz" überzogen; Moderatoren</span></td>
+            </tr>
+            <tr>
+              <td class="num">6</td>
+              <td>Kausalbrücke Überlast → η&nbsp;≈&nbsp;0,70 (Nachfrage- vs. Angebots-Achse)</td>
+              <td><span class="tag tag-modell">MODELL</span></td>
+              <td><span class="risk risk-hoch"><span class="risk-dot"></span>Mittel-hoch — Richtung postuliert, nicht gemessen</span></td>
+            </tr>
+            <tr>
+              <td class="num">7</td>
+              <td>Team Neural Efficiency: trainierte Teams oft ↓ präfrontale IBS</td>
+              <td><span class="tag tag-fakt">FAKT</span> <span class="tag tag-modell">MODELL</span></td>
+              <td><span class="risk risk-mittel"><span class="risk-dot"></span>Mittel — aufgabentyp-abhängig</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section id="abschnitt-1" aria-labelledby="s1-title">
+    <div class="wrap">
+      <p class="kicker">01</p>
+      <h2 class="section-title" id="s1-title">Der epistemische Paradigmenwechsel</h2>
+      <div class="prose">
+        <p>Die präzise Vermessung kognitiver Kapazitätsgrenzen erfordert einen Paradigmenwechsel, der fehleranfällige Selbstauskünfte durch physiologische und neurovaskuläre Marker <strong>ergänzt</strong> — nicht ersetzt. Die makroökonomische Voranalyse (Sprint 1) quantifizierte den systemischen Entropieverlust für Deutschland auf <strong>916,8 Milliarden Euro</strong> jährlich — bestehend aus somatischen Behandlungskosten, Absentismus, Präsentismus und Fluktuation <span class="tag tag-modell">MODELL</span>.</p>
+        <p>Um diese Ausfallerscheinungen nicht als abstrakte Strukturdefizite misszudeuten, verschiebt diese Synthese die Ebene auf die biologische Friktion des Gehirns und überführt „Stress" in die messbaren Dimensionen der präfrontalen Hämodynamik und der elektrophysiologischen Oszillationsdynamik <span class="tag tag-fakt">FAKT</span>.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-pill"><span class="value">916,8 Mrd. €</span><span class="label">Systemischer Entropieverlust / Jahr (Sprint 1)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="abschnitt-2" aria-labelledby="s2-title">
+    <div class="wrap">
+      <p class="kicker">02</p>
+      <h2 class="section-title" id="s2-title">Neurovaskuläre Signatur und obligatorische Rauschbereinigung (fNIRS)</h2>
+      <div class="prose">
+        <p>Der präfrontale Kortex (PFC) ist das neuroanatomische Zentrum für exekutive Kontrolle und Aufmerksamkeitsallokation; die Neuroergonomie misst seine Auslastung über die funktionelle Nah-Infrarotspektroskopie (fNIRS) <span class="tag tag-fakt">FAKT</span>.</p>
+        <p><strong>Akademische Integrität gebietet, fNIRS nicht als rauschfreien Goldstandard zu verklären.</strong> Unter kognitivem und emotionalem Stress entsteht eine starke autonome systemische Reaktion (Blutdruckanstieg, Hautdurchblutung der Kopfhaut), die als „kortikale Aktivierung" fehlinterpretiert werden kann. Dieses Framework stützt sich daher ausschließlich auf Daten, die zwingend um systemische Artefakte bereinigt wurden — insbesondere via Short-Channel Regression (SCR) <span class="tag tag-fakt">FAKT</span>. Diese Disziplin ist konsistent mit der Methodik von Sprint 3.</p>
+        <p>Die bereinigte Hämodynamik verläuft nicht linear: Beim Übergang von leichter zu moderater Last rekrutiert das Gehirn intensiv zusätzliche Ressourcen; wird die Anforderung in die kognitive Überlast (Last &gt; 75&nbsp;%) getrieben, flacht der Anstieg ab oder stagniert. Das System kollabiert nicht physisch, aber die Fehlerquoten steigen nicht-linear an <span class="tag tag-fakt">FAKT</span>. Ergänzend belegt die EEG den Eintritt neuronaler Ermüdung: chronische Unterbrechungen erzwingen Kontextwechsel (Switching Costs), die die Aufmerksamkeitsreallokation kompromittieren <span class="tag tag-fakt">FAKT</span>.</p>
+      </div>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 600 300" role="img" aria-labelledby="dia1-title dia1-desc">
+          <title id="dia1-title">Bereinigte fNIRS-Hämodynamik über kognitive Last</title>
+          <desc id="dia1-desc">Schematische Darstellung: Das Signal steigt von niedriger zu moderater Last deutlich an und flacht oberhalb von 75 Prozent Last zu einem Plateau ab, während die Fehlerquote weiter zunimmt.</desc>
+          <line x1="40" y1="260" x2="560" y2="260" stroke="rgba(217,163,92,0.22)" stroke-width="1"></line>
+          <line x1="40" y1="260" x2="40" y2="40" stroke="rgba(217,163,92,0.22)" stroke-width="1"></line>
+          <rect x="430" y="40" width="130" height="220" fill="rgba(252,165,165,0.07)"></rect>
+          <line x1="430" y1="40" x2="430" y2="260" stroke="#fca5a5" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"></line>
+          <path d="M 40,238 C 90,222 110,206 144,194 C 180,181 210,160 248,139 C 285,120 320,112 352,102 C 385,92 405,80 430,73 C 450,71 465,69 482,69 C 505,69 535,72 560,75" fill="none" stroke="#d9a35c" stroke-width="3" stroke-linecap="round"></path>
+          <text x="432" y="30" fill="#fca5a5" font-size="12">Überlast &gt; 75 %</text>
+          <text x="470" y="285" fill="rgba(244,234,217,0.72)" font-size="12">Kognitive Last →</text>
+          <text x="46" y="30" fill="rgba(244,234,217,0.72)" font-size="12" transform="rotate(0)">fNIRS-Signal (relativ)</text>
+          <text x="500" y="90" fill="rgba(244,234,217,0.72)" font-size="11">Plateau / Fehlerquote ↑</text>
+        </svg>
+        <p class="diagram-caption">Schematische Darstellung des SCR-bereinigten Lastverlaufs — kein Rohdatenplot.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="abschnitt-3" aria-labelledby="s3-title">
+    <div class="wrap">
+      <p class="kicker">03</p>
+      <h2 class="section-title" id="s3-title">Endokrine Dysregulation und kognitive Triage</h2>
+      <div class="prose">
+        <p>Exekutive Netzwerke sind selektiv vulnerabel. Meta-Analysen (Shields et&nbsp;al., 2016) belegen einen negativen, in der Effektstärke jedoch <strong>kleinen</strong> Einfluss von akutem psychosozialem Stress auf Arbeitsgedächtnis und kognitive Flexibilität (g&nbsp;≈&nbsp;−0,15) <span class="tag tag-fakt">FAKT</span>. Zur Einordnung: Bei g&nbsp;=&nbsp;−0,15 liegt die Überlegenheitswahrscheinlichkeit bei ~54&nbsp;% (Zufall&nbsp;=&nbsp;50&nbsp;%), die Verteilungen überlappen zu ~94&nbsp;% — ein realer, aber subtiler Effekt; Superlative wären unangemessen.</p>
+        <p>Das Gehirn offenbart einen evolutionären <strong>Triage-Mechanismus</strong>: Während das kapazitätsintensive Arbeitsgedächtnis unter Stress leidet, bleibt die <strong>Reaktionsinhibition</strong> häufig intakt oder verbessert sich kurzfristig — Ressourcen werden vom deliberativen Denken abgezogen und der schnellen Gefahrenerkennung zugeteilt <span class="tag tag-fakt">FAKT</span>. Cortisol-Ausschüttung und psychosozialer Stress sind als dissoziierbare Pfade zu betrachten; Cortisol allein ist nicht der einzige Mechanismus der Blockade — die Cortisol-Gabe-Effekte weichen in Meta-Analysen von den Stress-Effekten ab <span class="tag tag-fakt">FAKT</span>.</p>
+      </div>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 600 240" role="img" aria-labelledby="dia2-title dia2-desc">
+          <title id="dia2-title">Effektstärke g ≈ −0,15 als überlappende Verteilungen</title>
+          <desc id="dia2-desc">Schematische Darstellung zweier stark überlappender Verteilungskurven für Arbeitsgedächtnisleistung mit und ohne akuten Stress, die einen kleinen, aber realen Unterschied illustrieren.</desc>
+          <line x1="40" y1="205" x2="560" y2="205" stroke="rgba(217,163,92,0.22)" stroke-width="1"></line>
+          <path d="M 90,205 C 130,205 150,45 230,45 C 310,45 330,205 370,205 Z" fill="#a5b4fc" opacity="0.16" stroke="#a5b4fc" stroke-width="2"></path>
+          <path d="M 120,205 C 160,205 180,45 260,45 C 340,45 360,205 400,205 Z" fill="#d9a35c" opacity="0.16" stroke="#d9a35c" stroke-width="2"></path>
+          <line x1="230" y1="45" x2="230" y2="205" stroke="#a5b4fc" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"></line>
+          <line x1="260" y1="45" x2="260" y2="205" stroke="#d9a35c" stroke-width="1" stroke-dasharray="3 3" opacity="0.7"></line>
+          <text x="150" y="225" fill="#a5b4fc" font-size="12">Unter akutem Stress</text>
+          <text x="360" y="225" fill="#d9a35c" font-size="12" text-anchor="end">Ohne Stress</text>
+          <text x="300" y="30" fill="rgba(244,234,217,0.68)" font-size="13" text-anchor="middle">~94 % Überlappung</text>
+        </svg>
+        <p class="diagram-caption">Schematisch — kein Rohdatenplot. Verdeutlicht, warum g ≈ −0,15 als klein einzuordnen ist.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-pill"><span class="value">g ≈ −0,15</span><span class="label">Effektstärke, Stress → Arbeitsgedächtnis</span></div>
+        <div class="stat-pill"><span class="value">~54 %</span><span class="label">Überlegenheitswahrscheinlichkeit (U3)</span></div>
+        <div class="stat-pill"><span class="value">~94 %</span><span class="label">Verteilungsüberlappung</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="abschnitt-4" aria-labelledby="s4-title">
+    <div class="wrap">
+      <p class="kicker">04</p>
+      <h2 class="section-title" id="s4-title">Die Heuristik der kognitiven Reibung</h2>
+      <div class="prose">
+        <p>Die Fehlannahme, jegliche Belastung sei schädlich, wird durch die neurowissenschaftliche Evidenz widerlegt: Ein spezifisches Maß an systemischer Reibung ist für neuroplastische Prozesse und Konsolidierung unerlässlich <span class="tag tag-fakt">FAKT</span>.</p>
+        <p>Diese Dynamik lässt sich über die <strong>Heuristik der Inverted-U-Kurve</strong> abbilden — historisch oft vereinfacht als „Yerkes-Dodson-Gesetz" bezeichnet <span class="tag tag-umstritten">UMSTRITTEN</span> <span class="tag tag-modell">MODELL</span>. Das ursprüngliche Konstrukt beruht auf Tierversuchen mit sehr kleinen Stichproben; die saubere Inverted-U ist als universelles „Gesetz" nicht belegt und wird eher als Familie kontextabhängiger Befunde geführt. Es existiert ein Bereich des Eustress (ca. 40–60&nbsp;% der individuellen Kapazitätsauslastung), in dem das Signal-Rausch-Verhältnis maximiert wird <span class="tag tag-modell">MODELL</span>.</p>
+        <p>Die Lage dieses Kipppunktes ist <strong>kein starres biologisches Gesetz</strong>, sondern wird durch Moderatoren variabel verschoben — insbesondere <strong>Alter</strong> (CRUNCH-Modell, Compensation-Related Utilization of Neural Circuits Hypothesis) und motivationale Anreize. Ältere Kohorten kompensieren bei leichter Last stärker und erreichen ihre Kapazitätsgrenze früher <span class="tag tag-fakt">FAKT</span>.</p>
+      </div>
+
+      <div class="diagram-box">
+        <svg viewBox="0 0 600 300" role="img" aria-labelledby="dia3-title dia3-desc">
+          <title id="dia3-title">Inverted-U-Heuristik mit Eustress-Zone</title>
+          <desc id="dia3-desc">Schematische Darstellung: Leistung steigt mit zunehmender Last, erreicht ein Plateau im Bereich von etwa 40 bis 60 Prozent Last und fällt bei weiter steigender Last wieder ab.</desc>
+          <line x1="40" y1="260" x2="560" y2="260" stroke="rgba(217,163,92,0.22)" stroke-width="1"></line>
+          <line x1="40" y1="260" x2="40" y2="40" stroke="rgba(217,163,92,0.22)" stroke-width="1"></line>
+          <rect x="248" y="40" width="104" height="220" fill="rgba(217,163,92,0.09)"></rect>
+          <path d="M 40,227 C 90,205 120,180 144,161 C 175,138 210,112 248,95 C 270,85 285,75 300,73 C 320,72 335,72 352,73 C 385,80 420,105 456,139 C 490,172 525,195 560,216" fill="none" stroke="#d9a35c" stroke-width="3" stroke-linecap="round"></path>
+          <text x="255" y="30" fill="#d9a35c" font-size="12">Eustress-Zone ~40–60 %</text>
+          <text x="470" y="285" fill="rgba(244,234,217,0.72)" font-size="12">Kognitive Last →</text>
+          <text x="46" y="30" fill="rgba(244,234,217,0.72)" font-size="12">Leistung / Signal-Rausch-Verhältnis</text>
+        </svg>
+        <p class="diagram-caption">Heuristische Visualisierung — Kipppunkt ist moderatorabhängig (Alter, Motivation, Aufgabentyp), keine Populationskonstante.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="abschnitt-5" aria-labelledby="s5-title">
+    <div class="wrap">
+      <p class="kicker">05</p>
+      <h2 class="section-title" id="s5-title">Der Kausalbrückenschlag: Die Entkopplung des η-Mechanismus <span class="tag tag-modell" style="vertical-align:middle;">MODELL</span></h2>
+      <div class="prose">
+        <p>Hier verbindet das Framework die Neurobiologie mit der makroökonomischen Friktion. Zwingend zu trennen sind die <strong>Nachfrage-Achse</strong> (individuelle kognitive Last) und die <strong>Angebots-Achse</strong> (organisatorische Kapazität η). Die Zahlengleichheit „75&nbsp;% Last&nbsp;≈&nbsp;η&nbsp;0,70" ist <strong>keine Herleitung</strong> — es handelt sich um verschiedene Achsen. Der postulierte Mechanismus verläuft in vier Schritten:</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step"><span class="num">01</span><h4>Trigger</h4><p>Asynchrone Reizdichte und chronische Unterbrechungen treiben die individuelle kognitive Last über die 75-%-Schwelle des Arbeitsgedächtnisses (Nachfrage-Überhang).</p></div>
+        <div class="flow-step"><span class="num">02</span><h4>Individuelle Folge</h4><p>Neuronale Fatigue, Aussetzen der exekutiven Fehlerkorrektur und emotionale Erschöpfung entstehen.</p></div>
+        <div class="flow-step"><span class="num">03</span><h4>Organisatorische Amplifikation</h4><p>Absentismus (Ist: 8,17&nbsp;%) und Bürokratiebindung (Ist: ~22&nbsp;%) zerfallen jeweils in exogenen Sockel plus endogenen, überlast-getriebenen Anteil.</p></div>
+        <div class="flow-step"><span class="num">04</span><h4>Makro-Resultat</h4><p>Aus den beobachteten Ist-Totalen ergibt sich der effektive Leistungsfaktor η.</p></div>
+      </div>
+
+      <div class="formula-box">η ≈ 100&nbsp;% − 8,17&nbsp;% − 22&nbsp;% = 69,83&nbsp;% ≈ 0,70</div>
+
+      <div class="prose">
+        <p><strong>Präzisierung (arithmetische Konsistenz):</strong> Die 8,17&nbsp;% und 22&nbsp;% sind die heute gemessenen Ist-Werte eines bereits überlasteten Systems — nicht ein Sockel, auf den die Überlast erst „oben drauf" käme (sonst läge η unter 0,70 und 0,70 wäre der Vor-Überlast-Fall). η&nbsp;=&nbsp;0,70 rechnet mit den Ist-Totalen; der HCC-Hebel setzt am endogenen Anteil an.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <caption>Hebel-Sensitivität (illustrativ, MODELL — keine empirische Aufteilung)</caption>
+          <thead>
+            <tr><th scope="col">Szenario</th><th scope="col">Behebbarer endogener Anteil</th><th scope="col">η nach Intervention</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Konservativ</td><td>15&nbsp;% Absent. / 15&nbsp;% Büro</td>
+              <td><div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="width:74%"></div></div><span class="sens-value">0,74</span></div></td>
+            </tr>
+            <tr>
+              <td>Mittel</td><td>30&nbsp;% / 25&nbsp;%</td>
+              <td><div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="width:78%"></div></div><span class="sens-value">0,78</span></div></td>
+            </tr>
+            <tr>
+              <td>Optimistisch</td><td>45&nbsp;% / 35&nbsp;%</td>
+              <td><div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="width:81%"></div></div><span class="sens-value">0,81</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prose" style="margin-top:1.6rem;">
+        <p>Kognitive Überlastung ist in diesem Modell somit der <strong>kausal vorgeschaltete Katalysator</strong>, der die exogene strukturelle Reibung der Organisation zusätzlich eskalieren lässt. <strong>Wichtig:</strong> Die Kausalrichtung (Überlast → Absentismus/Bürokratie) ist damit kohärent und zirkelfrei modelliert, aber weiterhin <strong>postuliert, nicht empirisch gemessen</strong> — daher durchgehend <span class="tag tag-modell">MODELL</span>. Der Nachweis erfordert Längsschnitt-/Interventionsdesigns (siehe Sprint 4).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="abschnitt-6" aria-labelledby="s6-title">
+    <div class="wrap">
+      <p class="kicker">06</p>
+      <h2 class="section-title" id="s6-title">Team Neural Efficiency (TNE)</h2>
+      <div class="prose">
+        <p>Die Neuroergonomie überträgt diese Erkenntnisse via Hyperscanning (simultanes fNIRS) auf Teams. Entgegen der Annahme, maximale Gehirnsynchronisation (Interbrain Synchrony, IBS) sei stets optimal, belegen Daten zur Team Neural Efficiency ein aufgabenabhängiges Bild <span class="tag tag-fakt">FAKT</span> <span class="tag tag-modell">MODELL</span>.</p>
+      </div>
+
+      <div class="contrast-grid">
+        <div class="contrast-card">
+          <h4>Explizite, strategische Entscheidungsaufgaben</h4>
+          <p>Extrem hohe präfrontale Synchronisationswerte deuten oft auf immensen Koordinationsaufwand hin: erschöpfte Teams müssen intuitive Abstimmung durch bewusste, ressourcenintensive Überwachung („Mentalizing") kompensieren.</p>
+        </div>
+        <div class="contrast-card">
+          <h4>Hochleistungsteams in komplexen Aufgaben</h4>
+          <p>Weisen häufig eine <strong>niedrigere</strong> präfrontale IBS auf — sie haben die Koordination in geteilte mentale Modelle (implizite Schemata) ausgelagert, wodurch der PFC für die fachliche Problemlösung frei bleibt.</p>
+        </div>
+      </div>
+
+      <aside class="callout">Die Richtung ist aufgabentyp-abhängig: Bei implizit-rhythmischer Koordination korreliert höhere IBS mit besserer Leistung; die „niedrigere IBS = besser"-Aussage gilt für explizite Entscheidungs- und Kommunikationsaufgaben. Vgl. Sprint 3. Eine resiliente institutionelle Architektur erzwingt daher keine permanente kognitive Synchronisation, sondern kultiviert psychologische Sicherheit, um die „Kosten der Koordination" zu minimieren.</aside>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="abschnitt-7" aria-labelledby="s7-title">
+    <div class="wrap">
+      <p class="kicker">07</p>
+      <h2 class="section-title" id="s7-title">Wissenschaftliches Fazit</h2>
+      <div class="prose">
+        <p>Die neurobiologische Dekonstruktion liefert das <em>plausible</em> biologische Substrat für die makroökonomische Reibung aus Sprint 1: Chronische Überlast des präfrontalen Kortex, unter strenger Artefaktbereinigung gemessen, ist der modellierte vorgelagerte Treiber jener Absentismus- und Bürokratie-Ist-Werte, die den Leistungsfaktor auf η&nbsp;≈&nbsp;0,70 drücken <span class="tag tag-modell">MODELL</span>. Die Effekte sind real, aber in der Größe moderat bis klein und kontextabhängig — die Stärke des Modells liegt in seiner <strong>Falsifizierbarkeit</strong> (Sprint 4), nicht in Superlativen. Eine resiliente Architektur schützt kognitive Kapazität vor asynchroner Überlastung und minimiert Koordinationskosten — mit klaren normativen Leitplanken statt erzwungener Synchronisation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIANGULATION -->
+  <section id="triangulation" aria-labelledby="tri-title">
+    <div class="wrap-wide">
+      <p class="kicker">360°-Sicht</p>
+      <h2 class="section-title" id="tri-title">Triangulation</h2>
+      <p class="prose" style="max-width:68ch; color:var(--parchment-dim); font-size:.95rem;">Diese Synthese ordnet die vorstehenden Befunde in drei Betrachtungsebenen ein; sie führt keine neuen Daten ein.</p>
+
+      <div class="tri-grid">
+        <div class="tri-card">
+          <p class="kicker">Empirisch</p>
+          <h3>Die messbare Signatur</h3>
+          <p>Was tatsächlich beobachtet wird, ist bescheiden und diszipliniert erhoben: fNIRS-Daten sind nur nach Short-Channel Regression aussagekräftig, sonst droht die Verwechslung von Hautdurchblutung mit kortikaler Aktivierung. Die Last-Antwort-Kurve steigt und flacht oberhalb von 75&nbsp;% ab, Fehlerquoten steigen nicht-linear. Der Effekt von Stress auf das Arbeitsgedächtnis ist real, aber klein (g&nbsp;≈&nbsp;−0,15, ~94&nbsp;% Überlappung) — eine Mahnung gegen jede Übertreibung.</p>
+        </div>
+        <div class="tri-card">
+          <p class="kicker">Systemisch</p>
+          <h3>Vom Individuum zur Organisation</h3>
+          <p>Der Kausalbrücken-Mechanismus verbindet individuelle Überlast (Nachfrage-Achse) mit organisatorischen Ist-Werten (Angebots-Achse) zu einem Leistungsfaktor η&nbsp;≈&nbsp;0,70. Das Modell ist kohärent und zirkelfrei konstruiert, aber ausdrücklich postuliert, nicht bewiesen. Auf Teamebene zeigt sich dieselbe Systemlogik: Effiziente Systeme verteilen Koordinationsaufwand aufgabenabhängig, statt permanente Synchronisation zu erzwingen.</p>
+        </div>
+        <div class="tri-card">
+          <p class="kicker">Philosophisch / Menschlich</p>
+          <h3>Die Grenze als Ressource</h3>
+          <p>Reibung ist nicht per se schädlich — eine Eustress-Zone (~40–60&nbsp;%, moderiert durch Alter, Motivation, Aufgabentyp) ist Voraussetzung für Wachstum und Konsolidierung. Die Gefahr liegt in chronischer Überlast jenseits eines variablen, nicht universellen Kipppunkts. Eine resiliente Architektur schützt kognitive Kapazität, statt sie wegzuoptimieren — und die Ehrlichkeit des Modells über seine eigene Falsifizierbarkeit ist selbst eine Haltung gegenüber den Menschen, die es beschreibt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KORREKTUR-HISTORIE -->
+  <section id="korrektur" aria-labelledby="korrektur-title">
+    <div class="wrap-wide">
+      <p class="kicker">Forensische Transparenz</p>
+      <h2 class="section-title" id="korrektur-title">Korrektur-Historie gegenüber den Vorfassungen</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Vorfassung</th><th scope="col">Bereinigung</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">1</td><td>„Kausaler Unterbau für exakt η = 0,70" (Zahlengleichung 75&nbsp;% = 0,70)</td><td>Nachfrage-/Angebots-Achse getrennt; Mechanismus statt Gleichung</td><td><span class="status-chip">entkoppelt</span></td></tr>
+            <tr><td class="num">2</td><td>Fundamentwert teils 853,5 Mrd. genannt</td><td>Durchgehend 916,8 Mrd. (4-Block, konsistent mit Sprint 1)</td><td><span class="status-chip">angeglichen</span></td></tr>
+            <tr><td class="num">3</td><td>Monokausale Zuschreibung der 22&nbsp;% Bürokratie an Überlast</td><td>22&nbsp;% als überwiegend exogen deklariert; endogene Nacharbeit additiv oberhalb</td><td><span class="status-chip">nuanciert</span></td></tr>
+            <tr><td class="num">4</td><td>Implizite „Baseline + Aufschlag"-Logik (arithmetisch inkonsistent)</td><td>8,17&nbsp;%/22&nbsp;% als beobachtete Ist-Totale; Hebel am endogenen Anteil</td><td><span class="status-chip">konsistent</span></td></tr>
+            <tr><td class="num">5</td><td>„Rauschfreie Neuro-Daten"</td><td>fNIRS nicht als Goldstandard; SCR obligatorisch</td><td><span class="status-chip">korrigiert</span></td></tr>
+            <tr><td class="num">6</td><td>Effektsprache „massiv"; „Phasen-Kopplungs-Desync" (wörtl. aus 1 Review)</td><td>g ≈ −0,15 als klein; entliehene Formel entfernt</td><td><span class="status-chip">kalibriert</span></td></tr>
+            <tr><td class="num">7</td><td>Yerkes-Dodson als „Gesetz"; 40–60&nbsp;% als Fixwert</td><td>Heuristik; ca. 40–60&nbsp;%; Moderatoren (CRUNCH)</td><td><span class="status-chip">kalibriert</span></td></tr>
+            <tr><td class="num">8</td><td>Stroop-Interferenz-Widerspruch; Cortisol = alleiniger Täter</td><td>Entfernt; dissoziierbare Pfade</td><td><span class="status-chip">bereinigt</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENZEN -->
+  <section id="referenzen" aria-labelledby="ref-title">
+    <div class="wrap">
+      <p class="kicker">Quellenlage</p>
+      <h2 class="section-title" id="ref-title">Referenzen &amp; Evidenzklassen</h2>
+
+      <h3 style="font-size:1rem; color:var(--gold); margin-bottom:.8rem;">Verifizierte Primärquellen <span class="tag tag-fakt" style="vertical-align:middle;">FAKT</span></h3>
+      <ol class="prose" style="padding-left:1.3rem;">
+        <li>Shields, G. S., Sazma, M. A., &amp; Yonelinas, A. P. (2016). <em>The effects of acute stress on core executive functions: A meta-analysis and comparison with cortisol.</em> Neuroscience &amp; Biobehavioral Reviews, 68, 651–668. — Stress ↓ WM/Flexibilität (g ≈ −0,15); Response Inhibition intakt/↑; Cortisol ≠ Stress.</li>
+        <li>Task-evoked systemic artefacts &amp; Short-Channel Regression in fNIRS (u.&nbsp;a. Tachtsidis &amp; Scholkmann; Brigadoi &amp; Cooper 2015). — Systemische Physiologie als Konfounder; SCR als Bereinigung.</li>
+        <li>EEG-Marker von Last/Fatigue (frontale Theta, posteriore Alpha-Desynchronisation; Switching Costs / P300).</li>
+        <li>Reuter-Lorenz, P. A., &amp; Cappell, K. A. (2008). <em>CRUNCH</em> — Alter als Moderator der präfrontalen Kompensation. <span style="color:var(--parchment-faint); font-size:.82rem;">(Rahmenmodell)</span></li>
+        <li>Interbrain-Synchrony-Meta-Analyse (Neurosci. Biobehav. Rev. 2024): trainierte Dyaden zeigen niedrigere präfrontale IBS bei höheren Teamwork-Scores (Mutual Prediction Theory). <span class="tag tag-fakt" style="font-size:.68rem;">FAKT</span> <span class="tag tag-modell" style="font-size:.68rem;">MODELL</span></li>
+      </ol>
+
+      <h3 style="font-size:1rem; color:var(--gold); margin:2rem 0 .8rem;">Kontroverse / Modellgrundlagen <span class="tag tag-umstritten" style="vertical-align:middle;">UMSTRITTEN</span> <span class="tag tag-modell" style="vertical-align:middle;">MODELL</span></h3>
+      <ol class="prose" start="6" style="padding-left:1.3rem;">
+        <li>Diamond et al. (2007); Corbett (2015); <em>Trends in Cognitive Sciences</em> (2024) — Yerkes-Dodson als Heuristik, nicht als „Gesetz".</li>
+        <li>Eustress-Spanne 40–60&nbsp;% (Neuroplastizitäts-Review, MDPI 2026) — quellenintern uneinheitlich (40–60 vs. 50–70&nbsp;%), daher als Zirka-Wert.</li>
+        <li>Sternenstaub-Systemanalyse / Schaltzentrale der Metaanalyse 2026; Sprint-1-Grundlage — Fundamentwert η, 916,8 Mrd. €.</li>
+      </ol>
+
+      <div class="formula-box" style="text-align:left; font-size:.86rem; line-height:1.6;">
+        <strong style="color:var(--parchment);">Code-Validierung.</strong> η aus Ist-Totalen: 100 − 8,17 − 22 = 69,83 → η ≈ 0,70. Effektstärke g = −0,15: U3 = 56&nbsp;%, Überlegenheitsw. 54,3&nbsp;%, Überlappung 94&nbsp;% (→ „klein"). Hebel-Sensitivität: η steigt bei behebbarem endogenem Anteil (15–45&nbsp;% Absent. / 15–35&nbsp;% Büro) von 0,70 auf 0,74–0,81 (illustrativ, MODELL).
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="evidenzstand">Evidenzstand: September 2026. Diese bereinigte Fassung entkoppelt den η-Mechanismus arithmetisch konsistent (Ist-Totale, exogen/endogen zerlegt), gleicht den Fundamentwert an Sprint 1 an (916,8 Mrd.) und kalibriert Effektstärken- und Kausalsprache. Verbleibende — korrekt als MODELL gelabelte — Angriffsfläche: die postulierte Kausalrichtung (individuelle Überlast → Ist-Werte) ist kohärent modelliert, aber erst durch Interventionsdesigns (Sprint 4) empirisch zu prüfen.</p>
+    <div class="foot-links">
+      <a href="https://stillerevolution.github.io/" target="_blank" rel="noopener noreferrer">← Zurück zum Portal</a>
+      <button type="button" class="btn-exo" id="openExoBtnFooter" aria-haspopup="dialog" aria-controls="exoskelett">Epistemisches Exoskelett</button>
+    </div>
+    <p class="fine">Sternenstaub · Schaltzentrale der Metaanalyse 2026 · HCC 3.0 Sprint 2</p>
+  </div>
+</footer>
+
+<button type="button" id="back-to-top" aria-label="Nach oben scrollen">↑</button>
+
+<!-- EPISTEMISCHES EXOSKELETT -->
+<dialog id="exoskelett" aria-labelledby="exo-title">
+  <div class="modal-head">
+    <h2 id="exo-title">Epistemisches Exoskelett</h2>
+    <button type="button" class="modal-close" id="closeExoBtn" aria-label="Modal schließen">✕</button>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Audit-Kategorien">
+    <button role="tab" id="tab-ledger" aria-selected="true" aria-controls="panel-ledger" class="tab-btn">KI-Beitrag &amp; Verifikation</button>
+    <button role="tab" id="tab-falsification" aria-selected="false" aria-controls="panel-falsification" class="tab-btn" tabindex="-1">Falsifikations-Panel</button>
+    <button role="tab" id="tab-open" aria-selected="false" aria-controls="panel-open" class="tab-btn" tabindex="-1">Offene Fragen</button>
+  </div>
+
+  <div id="panel-ledger" role="tabpanel" aria-labelledby="tab-ledger" class="tab-panel">
+    <h3>KI-Beitrag</h3>
+    <ul>
+      <li>Extraktion und Strukturierung der Meta-Analyse-Befunde aus der Sprint-2-Rohfassung.</li>
+      <li>Layout- und Code-Generierung dieses HTML-Dokuments: Design-System, Diagramme, Interaktions-Logik.</li>
+      <li>Vorschläge zur Kalibrierung von Effektstärken- und Kausalsprache.</li>
+    </ul>
+    <h3>Human Verified</h3>
+    <ul>
+      <li>Sämtliche inhaltlichen Aussagen, Zahlen und Kausalinterpretationen stammen aus der forensisch validierten, bereinigten Sprint-2-Fassung (Korrektur-Historie s.&nbsp;u.).</li>
+      <li>Endabnahme, fachliche Richtigkeit und Verantwortung für die Publikation liegen ausschließlich beim menschlichen Autor.</li>
+    </ul>
+  </div>
+
+  <div id="panel-falsification" role="tabpanel" aria-labelledby="tab-falsification" class="tab-panel" hidden>
+    <h3>Bedingungen, unter denen das Modell zusammenbricht</h3>
+    <ul>
+      <li><strong>Artefakt-Kontamination:</strong> Würden künftige fNIRS-Studien ohne obligatorische Short-Channel Regression als Evidenzbasis herangezogen, wäre die gesamte hämodynamische Signatur als autonomes Rauschen statt kortikaler Aktivierung neu zu interpretieren.</li>
+      <li><strong>Fehlende Längsschnitt-Bestätigung:</strong> Zeigen Interventionsdesigns (Sprint 4) keinen kausalen Zusammenhang zwischen individueller Überlast und den organisatorischen Ist-Werten, kollabiert der η-Mechanismus zu bloßer Korrelation ohne Kausalität.</li>
+      <li><strong>Instabile Moderatoren:</strong> Dominieren Alter, Motivation und Aufgabentyp die Inverted-U-Heuristik so stark, dass sich keine stabile Eustress-Zone (ca. 40–60&nbsp;%) kontextübergreifend identifizieren lässt, wird die Rahmung eines „optimalen Lastbereichs" unhaltbar.</li>
+    </ul>
+  </div>
+
+  <div id="panel-open" role="tabpanel" aria-labelledby="tab-open" class="tab-panel" hidden>
+    <h3>Offene Fragen &amp; kritische Annahmen</h3>
+    <ul>
+      <li>Die Kausalrichtung Überlast → Absentismus/Bürokratie ist postuliert, nicht gemessen; ein Längsschnittdesign (Sprint 4) steht noch aus.</li>
+      <li>Die Aufteilung des endogenen vs. exogenen Anteils bei Absentismus (8,17&nbsp;%) und Bürokratie (22&nbsp;%) ist illustrativ, nicht empirisch disaggregiert.</li>
+      <li>Der Kipppunkt der Inverted-U-Kurve ist moderatorabhängig und nicht als Populationskonstante zu verstehen.</li>
+      <li>Die Richtung des Team-Neural-Efficiency-Effekts ist aufgabentyp-abhängig; eine Generalisierung über Aufgabentypen hinweg bleibt offen.</li>
+    </ul>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Reduced Motion ---------- */
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Particle Canvas ---------- */
+  var canvas = document.getElementById("bg-canvas");
+  var ctx = canvas.getContext("2d");
+  var W, H, particles = [];
+  var pointer = { x: null, y: null, active: false };
+  var MAGNET_RADIUS = 170;
+  var REPEL_RADIUS = 36;
+  var CONNECT_DIST = 130;
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function particleCount(){
+    var area = W * H;
+    var count = Math.round(area / 16000);
+    return Math.max(28, Math.min(count, 110));
+  }
+
+  function createParticles(){
+    var n = particleCount();
+    particles = [];
+    for (var i = 0; i < n; i++){
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: 1.1 + Math.random() * 1.6
+      });
+    }
+  }
+
+  function step(){
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+
+      if (pointer.active){
+        var dx = pointer.x - p.x;
+        var dy = pointer.y - p.y;
+        var dist = Math.sqrt(dx*dx + dy*dy) || 0.001;
+        if (dist < MAGNET_RADIUS && dist > REPEL_RADIUS){
+          var force = (1 - dist / MAGNET_RADIUS) * 0.55;
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
+        } else if (dist <= REPEL_RADIUS){
+          var rforce = (1 - dist / REPEL_RADIUS) * 0.9;
+          p.vx -= (dx / dist) * rforce;
+          p.vy -= (dy / dist) * rforce;
+        }
+      }
+
+      p.vx *= 0.965;
+      p.vy *= 0.965;
+
+      var speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      var maxSpeed = 2.6;
+      if (speed > maxSpeed){
+        p.vx = (p.vx / speed) * maxSpeed;
+        p.vy = (p.vy / speed) * maxSpeed;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0){ p.x = 0; p.vx *= -1; }
+      if (p.x > W){ p.x = W; p.vx *= -1; }
+      if (p.y < 0){ p.y = 0; p.vy *= -1; }
+      if (p.y > H){ p.y = H; p.vy *= -1; }
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = 0; i < particles.length; i++){
+      for (var j = i + 1; j < particles.length; j++){
+        var a = particles[i], b = particles[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d = Math.sqrt(dx*dx + dy*dy);
+        if (d < CONNECT_DIST){
+          var alpha = (1 - d / CONNECT_DIST) * 0.18;
+          ctx.strokeStyle = "rgba(217,163,92," + alpha.toFixed(3) + ")";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var k = 0; k < particles.length; k++){
+      var p = particles[k];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(244,234,217,0.38)";
+      ctx.fill();
+    }
+  }
+
+  var rafId = null;
+  var isVisible = true;
+
+  function loop(){
+    if (!isVisible) return;
+    step();
+    draw();
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function startLoop(){
+    if (rafId === null){ rafId = requestAnimationFrame(loop); }
+  }
+  function stopLoop(){
+    if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  document.addEventListener("visibilitychange", function(){
+    isVisible = !document.hidden;
+    if (isVisible && !reduceMotion){ startLoop(); } else { stopLoop(); }
+  });
+
+  window.addEventListener("pointermove", function(e){
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+  }, { passive: true });
+  window.addEventListener("pointerleave", function(){ pointer.active = false; });
+  window.addEventListener("pointerdown", function(e){
+    pointer.x = e.clientX; pointer.y = e.clientY; pointer.active = true;
+  }, { passive: true });
+
+  var resizeTimer;
+  window.addEventListener("resize", function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      resize();
+      createParticles();
+      if (reduceMotion){ draw(); }
+    }, 150);
+  });
+
+  resize();
+  createParticles();
+  if (reduceMotion){
+    draw();
+  } else {
+    startLoop();
+  }
+
+  /* ---------- Scroll Progress Bar ---------- */
+  var progressBar = document.getElementById("progress-bar");
+  function updateProgress(){
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + "%";
+  }
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+
+  /* ---------- Back to top ---------- */
+  var backToTop = document.getElementById("back-to-top");
+  function toggleBackToTop(){
+    if (window.scrollY > 600){ backToTop.classList.add("visible"); }
+    else { backToTop.classList.remove("visible"); }
+  }
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+  toggleBackToTop();
+  backToTop.addEventListener("click", function(){
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
+  /* ---------- Scroll-Spy Nav ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("nav.primary-nav a"));
+  var sections = navLinks.map(function(a){
+    return document.querySelector(a.getAttribute("href"));
+  }).filter(Boolean);
+
+  if ("IntersectionObserver" in window && sections.length){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = "#" + entry.target.id;
+        var link = navLinks.filter(function(a){ return a.getAttribute("href") === id; })[0];
+        if (!link) return;
+        if (entry.isIntersecting){
+          navLinks.forEach(function(a){ a.classList.remove("active"); });
+          link.classList.add("active");
+        }
+      });
+    }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+    sections.forEach(function(s){ observer.observe(s); });
+  }
+
+  /* ---------- Exoskelett Modal ---------- */
+  var dialog = document.getElementById("exoskelett");
+  var openBtns = [
+    document.getElementById("openExoBtn"),
+    document.getElementById("openExoBtnHero"),
+    document.getElementById("openExoBtnFooter")
+  ];
+  var closeBtn = document.getElementById("closeExoBtn");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = {
+    "tab-ledger": document.getElementById("panel-ledger"),
+    "tab-falsification": document.getElementById("panel-falsification"),
+    "tab-open": document.getElementById("panel-open")
+  };
+
+  function openDialog(){
+    dialog.showModal();
+    closeBtn.focus();
+  }
+  function closeDialog(){
+    if (dialog.open) dialog.close();
+  }
+
+  openBtns.forEach(function(btn){
+    if (btn) btn.addEventListener("click", openDialog);
+  });
+  closeBtn.addEventListener("click", closeDialog);
+
+  dialog.addEventListener("click", function(e){
+    if (e.target === dialog){ closeDialog(); }
+  });
+
+  function selectTab(tab){
+    tabs.forEach(function(t){
+      var selected = t === tab;
+      t.setAttribute("aria-selected", selected ? "true" : "false");
+      t.tabIndex = selected ? 0 : -1;
+      panels[t.id].hidden = !selected;
+    });
+    tab.focus();
+  }
+
+  tabs.forEach(function(tab, idx){
+    tab.addEventListener("click", function(){ selectTab(tab); });
+    tab.addEventListener("keydown", function(e){
+      var newIdx = null;
+      if (e.key === "ArrowRight"){ newIdx = (idx + 1) % tabs.length; }
+      else if (e.key === "ArrowLeft"){ newIdx = (idx - 1 + tabs.length) % tabs.length; }
+      else if (e.key === "Home"){ newIdx = 0; }
+      else if (e.key === "End"){ newIdx = tabs.length - 1; }
+      if (newIdx !== null){
+        e.preventDefault();
+        selectTab(tabs[newIdx]);
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
