@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primäre SEO- & Browser-Metadaten -->
+  <title>Projekt Sternenstaub — HCC 3.0 Schaltzentrale (2026)</title>
+  <meta name="title" content="Projekt Sternenstaub — HCC 3.0 Schaltzentrale (2026)" />
+  <meta name="description" content="Warum Arbeit uns ausbrennt und wie Organisationen heilen: Eine alltagsnahe Einführung in die 916,8-Mrd.-€-Systementropie und die fünf wissenschaftlichen HCC-3.0-Sprints." />
+  <meta name="author" content="Projekt Sternenstaub" />
+  <meta name="theme-color" content="#060714" />
+
+  <!-- Dynamic SVG Favicon (Inlined) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d9a35c' d='M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d9a35c' d='M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z'/%3E%3C/svg%3E" />
+
+  <!-- OPEN GRAPH / SOCIAL PREVIEW -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" />
+  <meta property="og:title" content="Projekt Sternenstaub — HCC 3.0 Schaltzentrale (2026)" />
+  <meta property="og:description" content="Vom alltäglichen Büro-Stress zum 916,8-Milliarden-Euro-Kapitalverzehr: Fünf evidenzbasierte Module für systemische Resilienz und kognitive Entlastung." />
+  <meta property="og:site_name" content="Projekt Sternenstaub" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Projekt Sternenstaub Dark Ambient Banner" />
+
+  <!-- TWITTER / X CARDS -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" />
+  <meta name="twitter:title" content="Projekt Sternenstaub — HCC 3.0 Schaltzentrale" />
+  <meta name="twitter:description" content="Vom alltäglichen Büro-Stress zum 916,8-Milliarden-Euro-Kapitalverzehr. Die alltagsnahe Einführung in den HCC-3.0-Forschungsverbund." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop" />
+
+  <!-- SCHEMA.ORG STRUKTURIERTE DATEN -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWorkSeries",
+    "name": "HCC 3.0 — Human Capital Coherence Meta-Analyse",
+    "headline": "Schaltzentrale der Metaanalyse 2026",
+    "description": "Fünfteiliger interdisziplinärer Forschungsverbund zur Quantifizierung von System-Entropie, neurovaskulärer Überlastung, Teamdynamik und Psychoakustik.",
+    "author": {
+      "@type": "Organization",
+      "name": "Projekt Sternenstaub"
+    },
+    "inLanguage": "de-DE",
+    "genre": "Organisationsökonomie, Neurobiologie, Systemtheorie"
+  }
+  </script>
+
+  <!-- TYPOGRAFIE & TAILWIND CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#060714',
+            nebula: '#10152b',
+            nebulaLight: '#171d3d',
+            gold: '#d9a35c',
+            amberglow: '#f2b872',
+            parchment: '#f4ead9',
+            fakt: '#7cd9a5',
+            modell: '#a9b8f5',
+            umstritten: '#f2a191',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            body: ['Atkinson Hyperlegible', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --void: #060714;
+      --nebula: #10152b;
+      --gold: #d9a35c;
+      --gold-soft: rgba(217, 163, 92, 0.16);
+      --parchment: #f4ead9;
+      --hairline: rgba(244, 234, 217, 0.12);
+      --glass-panel: rgba(16, 21, 43, 0.65);
+    }
+
+    body {
+      background: var(--void);
+      color: var(--parchment);
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--void);
+    }
+
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glass {
+      background: var(--glass-panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--hairline);
+    }
+
+    .glass-hover {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .glass-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(217, 163, 92, 0.45);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(217, 163, 92, 0.12);
+    }
+
+    /* Modal Animationen */
+    dialog#exoskelett-modal {
+      animation: modal-close 0.2s ease forwards;
+    }
+
+    dialog#exoskelett-modal[open] {
+      animation: modal-open 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    dialog#exoskelett-modal::backdrop {
+      background: rgba(6, 7, 20, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    @keyframes modal-open {
+      from { opacity: 0; transform: scale(0.96) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes modal-close {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.96); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      #particle-canvas { display: none; }
+    }
+  </style>
+</head>
+
+<body class="relative min-h-screen flex flex-col">
+  <!-- Skip Link für Barrierefreiheit -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-gold text-void font-bold px-4 py-2 rounded shadow-lg">
+    Direkt zum Hauptinhalt springen
+  </a>
+
+  <!-- Interaktives 2D Partikel-Netzwerk -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= STICKY HEADER ================= -->
+  <header class="sticky top-0 z-40 glass border-b border-hairline transition-colors">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-3 group" aria-label="Zurück zum Seitenanfang">
+        <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold group-hover:scale-105 transition-transform" aria-hidden="true">
+          ✦
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display text-lg font-semibold tracking-tight text-parchment leading-tight">Sternenstaub</span>
+          <span class="font-mono text-[0.68rem] tracking-widest uppercase text-amberglow">HCC 3.0 · Schaltzentrale</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6 font-mono text-xs" aria-label="Hauptnavigation">
+        <a href="#start" class="text-parchment/70 hover:text-amberglow transition-colors">Alltag &amp; Schmerz</a>
+        <a href="#module" class="text-parchment/70 hover:text-amberglow transition-colors">Die 5 Module</a>
+        <a href="#uebersetzung" class="text-parchment/70 hover:text-amberglow transition-colors">Begriffe erklärt</a>
+        <a href="#triangulation" class="text-parchment/70 hover:text-amberglow transition-colors">360°-Synthese</a>
+        <a href="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" target="_blank" rel="noopener noreferrer" class="text-amberglow hover:text-parchment transition-colors inline-flex items-center gap-1">
+          Schaltzentrale 2026 <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+
+      <!-- Exoskelett Trigger Button -->
+      <div class="flex items-center gap-3">
+        <button id="open-exoskelett-btn" class="inline-flex items-center gap-2 font-mono text-xs border border-gold/50 bg-gold/10 text-amberglow px-3.5 py-2 rounded-full hover:bg-gold hover:text-void transition-all" aria-haspopup="dialog" aria-controls="exoskelett-modal">
+          <span class="w-2 h-2 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
+          <span>Exoskelett-Audit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HAUPTINHALT ================= -->
+  <main id="main-content" class="relative z-10 flex-grow">
+
+    <!-- HERO: ALLTAGSNAHER EINSTIEG -->
+    <section id="top" class="pt-20 pb-16 px-6 max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/5 font-mono text-xs text-amberglow mb-6">
+        <span>Schaltzentrale der Metaanalyse 2026</span>
+        <span class="text-parchment/40">·</span>
+        <span>Menschliche Übersetzung</span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-semibold leading-[1.08] tracking-tight text-parchment mb-6">
+        Warum Arbeit uns oft ausbrennt – und wie wir Organisationen heilen.
+      </h1>
+
+      <p class="font-body text-lg sm:text-2xl text-parchment/80 max-w-3xl mx-auto leading-relaxed mb-8">
+        Vom unsichtbaren Stress im Großraumbüro bis zum 916,8-Milliarden-Euro-Schaden: Wir übersetzen neurobiologische und wirtschaftliche Daten in greifbare Lebensrealität.
+      </p>
+
+      <!-- HINWEIS ZUR METHODIK & FLUGHÖHE -->
+      <div class="glass p-5 rounded-2xl max-w-3xl mx-auto text-left border-l-4 border-l-gold mb-10">
+        <div class="flex items-start gap-3.5">
+          <span class="text-xl shrink-0 leading-none mt-0.5" aria-hidden="true">🧭</span>
+          <div class="text-sm leading-relaxed text-parchment/90">
+            <strong class="text-parchment font-semibold block mb-1">Hinweis zur Flughöhe dieser Landingpage:</strong>
+            Diese Einstiegsseite erklärt die Zusammenhänge bewusst in <span class="text-amberglow font-medium">alltagsnaher, menschlicher Sprache</span>. Die unten verlinkten Fachmodule (Sprints) steigen im Anschluss mit akademischer Strenge, ökonometrischen Gleichungen und neurovaskulären Labordaten tief in die Evidenz ein.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 font-mono text-xs">
+        <a href="#module" class="bg-gold text-void font-bold px-6 py-3 rounded-full hover:bg-amberglow transition-colors shadow-lg">
+          Direkt zu den 5 Modulen ↓
+        </a>
+        <a href="#start" class="border border-hairline px-6 py-3 rounded-full text-parchment/80 hover:border-gold hover:text-parchment transition-colors">
+          Das Problem im Alltag verstehen
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION: DER ALLTÄGLICHE SCHMERZ -->
+    <section id="start" class="py-16 px-6 border-t border-hairline bg-void/50">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-mono text-xs text-gold uppercase tracking-wider block mb-2">Die unsichtbare Reibung</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold text-parchment">
+            Kennst du das Gefühl, nach 8 Stunden Büro völlig erschöpft zu sein?
+          </h2>
+          <p class="text-parchment/70 mt-3 text-base">
+            ...obwohl du eigentlich nur am Schreibtisch gesessen und E-Mails beantwortet hast? Es ist kein persönliches Versagen. Es ist biologisch und systemisch messbar.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Phänomen 1 -->
+          <div class="glass p-6 rounded-2xl">
+            <div class="text-2xl mb-3" aria-hidden="true">🧠</div>
+            <h3 class="font-display text-lg font-semibold text-parchment mb-2">1. Der Lärm frisst dein Denken</h3>
+            <p class="text-sm text-parchment/75 leading-relaxed">
+              Wenn neben dir telefoniert wird, kann dein Gehirn Sprache nicht ignorieren. Es versucht automatisch mitzuhören. Diese unwillkürliche Analyse stiehlt dir genau die Energie, die du für anspruchsvolle Aufgaben brauchst[cite: 5].
+            </p>
+          </div>
+
+          <!-- Phänomen 2 -->
+          <div class="glass p-6 rounded-2xl">
+            <div class="text-2xl mb-3" aria-hidden="true">🛡️</div>
+            <h3 class="font-display text-lg font-semibold text-parchment mb-2">2. Die Schockstarre bei Fehlern</h3>
+            <p class="text-sm text-parchment/75 leading-relaxed">
+              Wo kein Vertrauen herrscht, sichert sich jeder ab. Probleme werden vertuscht, E-Mails an Dutzende ins CC gesetzt. Erkennt das Nervensystem Bedrohung, schaltet das Gehirn auf Verteidigung statt auf Kreativität[cite: 2, 4].
+            </p>
+          </div>
+
+          <!-- Phänomen 3 -->
+          <div class="glass p-6 rounded-2xl">
+            <div class="text-2xl mb-3" aria-hidden="true">⏳</div>
+            <h3 class="font-display text-lg font-semibold text-parchment mb-2">3. Der bürokratische Leerlauf</h3>
+            <p class="text-sm text-parchment/75 leading-relaxed">
+              Fast ein Viertel der Arbeitszeit geht für Dokumentations- und Absicherungspflichten drauf[cite: 4]. Die Organisation dreht im Leerlauf: Hoher Aufwand, aber die eigentliche Wertschöpfung bleibt auf der Strecke[cite: 4].
+            </p>
+          </div>
+        </div>
+
+        <!-- Das Preisschild -->
+        <div class="mt-12 glass p-8 rounded-3xl border border-gold/30 text-center relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-gold/5 rounded-full blur-2xl pointer-events-none"></div>
+          <span class="font-mono text-xs text-amberglow uppercase tracking-wider block mb-2">Der reale Schaden in Deutschland</span>
+          <div class="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-parchment mb-3">
+            916,8 Milliarden Euro
+          </div>
+          <p class="text-parchment/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            Verlieren wir jedes Jahr durch körperliche Erkrankungen, Fehltage und vor allem durch <strong class="text-gold">Präsentismus</strong> – Menschen, die zwar am Schreibtisch sitzen, aber vor kognitiver Erschöpfung nur noch einen Bruchteil leisten können[cite: 4].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: DIE 5 MODULE -->
+    <section id="module" class="py-20 px-6 border-t border-hairline">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
+          <div>
+            <span class="font-mono text-xs text-gold uppercase tracking-wider block mb-2">Wissenschaftliche Knotenpunkte</span>
+            <h2 class="font-display text-3xl sm:text-5xl font-semibold text-parchment">
+              Die 5 Forschungs-Module
+            </h2>
+            <p class="text-parchment/70 text-sm sm:text-base mt-2 max-w-xl">
+              Hier wird es methodisch präzise. Jedes Modul beleuchtet eine Ebene – von der Volkswirtschaft bis zur neuronalen Dynamik[cite: 1, 2, 3, 4, 5].
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-mono">
+            <span class="inline-flex items-center gap-1 text-fakt"><span class="w-2 h-2 rounded-full bg-fakt"></span>Fakt</span>
+            <span class="inline-flex items-center gap-1 text-modell"><span class="w-2 h-2 rounded-full bg-modell"></span>Modell</span>
+            <span class="inline-flex items-center gap-1 text-umstritten"><span class="w-2 h-2 rounded-full bg-umstritten"></span>Umstritten</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          
+          <!-- MODUL 1: SPRINT 1 -->
+          <article class="glass glass-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-gold">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="font-mono text-xs text-gold font-bold">KNOTEN 01 · SPRINT 1</span>
+                <span class="font-mono text-[0.7rem] px-2.5 py-0.5 rounded-full bg-gold/10 text-amberglow border border-gold/30">Makroökonomie</span>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-parchment mb-3">
+                Das 916,8-Mrd.-Loch: Die Kosten der Angst
+              </h3>
+              
+              <!-- Alltagsübersetzung -->
+              <div class="bg-void/40 p-4 rounded-xl mb-4 border border-hairline">
+                <span class="font-mono text-[0.68rem] text-amberglow uppercase tracking-wider block mb-1">Einfach erklärt:</span>
+                <p class="text-xs text-parchment/80 leading-relaxed">
+                  Warum Misstrauen, ständige Kündigungen und Präsentismus Betriebe zermürben – und warum 1 € für psychologische Sicherheit 1.000 € Folgeschäden verhindert[cite: 4].
+                </p>
+              </div>
+
+              <!-- Wissenschaftlicher Fokus -->
+              <div class="text-xs text-parchment/70 space-y-1 mb-6 font-mono">
+                <div class="flex items-center gap-2"><span class="text-gold">▪</span><span>4-Block-Zerlegung (Absentismus, Präsentismus, Fluktuation)[cite: 4]</span></div>
+                <div class="flex items-center gap-2"><span class="text-gold">▪</span><span>Effektiver Leistungsfaktor η ≈ 0,70[cite: 4]</span></div>
+                <div class="flex items-center gap-2"><span class="text-gold">▪</span><span>Meta-Analyse nach Frazier et al. &amp; Edmondson[cite: 4]</span></div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs text-parchment/50 font-mono">sprint-1-hcc-3-0-bereinigt.html</span>
+              <a href="sprint-1-hcc-3-0-bereinigt.html" class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-amberglow hover:text-parchment transition-colors">
+                <span>Wissenschaftliches Modul öffnen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- MODUL 2: SPRINT 2 -->
+          <article class="glass glass-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-modell">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="font-mono text-xs text-modell font-bold">KNOTEN 02 · SPRINT 2</span>
+                <span class="font-mono text-[0.7rem] px-2.5 py-0.5 rounded-full bg-modell/10 text-modell border border-modell/30">Neurobiologie</span>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-parchment mb-3">
+                Der überhitzte Kopf: Was im Gehirn kollabiert
+              </h3>
+              
+              <!-- Alltagsübersetzung -->
+              <div class="bg-void/40 p-4 rounded-xl mb-4 border border-hairline">
+                <span class="font-mono text-[0.68rem] text-modell uppercase tracking-wider block mb-1">Einfach erklärt:</span>
+                <p class="text-xs text-parchment/80 leading-relaxed">
+                  Ab 75 % Belastung stößt das Arbeitsgedächtnis an biologische Grenzen[cite: 3]. Multitasking ist eine Illusion; unter Druck steigen Flüchtigkeitsfehler sprunghaft an[cite: 3].
+                </p>
+              </div>
+
+              <!-- Wissenschaftlicher Fokus -->
+              <div class="text-xs text-parchment/70 space-y-1 mb-6 font-mono">
+                <div class="flex items-center gap-2"><span class="text-modell">▪</span><span>Präfrontale Hämodynamik via fNIRS &amp; EEG[cite: 3]</span></div>
+                <div class="flex items-center gap-2"><span class="text-modell">▪</span><span>Endokrine Triage (Cortisol vs. Arbeitsgedächtnis g ≈ −0,15)[cite: 3]</span></div>
+                <div class="flex items-center gap-2"><span class="text-modell">▪</span><span>Entkopplung von Belastung (Nachfrage) und η (Angebot)[cite: 3]</span></div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs text-parchment/50 font-mono">sprint-2-hcc-3-0-bereinigt.html</span>
+              <a href="sprint-2-hcc-3-0-bereinigt.html" class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-modell hover:text-parchment transition-colors">
+                <span>Wissenschaftliches Modul öffnen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- MODUL 3: SPRINT 3 -->
+          <article class="glass glass-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-fakt">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="font-mono text-xs text-fakt font-bold">KNOTEN 03 · SPRINT 3</span>
+                <span class="font-mono text-[0.7rem] px-2.5 py-0.5 rounded-full bg-fakt/10 text-fakt border border-fakt/30">Team-Koordination</span>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-parchment mb-3">
+                Blindes Verständnis: Team Neural Efficiency
+              </h3>
+              
+              <!-- Alltagsübersetzung -->
+              <div class="bg-void/40 p-4 rounded-xl mb-4 border border-hairline">
+                <span class="font-mono text-[0.68rem] text-fakt uppercase tracking-wider block mb-1">Einfach erklärt:</span>
+                <p class="text-xs text-parchment/80 leading-relaxed">
+                  Erfolgreiche Teams müssen nicht dauernd gleichgeschaltet sein[cite: 2]. Geteilte mentale Modelle entlasten den Kopf, sodass jeder Handlungsspielraum behält[cite: 2].
+                </p>
+              </div>
+
+              <!-- Wissenschaftlicher Fokus -->
+              <div class="text-xs text-parchment/70 space-y-1 mb-6 font-mono">
+                <div class="flex items-center gap-2"><span class="text-fakt">▪</span><span>Vagale Autonomie &amp; Herzratenvariabilität (R² &lt; 10 %)[cite: 2]</span></div>
+                <div class="flex items-center gap-2"><span class="text-fakt">▪</span><span>fNIRS-Artefaktkritik: Short-Channel Regression (SCR)[cite: 2]</span></div>
+                <div class="flex items-center gap-2"><span class="text-fakt">▪</span><span>Mutual Prediction Theory statt Zwangssynchronisation[cite: 2]</span></div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs text-parchment/50 font-mono">sprint-3-hcc-3-0-bereinigt.html</span>
+              <a href="sprint-3-hcc-3-0-bereinigt.html" class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-fakt hover:text-parchment transition-colors">
+                <span>Wissenschaftliches Modul öffnen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- MODUL 4: SPRINT 4 -->
+          <article class="glass glass-hover p-8 rounded-3xl flex flex-col justify-between border-t-2 border-t-amberglow">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="font-mono text-xs text-amberglow font-bold">KNOTEN 04 · SPRINT 4</span>
+                <span class="font-mono text-[0.7rem] px-2.5 py-0.5 rounded-full bg-amberglow/10 text-amberglow border border-amberglow/30">Psychoakustik &amp; BGM</span>
+              </div>
+              <h3 class="font-display text-2xl font-semibold text-parchment mb-3">
+                Ruhe im Raum: Maskierung statt Frequenzmythos
+              </h3>
+              
+              <!-- Alltagsübersetzung -->
+              <div class="bg-void/40 p-4 rounded-xl mb-4 border border-hairline">
+                <span class="font-mono text-[0.68rem] text-amberglow uppercase tracking-wider block mb-1">Einfach erklärt:</span>
+                <p class="text-xs text-parchment/80 leading-relaxed">
+                  Warum 432-Hz-Heilversprechen und Musikbeats im Büro stören[cite: 5]. Was messbar entlastet: Stetiges Rauschen, das störende Sprachfetzen überdeckt[cite: 5].
+                </p>
+              </div>
+
+              <!-- Wissenschaftlicher Fokus -->
+              <div class="text-xs text-parchment/70 space-y-1 mb-6 font-mono">
+                <div class="flex items-center gap-2"><span class="text-amberglow">▪</span><span>Changing-State-Prinzip (BPM = 0 im Büro)[cite: 5]</span></div>
+                <div class="flex items-center gap-2"><span class="text-amberglow">▪</span><span>Sprachübertragungsindex (STI) Schwellenwert-Modell[cite: 5]</span></div>
+                <div class="flex items-center gap-2"><span class="text-amberglow">▪</span><span>Falsifizierbares A/B-Test-Design mit RSA-Kovariaten[cite: 5]</span></div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-hairline flex items-center justify-between">
+              <span class="text-xs text-parchment/50 font-mono">sprint-4-hcc-3-0-bereinigt.html</span>
+              <a href="sprint-4-hcc-3-0-bereinigt.html" class="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-amberglow hover:text-parchment transition-colors">
+                <span>Wissenschaftliches Modul öffnen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <!-- MODUL 5: REPARATUR-BILANZ (FULL WIDTH) -->
+        <article class="mt-8 glass glass-hover p-8 sm:p-10 rounded-3xl border border-hairline border-t-4 border-t-gold/70">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="font-mono text-xs text-gold font-bold">KNOTEN 05 · META-SYNTHESE V2</span>
+                <span class="font-mono text-[0.7rem] px-2.5 py-0.5 rounded-full bg-fakt/10 text-fakt border border-fakt/30">Forensischer Prüfbericht</span>
+              </div>
+              <h3 class="font-display text-2xl sm:text-3xl font-semibold text-parchment mb-3">
+                Der wissenschaftliche Audit: 14 von 18 Defekten geschlossen
+              </h3>
+              <p class="text-sm text-parchment/80 leading-relaxed mb-4">
+                Echte Wissenschaft legt Grenzen offen[cite: 1]. In der Meta-Synthese v2 wird jeder Rechenschritt auditiert: Rechenlücken wurden geschlossen, der Fundamentwert von 916,8 Mrd. € über alle Knoten synchronisiert und Hypothesen klar als Modell gekennzeichnet[cite: 1].
+              </p>
+              <div class="flex flex-wrap gap-2 text-xs font-mono">
+                <span class="px-2 py-1 rounded bg-white/5 text-parchment/70">14 geschlossen[cite: 1]</span>
+                <span class="px-2 py-1 rounded bg-white/5 text-parchment/70">3 eingehegt[cite: 1]</span>
+                <span class="px-2 py-1 rounded bg-white/5 text-parchment/70">1 teilweise[cite: 1]</span>
+                <span class="px-2 py-1 rounded bg-white/5 text-parchment/70">Fundament 916,8 Mrd. € konsistent[cite: 1]</span>
+              </div>
+            </div>
+
+            <div class="shrink-0 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-center gap-3">
+              <span class="text-xs text-parchment/50 font-mono">hcc-3-0-meta-synthese-v2-reparatur-bilanz.html</span>
+              <a href="hcc-3-0-meta-synthese-v2-reparatur-bilanz.html" class="bg-gold text-void font-bold px-6 py-3 rounded-full hover:bg-amberglow transition-colors text-xs font-mono inline-flex items-center gap-2">
+                <span>Reparatur-Bilanz öffnen</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION: DER BEGRIFFS-DOLMETSCHER -->
+    <section id="uebersetzung" class="py-16 px-6 border-t border-hairline bg-nebula/20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-mono text-xs text-gold uppercase tracking-wider block mb-2">Der Begriffs-Dolmetscher</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold text-parchment">
+            Vom Fachausdruck zur Lebensrealität
+          </h2>
+          <p class="text-parchment/70 mt-2 text-sm">
+            Diesen zentralen Begriffen begegnest du in den wissenschaftlichen Sprints:
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="glass p-5 rounded-2xl">
+            <span class="font-mono text-xs text-gold block mb-1">fNIRS Short-Channel Regression (SCR)</span>
+            <strong class="text-parchment text-base block mb-2">Messrauschen der Kopfhaut abziehen</strong>
+            <p class="text-parchment/75 text-xs leading-relaxed">
+              Unter Anspannung schlägt das Herz schneller und die Stirnhaut wird stärker durchblutet[cite: 2, 3]. Sensoren verwechseln das leicht mit geistiger Aktivität[cite: 2, 3]. SCR zieht dieses Rauschen ab, damit nur echte Hirnaktivität gemessen wird[cite: 2, 3].
+            </p>
+          </div>
+
+          <div class="glass p-5 rounded-2xl">
+            <span class="font-mono text-xs text-modell block mb-1">Team Neural Efficiency (TNE)</span>
+            <strong class="text-parchment text-base block mb-2">Eingespielte Abläufe sparen Gehirnleistung</strong>
+            <p class="text-parchment/75 text-xs leading-relaxed">
+              Neu formierte Gruppen müssen jede Handlung des Partners mühsam interpretieren[cite: 2]. Trainierte Teams nutzen geteilte mentale Schemata: Die Koordination läuft intuitiv und der Kopf bleibt frei[cite: 2].
+            </p>
+          </div>
+
+          <div class="glass p-5 rounded-2xl">
+            <span class="font-mono text-xs text-fakt block mb-1">Leistungsfaktor η ≈ 0,70</span>
+            <strong class="text-parchment text-base block mb-2">30 % Reibungsverlust im Betrieb</strong>
+            <p class="text-parchment/75 text-xs leading-relaxed">
+              Krankenstand (rund 8 %) und Bürokratiebindung (rund 22 %) reduzieren die produktive Kapazität[cite: 4]. Rund 30 % der bezahlten Arbeitszeit versanden im Systemverschleiß[cite: 4].
+            </p>
+          </div>
+
+          <div class="glass p-5 rounded-2xl">
+            <span class="font-mono text-xs text-amberglow block mb-1">Changing-State-Hypothese</span>
+            <strong class="text-parchment text-base block mb-2">Warum wechselnde Töne ablenken</strong>
+            <p class="text-parchment/75 text-xs leading-relaxed">
+              Gleichförmiges Rauschen blendet das Gehirn aus[cite: 5]. Fluktuierende Melodien oder Sprachfetzen erzwingen dagegen ständige Verarbeitung und stören das Arbeitsgedächtnis[cite: 5].
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: 360°-TRIANGULATION (OSTO-MODELL) -->
+    <section id="triangulation" class="py-20 px-6 border-t border-hairline">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="font-mono text-xs text-gold uppercase tracking-wider block mb-2">Ganzheitliche Synthese</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold text-parchment">
+            Die 360°-Sicht auf Organisation und Mensch
+          </h2>
+          <p class="text-parchment/70 text-sm mt-3">
+            Erst das Zusammenspiel von biologischer Kapazität, systemischer Struktur und menschlicher Autonomie ermöglicht nachhaltige Gesundheit[cite: 2, 3].
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Perspektive 1 -->
+          <div class="glass p-6 rounded-2xl border-t-2 border-t-fakt">
+            <div class="font-mono text-xs text-fakt mb-2 font-bold">01 · BIOLOGISCH</div>
+            <h3 class="font-display text-xl font-semibold text-parchment mb-2">Körper &amp; Nervensystem</h3>
+            <p class="text-xs text-parchment/75 leading-relaxed">
+              Das Nervensystem besitzt biochemische Belastungsgrenzen[cite: 3]. Chronische Überreizung und Sauerstoff- bzw. Glukoseerschöpfung lassen sich nicht durch bloße Disziplin überwinden[cite: 3].
+            </p>
+          </div>
+
+          <!-- Perspektive 2 -->
+          <div class="glass p-6 rounded-2xl border-t-2 border-t-gold">
+            <div class="font-mono text-xs text-gold mb-2 font-bold">02 · SYSTEMISCH (OSTO)</div>
+            <h3 class="font-display text-xl font-semibold text-parchment mb-2">Architektur &amp; Kultur</h3>
+            <p class="text-xs text-parchment/75 leading-relaxed">
+              Strukturen formen Verhalten. Werden Fehler sanktioniert, entstehen Kontrollschleifen und Absicherungseifer[cite: 2, 4]. Psychologische Sicherheit ist kein Wohlfühlfaktor, sondern schützt das Fundament[cite: 4].
+            </p>
+          </div>
+
+          <!-- Perspektive 3 -->
+          <div class="glass p-6 rounded-2xl border-t-2 border-t-modell">
+            <div class="font-mono text-xs text-modell mb-2 font-bold">03 · MENSCHLICH</div>
+            <h3 class="font-display text-xl font-semibold text-parchment mb-2">Autonomie &amp; Würde</h3>
+            <p class="text-xs text-parchment/75 leading-relaxed">
+              Resilienz bedeutet nicht, Beschäftigte immer belastbarer zu machen. Sie bedeutet, Bedingungen zu schaffen, in denen Menschen eigenverantwortlich und wirksam handeln können[cite: 2, 3].
+            </p>
+          </div>
+        </div>
+
+        <!-- Synthese Callout -->
+        <div class="mt-8 glass p-6 rounded-2xl border border-hairline text-center text-xs sm:text-sm text-parchment/80 leading-relaxed max-w-3xl mx-auto">
+          <strong class="text-amberglow">Synthese-Befund:</strong> Der Systemverlust von 916,8 Milliarden Euro wird nicht durch zusätzlichen Druck gesenkt, sondern durch das gezielte Beseitigen struktureller, akustischer und zwischenmenschlicher Reibungsverluste[cite: 1, 4, 5].
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-hairline bg-void/90 py-12 px-6 relative z-10 text-xs text-parchment/60 font-mono">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <span class="font-display text-base text-parchment font-semibold block mb-1">Projekt Sternenstaub</span>
+        <p class="text-[0.7rem] text-parchment/50">
+          Human Capital Coherence (HCC 3.0) · Evidenzbasierte Organisationsanalytik
+        </p>
+      </div>
+
+      <!-- Links gemäß Instruktion -->
+      <div class="flex flex-wrap gap-4 text-[0.75rem]">
+        <a href="https://stillerevolution.github.io/Projekt-Sternenstaub-Landingpage-v1/" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-amberglow transition-colors">
+          Projekt Sternenstaub Landingpage v1 ↗
+        </a>
+        <a href="https://stillerevolution.github.io/schaltzentrale-der-metaanalyse-2026/" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-amberglow transition-colors">
+          Schaltzentrale der Metaanalyse 2026 ↗
+        </a>
+        <span class="text-parchment/20">|</span>
+        <a href="sprint-1-hcc-3-0-bereinigt.html" class="hover:text-parchment transition-colors">Sprint 1</a>
+        <a href="sprint-2-hcc-3-0-bereinigt.html" class="hover:text-parchment transition-colors">Sprint 2</a>
+        <a href="sprint-3-hcc-3-0-bereinigt.html" class="hover:text-parchment transition-colors">Sprint 3</a>
+        <a href="sprint-4-hcc-3-0-bereinigt.html" class="hover:text-parchment transition-colors">Sprint 4</a>
+        <a href="hcc-3-0-meta-synthese-v2-reparatur-bilanz.html" class="hover:text-parchment transition-colors">Meta-Synthese</a>
+      </div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-hairline/40 text-[0.68rem] text-parchment/40 flex flex-col sm:flex-row justify-between gap-2">
+      <span>Evidenzstand: September 2026 · Keine Anlage- oder Heilversprechen[cite: 1, 2, 3, 4, 5].</span>
+      <span>Forensisch auditiert nach dem OSTO-Systemmodell[cite: 1, 2].</span>
+    </div>
+  </footer>
+
+  <!-- ================= EPISTEMISCHES EXOSKELETT (MODAL) ================= -->
+  <dialog id="exoskelett-modal" class="rounded-3xl p-0 w-full max-w-3xl glass border border-hairline text-parchment shadow-2xl" aria-labelledby="modal-title">
+    <div class="p-6 sm:p-8 flex flex-col max-h-[85vh]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-hairline shrink-0">
+        <div>
+          <span class="font-mono text-xs text-gold uppercase tracking-wider block">Forschungs-Transparenz</span>
+          <h2 id="modal-title" class="font-display text-2xl font-semibold text-parchment">Das epistemische Exoskelett</h2>
+        </div>
+        <button id="close-exoskelett-btn" class="w-8 h-8 rounded-full border border-hairline flex items-center justify-center text-parchment/70 hover:text-parchment hover:border-gold transition-colors" aria-label="Modal schließen">
+          ✕
+        </button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="flex gap-2 pt-4 pb-3 border-b border-hairline font-mono text-xs overflow-x-auto shrink-0" role="tablist">
+        <button class="tab-btn px-3 py-1.5 rounded-lg bg-gold/10 text-amberglow border border-gold/30" role="tab" aria-selected="true" aria-controls="panel-ledger" id="tab-ledger">
+          1. KI-Ledger
+        </button>
+        <button class="tab-btn px-3 py-1.5 rounded-lg text-parchment/60 hover:text-parchment" role="tab" aria-selected="false" aria-controls="panel-falsifikation" id="tab-falsifikation">
+          2. Falsifikation &amp; Grenzen
+        </button>
+        <button class="tab-btn px-3 py-1.5 rounded-lg text-parchment/60 hover:text-parchment" role="tab" aria-selected="false" aria-controls="panel-evolution" id="tab-evolution">
+          3. Evolution &amp; Governance
+        </button>
+      </div>
+
+      <!-- Tab Panels Scrollable Content -->
+      <div class="py-5 overflow-y-auto pr-1 text-sm space-y-4">
+        
+        <!-- Panel 1: Ledger -->
+        <div id="panel-ledger" role="tabpanel" aria-labelledby="tab-ledger" class="space-y-3">
+          <div class="p-3.5 bg-void/50 rounded-xl border border-hairline">
+            <span class="font-mono text-xs text-fakt font-bold block mb-1">Human Verified (Projektleitung Sternenstaub):</span>
+            <p class="text-xs text-parchment/80 leading-relaxed">
+              Konzeptionelle Gesamtarchitektur, Auditierung der 18 Defekte, Formulierung normativer Leitplanken, OSTO-Triangulation und finale Freigabe der Evidenzlabel[cite: 1, 2].
+            </p>
+          </div>
+          <div class="p-3.5 bg-void/50 rounded-xl border border-hairline">
+            <span class="font-mono text-xs text-modell font-bold block mb-1">KI-Assistenz (Large Language Model):</span>
+            <p class="text-xs text-parchment/80 leading-relaxed">
+              Arithmetische Gegenrechnung der 4 Makro-Blöcke, Code-Generierung des Monolithen, WCAG-AAA-Kontrastprüfungen und redaktionelle Glättung der Abschnittsübergänge[cite: 1, 4].
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel 2: Falsifikation -->
+        <div id="panel-falsifikation" role="tabpanel" aria-labelledby="tab-falsifikation" class="space-y-3" hidden>
+          <p class="text-xs text-parchment/80 leading-relaxed">
+            Das Rahmenmodell unterliegt strengen wissenschaftlichen Abbruchkriterien:
+          </p>
+          <ul class="text-xs text-parchment/75 space-y-2 list-disc pl-4 font-mono">
+            <li>Sinkt der empirische Präsentismus-Multiplikator unter 1,2, bricht die 916,8-Mrd.-Gesamtrechnung substanziell zusammen[cite: 4].</li>
+            <li>Können fNIRS-Studien unter Short-Channel-Korrektur die kognitiven Lastplateaus nicht replizieren, muss die neurobiologische Signatur revidiert werden[cite: 2, 3].</li>
+            <li>Zeigt akustische Maskierung im kontrollierten A/B-Test keine signifikante Fehlersenkung bei verbaler Interferenz, entfällt der Kausalnachweis im BGM[cite: 5].</li>
+          </ul>
+        </div>
+
+        <!-- Panel 3: Evolution -->
+        <div id="panel-evolution" role="tabpanel" aria-labelledby="tab-evolution" class="space-y-3" hidden>
+          <p class="text-xs text-parchment/80 leading-relaxed">
+            <strong class="text-parchment">Governance-Regel:</strong> Jede künftige Überarbeitung muss denselben adversarialen Audit durchlaufen wie die Urfassungen[cite: 1]. Methodische Fehler werden nicht geglättet, sondern im Defektregister dokumentiert und offengelegt[cite: 1].
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-4 border-t border-hairline flex justify-end shrink-0">
+        <button id="close-modal-footer-btn" class="bg-gold text-void font-bold text-xs px-5 py-2 rounded-full hover:bg-amberglow transition-colors">
+          Verstanden &amp; Schließen
+        </button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- ================= CANVAS & INTERAKTIONSSKRIPT ================= -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ---------- 1. Accessibility: Reduced Motion Check ---------- */
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- 2. 2D-Partikel-Netzwerk mit Magnet & Repulsion ---------- */
+      const canvas = document.getElementById('particle-canvas');
+      if (canvas && !prefersReducedMotion) {
+        const ctx = canvas.getContext('2d');
+        let width = 0, height = 0;
+        let particles = [];
+        const mouse = { x: -9999, y: -9999, active: false };
+
+        const PARTICLE_COUNT = Math.min(65, Math.floor((window.innerWidth * window.innerHeight) / 18000));
+        const CONNECT_DISTANCE = 125;
+        const MAGNET_RADIUS = 180;
+        const REPEL_RADIUS = 38;
+
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+
+        function createParticles() {
+          particles = [];
+          for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.3,
+              vy: (Math.random() - 0.5) * 0.3,
+              radius: Math.random() * 1.5 + 0.8
+            });
+          }
+        }
+
+        function updateParticles() {
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+
+            if (mouse.active) {
+              const dx = mouse.x - p.x;
+              const dy = mouse.y - p.y;
+              const dist = Math.hypot(dx, dy) || 1;
+
+              if (dist < MAGNET_RADIUS && dist > REPEL_RADIUS) {
+                const force = (1 - dist / MAGNET_RADIUS) * 0.045;
+                p.vx += (dx / dist) * force;
+                p.vy += (dy / dist) * force;
+              } else if (dist <= REPEL_RADIUS) {
+                const repelForce = (1 - dist / REPEL_RADIUS) * 0.5;
+                p.vx -= (dx / dist) * repelForce;
+                p.vy -= (dy / dist) * repelForce;
+              }
+            }
+
+            p.vx *= 0.985;
+            p.vy *= 0.985;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < -10) p.x = width + 10;
+            if (p.x > width + 10) p.x = -10;
+            if (p.y < -10) p.y = height + 10;
+            if (p.y > height + 10) p.y = -10;
+          }
+        }
+
+        function drawParticles() {
+          ctx.clearRect(0, 0, width, height);
+
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const pi = particles[i];
+              const pj = particles[j];
+              const dist = Math.hypot(pi.x - pj.x, pi.y - pj.y);
+
+              if (dist < CONNECT_DISTANCE) {
+                const alpha = (1 - dist / CONNECT_DISTANCE) * 0.14;
+                ctx.strokeStyle = `rgba(217, 163, 92, ${alpha})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(pi.x, pi.y);
+                ctx.lineTo(pj.x, pj.y);
+                ctx.stroke();
+              }
+            }
+          }
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            ctx.fillStyle = 'rgba(244, 234, 217, 0.5)';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        function loop() {
+          updateParticles();
+          drawParticles();
+          requestAnimationFrame(loop);
+        }
+
+        window.addEventListener('resize', () => {
+          resize();
+          createParticles();
+        });
+
+        window.addEventListener('pointermove', (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.active = true;
+        }, { passive: true });
+
+        window.addEventListener('pointerleave', () => {
+          mouse.active = false;
+        });
+
+        resize();
+        createParticles();
+        requestAnimationFrame(loop);
+      }
+
+      /* ---------- 3. Exoskelett Dialog Steuerung (WCAG AAA) ---------- */
+      const modal = document.getElementById('exoskelett-modal');
+      const openBtn = document.getElementById('open-exoskelett-btn');
+      const closeBtn = document.getElementById('close-exoskelett-btn');
+      const footerCloseBtn = document.getElementById('close-modal-footer-btn');
+
+      function openModal() {
+        if (modal) modal.showModal();
+      }
+
+      function closeModal() {
+        if (modal) modal.close();
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (footerCloseBtn) footerCloseBtn.addEventListener('click', closeModal);
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          const rect = modal.getBoundingClientRect();
+          const inDialog = (
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width
+          );
+          if (!inDialog) closeModal();
+        });
+      }
+
+      /* ---------- 4. Tab-Wechsel im Exoskelett ---------- */
+      const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.setAttribute('aria-selected', 'false');
+            t.classList.remove('bg-gold/10', 'text-amberglow', 'border', 'border-gold/30');
+            t.classList.add('text-parchment/60');
+          });
+
+          tab.setAttribute('aria-selected', 'true');
+          tab.classList.add('bg-gold/10', 'text-amberglow', 'border', 'border-gold/30');
+          tab.classList.remove('text-parchment/60');
+
+          const targetPanelId = tab.getAttribute('aria-controls');
+          document.querySelectorAll('[role="tabpanel"]').forEach(panel => {
+            panel.hidden = panel.id !== targetPanelId;
+          });
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
